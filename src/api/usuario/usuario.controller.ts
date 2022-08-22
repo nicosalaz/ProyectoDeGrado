@@ -9,8 +9,6 @@ import { Response } from 'express';
 export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 
-
-
   @Get()
   findAll() {
     return this.usuarioService.findAll();
