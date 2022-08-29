@@ -1,11 +1,11 @@
 export class CreateUsuarioDto {
-    nombre : string;
+  nombre: string;
 
-    apellido : string;
+  apellido: string;
 
-    numero_documento : number;
+  numero_identificacion: number;
 
-    usuario : string;
+  usuario: string;
 
-    clave: string;
+  clave: string;
 }

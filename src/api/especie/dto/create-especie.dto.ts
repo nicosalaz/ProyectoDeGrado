@@ -5,4 +5,5 @@ export class CreateEspecieDto {
 
     descripcion_especie : string;
     
+    isActive: boolean;
 }

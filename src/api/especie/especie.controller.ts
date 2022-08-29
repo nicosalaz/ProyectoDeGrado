@@ -20,7 +20,7 @@ export class EspecieController {
     return this.especieService.findAll();
   }
   /*
-    - Se hace uso deñ servicio ya creado.
+    - Se hace uso del servicio ya creado.
     - El pipe es para validar que sea entero.
     - findOne y se le pasa el id es para encontrar una especie especifica.
   */
@@ -29,6 +29,7 @@ export class EspecieController {
     return this.especieService.findOne(id);
   }
 
+  /*
   @Patch('update')
   async update(@Res() res: Response, @Body() updateEspecieDtoList: UpdateEspecieDto[]) {
     try {
@@ -38,6 +39,7 @@ export class EspecieController {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
+  */
 /*
   @Delete(':id')
   remove(@Param('id') id: string) {

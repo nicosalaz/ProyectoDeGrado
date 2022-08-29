@@ -28,13 +28,13 @@ export class EspecieService {
     - el nombre del parametro debe coincidir con el de la entidad.
     - la función findOneBy trae un valor especifico
   */
-  async findOne(id_especie: number): Promise<Especie> {
+  public async findOne(id_especie: number): Promise<Especie> {
     return await this.especieRepository.findOneBy({id_especie});
   }
-
-  async update(updateEspecieDtoList: UpdateEspecieDto[]): Promise<Especie[]> {
-    return await this.especieRepository.save(updateEspecieDtoList);
-  }
+/*
+  async update(id_especie:number,updateEspecieDto: UpdateEspecieDto): Promise<Especie> {
+    return this.especieRepository.update(id_especie,updateEspecieDto);
+  }*/
   /*
   remove(id: number) {
     return `This action removes a #${id} especie`;

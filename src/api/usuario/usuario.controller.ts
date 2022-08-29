@@ -1,4 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Query, Res, HttpStatus, HttpException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+  Query,
+  Res,
+  HttpStatus,
+  HttpException,
+} from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
@@ -19,15 +32,18 @@ export class UsuarioController {
     return await this.usuarioService.findOne(id);
   }
 
-
   @Patch('update')
-  async update(@Res() res: Response, @Body() updateUserDtoList: UpdateUsuarioDto[]) {
+  async update(
+    @Res() res: Response,
+    @Body() updateUserDtoList: UpdateUsuarioDto[],
+  ) {
     try {
-      const result : Usuario[] = await this.usuarioService.update(updateUserDtoList);
+      const result: Usuario[] = await this.usuarioService.update(
+        updateUserDtoList,
+      );
       return res.status(HttpStatus.OK).json(result);
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
-
 }
