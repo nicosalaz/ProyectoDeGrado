@@ -5,15 +5,11 @@ import { AppService } from './app.service';
 import { ApiModule } from './api/api.module';
 import { RouterModule } from '@nestjs/core';
 import { routes } from './routes';
+import { dataSource } from './ormconfig';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
-    type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: 'n1c0l4s10',
-    database: 'especiesarboreas',
+    ...dataSource.options,
     keepConnectionAlive: true,
     autoLoadEntities: true,
   }), 
