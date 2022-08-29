@@ -1,4 +1,4 @@
-Create Database EspeciesArboreas;
+Create Database especiesarboreas;
 use EspeciesArboreas;
 create table if not exists permiso(
 	id_permiso integer primary key auto_increment,
@@ -12,7 +12,7 @@ create table if not exists rol(
 	nombre_rol varchar(50) not null,
 	descripcion_rol text not null,
     isActive boolean not null,
-	fk_id_permiso integer not null references permiso(id_permiso)
+	id_permiso integer not null references permiso(id_permiso)
 );
 create table if not exists especie(
 	id_especie integer primary key auto_increment,

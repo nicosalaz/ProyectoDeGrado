@@ -17,11 +17,12 @@ import { Especie } from '../especie/entities/especie.entity';
 import { EspecieArborea } from './entities/especie_arborea.entity';
 import { Response } from 'express';
 
+
 @Controller()
 export class EspecieArboreaController {
   constructor(private readonly especieArboreaService: EspecieArboreaService) {}
 
-  @Get('all-especies-arboreas')
+  @Get()
   async findAll(): Promise<EspecieArborea[]> {
     return this.especieArboreaService.findAll();
   }
