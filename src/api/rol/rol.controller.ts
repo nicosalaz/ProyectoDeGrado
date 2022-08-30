@@ -22,11 +22,11 @@ export class RolController {
   @Patch('update')
   async update(
     @Res() res: Response,
-    @Body() updateUserDtoList: UpdateRolDto[],
+    @Body() updateRolDtoList: UpdateRolDto[],
   ) {
     try {
       const result: Rol[] = await this.rolService.update(
-        updateUserDtoList,
+        updateRolDtoList,
       );
       return res.status(HttpStatus.OK).json(result);
     } catch (error) {

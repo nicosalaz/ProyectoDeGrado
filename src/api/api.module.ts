@@ -4,8 +4,15 @@ import { EspecieModule } from './especie/especie.module';
 import { EspecieArboreaModule } from './especie_arborea/especie_arborea.module';
 import { PeticionesRegistroModule } from './peticiones_registro/peticiones_registro.module';
 import { RolModule } from './rol/rol.module';
+import { PermisoModule } from './permiso/permiso.module';
 
 @Module({
-  imports: [UsuarioModule, EspecieModule, EspecieArboreaModule, PeticionesRegistroModule, RolModule]
+  imports: [
+    UsuarioModule, 
+    EspecieModule, 
+    EspecieArboreaModule, 
+    PeticionesRegistroModule, 
+    RolModule, 
+    PermisoModule]
 })
 export class ApiModule {}
