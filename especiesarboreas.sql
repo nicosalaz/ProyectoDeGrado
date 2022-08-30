@@ -173,6 +173,22 @@ CREATE TABLE `usuario` (
   CONSTRAINT `rol_fk2` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+CREATE TABLE `publicacion` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `descripcion` text,
+	`imagen_arbol` longblob,
+  `usuario_id` bigint NOT NULL,
+	`puclicacion_id` bigint DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`) USING BTREE,
+	KEY `puclicacion_id` (`puclicacion_id`) USING BTREE,
+  CONSTRAINT `usuario_id_fk2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+	CONSTRAINT `puclicacion_id_fk2` FOREIGN KEY (`puclicacion_id`) REFERENCES `publicacion` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB;
+
+
 -- ----------------------------
 -- Records of usuario
 -- ----------------------------

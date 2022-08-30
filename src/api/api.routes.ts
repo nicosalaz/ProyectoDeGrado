@@ -1,6 +1,7 @@
 import { EspecieModule } from './especie/especie.module';
 import { EspecieArboreaModule } from './especie_arborea/especie_arborea.module';
 import { UsuarioModule } from './usuario/usuario.module';
+import { RolModule } from './rol/rol.module';
 
 export const apiRoutes = [
     {
@@ -12,5 +13,9 @@ export const apiRoutes = [
       },{
         path: 'especie-arborea',
         module: EspecieArboreaModule,
+      },
+      {
+        path: 'rol',
+        module: RolModule,
       }
 ];
