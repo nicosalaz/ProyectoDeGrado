@@ -6,6 +6,7 @@ import { PeticionesRegistroModule } from './peticiones_registro/peticiones_regis
 import { RolModule } from './rol/rol.module';
 import { PermisoModule } from './permiso/permiso.module';
 import { IdentificacionModule } from './identificacion/identificacion.module';
+import { PublicacionModule } from './publicacion/publicacion.module';
 
 @Module({
   imports: [
@@ -14,6 +15,6 @@ import { IdentificacionModule } from './identificacion/identificacion.module';
     EspecieArboreaModule, 
     PeticionesRegistroModule, 
     RolModule, 
-    PermisoModule, IdentificacionModule]
+    PermisoModule, IdentificacionModule, PublicacionModule]
 })
 export class ApiModule {}
