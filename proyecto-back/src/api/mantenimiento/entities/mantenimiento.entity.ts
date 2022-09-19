@@ -1,4 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Usuario } from '../../usuario/entities/usuario.entity';
 
 @Entity('mantenimiento')
 export class Mantenimiento {
@@ -14,10 +23,12 @@ export class Mantenimiento {
   @Column()
   imagen_arbol: string;
 
-  @Column()
+  @ManyToOne(() => Usuario, { eager: true })
+  @JoinColumn({ name: 'usuario_id' })
   usuario_id: number;
 
-  @Column()
+  @ManyToOne(() => Usuario, { eager: true })
+  @JoinColumn({ name: 'usuario_asignado_id' })
   usuario_asignado_id: number;
 
   @Column()

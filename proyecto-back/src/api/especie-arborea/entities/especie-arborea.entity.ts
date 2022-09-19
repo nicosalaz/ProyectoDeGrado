@@ -1,4 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Especie } from '../../especie/entities/especie.entity';
+import { PeticionesRegistro } from '../../peticiones_registro/entities/peticiones_registro.entity';
 
 @Entity('especie_arborea')
 export class EspecieArborea {
@@ -8,7 +17,8 @@ export class EspecieArborea {
   @Column()
   nombre_especie_arborea: string;
 
-  @Column()
+  @ManyToOne(() => Especie, { eager: true })
+  @JoinColumn({ name: 'especie_id' })
   especie_id: number;
 
   @Column()
@@ -17,7 +27,8 @@ export class EspecieArborea {
   @Column()
   comentarios: string;
 
-  @Column()
+  @ManyToOne(() => PeticionesRegistro, { eager: true })
+  @JoinColumn({ name: 'peticion_registro_id' })
   peticion_registro_id: number;
 
   @Column()

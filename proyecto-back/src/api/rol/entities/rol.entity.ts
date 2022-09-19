@@ -1,19 +1,27 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Permiso } from '../../permiso/entities/permiso.entity';
 
 @Entity('rol')
 export class Rol {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    nombre_rol: string;
+  @Column()
+  nombre_rol: string;
 
-    @Column()
-    descripcion_rol: string;
+  @Column()
+  descripcion_rol: string;
 
-    @Column()
-    permiso_id: number;
+  @ManyToOne(() => Permiso, { eager: true })
+  @JoinColumn({ name: 'permiso_id' })
+  permiso_id: number;
 
-    @Column()
-    is_active: number;
+  @Column()
+  is_active: number;
 }

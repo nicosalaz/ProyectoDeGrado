@@ -10,6 +10,8 @@ import {
   Res,
   HttpStatus,
   HttpException,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { EspecieArboreaService } from './especie-arborea.service';
 import { CreateEspecieArboreaDto } from './dto/create-especie-arborea.dto';
@@ -19,6 +21,7 @@ import { Response } from 'express';
 import { EspecieArborea } from './entities/especie-arborea.entity';
 
 @Controller()
+@UseInterceptors(ClassSerializerInterceptor)
 export class EspecieArboreaController {
   constructor(private readonly especieArboreaService: EspecieArboreaService) {}
 

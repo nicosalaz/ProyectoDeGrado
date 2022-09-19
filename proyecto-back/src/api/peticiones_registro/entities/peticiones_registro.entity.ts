@@ -19,7 +19,8 @@ export class PeticionesRegistro {
   @Column()
   estado_peticion: string;
 
-  @Column()
+  @ManyToOne(() => Usuario, { eager: true })
+  @JoinColumn({ name: 'usuario_id' })
   usuario_id: number;
 
   @Column()
@@ -28,8 +29,9 @@ export class PeticionesRegistro {
   @Column()
   ubicacion: string;
 
-  @Column()
-  usuario_asignado_id: string;
+  @ManyToOne(() => Usuario, { eager: true })
+  @JoinColumn({ name: 'usuario_asignado_id' })
+  usuario_asignado_id: number;
 
   @Column()
   is_active: boolean;

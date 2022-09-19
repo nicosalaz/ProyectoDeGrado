@@ -11,7 +11,7 @@ export class CreatePeticionesRegistroDto {
 
   ubicacion: string;
 
-  usuario_asignado_id: string;
+  usuario_asignado_id: number;
 
   is_active: boolean;
 }

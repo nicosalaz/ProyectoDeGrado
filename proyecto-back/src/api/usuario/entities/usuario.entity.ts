@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Rol } from '../../rol/entities/rol.entity';
 
 @Entity('usuario')
 export class Usuario {
@@ -26,7 +33,8 @@ export class Usuario {
   @Column()
   clave: string;
 
-  @Column()
+  @ManyToOne(() => Rol, { eager: true })
+  @JoinColumn({ name: 'rol_id' })
   rol_id: number;
 
   @Column()
