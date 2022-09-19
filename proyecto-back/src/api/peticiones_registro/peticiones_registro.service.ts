@@ -1,26 +1,28 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreatePeticionesRegistroDto } from './dto/create-peticiones_registro.dto';
 import { UpdatePeticionesRegistroDto } from './dto/update-peticiones_registro.dto';
+import { PeticionesRegistro } from './entities/peticiones_registro.entity';
 
 @Injectable()
 export class PeticionesRegistroService {
-  create(createPeticionesRegistroDto: CreatePeticionesRegistroDto) {
-    return 'This action adds a new peticionesRegistro';
-  }
+  constructor(
+    @InjectRepository(PeticionesRegistro)
+    private peticionRegistroRepository: Repository<PeticionesRegistro>,
+  ) {}
 
   findAll() {
-    return `This action returns all peticionesRegistro`;
+    return this.peticionRegistroRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} peticionesRegistro`;
+  async findOne(id: number): Promise<PeticionesRegistro> {
+    return await this.peticionRegistroRepository.findOneBy({ id });
   }
 
-  update(id: number, updatePeticionesRegistroDto: UpdatePeticionesRegistroDto) {
-    return `This action updates a #${id} peticionesRegistro`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} peticionesRegistro`;
+  async update(
+    updatePublicacionDtoList: UpdatePeticionesRegistroDto[],
+  ): Promise<PeticionesRegistro[]> {
+    return await this.peticionRegistroRepository.save(updatePublicacionDtoList);
   }
 }

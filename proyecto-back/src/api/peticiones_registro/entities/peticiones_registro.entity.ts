@@ -7,9 +7,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { JoinAttribute } from 'typeorm/query-builder/JoinAttribute';
 
-@Entity()
+@Entity('peticion_registro')
 export class PeticionesRegistro {
   @PrimaryGeneratedColumn()
   id: number;
@@ -20,9 +19,8 @@ export class PeticionesRegistro {
   @Column()
   estado_peticion: string;
 
-  @ManyToOne(() => Usuario, { eager: true })
-  @JoinColumn({ name: 'usuario_id' })
-  usuario_id: Usuario;
+  @Column()
+  usuario_id: number;
 
   @Column()
   imagen_arbol: string;
@@ -30,9 +28,8 @@ export class PeticionesRegistro {
   @Column()
   ubicacion: string;
 
-  @ManyToOne(() => Usuario, { eager: true })
-  @JoinColumn({ name: 'usuario_asignado_id' })
-  usuario_asignado_id: Usuario;
+  @Column()
+  usuario_asignado_id: string;
 
   @Column()
   is_active: boolean;
