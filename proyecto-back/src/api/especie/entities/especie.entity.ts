@@ -5,7 +5,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 export class Especie {
   
   @PrimaryGeneratedColumn()
-  id_especie: number;
+  id: number;
 
   @Column()
   nombre_especie: string;
@@ -14,5 +14,5 @@ export class Especie {
   descripcion_especie: string;
 
   @Column()
-  isActive: boolean;
+  is_active: boolean;
 }

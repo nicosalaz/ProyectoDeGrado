@@ -1,9 +1,7 @@
-
 export class CreateEspecieDto {
+  nombre_especie: string;
 
-    nombre_especie : string;
+  descripcion_especie: string;
 
-    descripcion_especie : string;
-    
-    isActive: boolean;
+  is_active: boolean;
 }

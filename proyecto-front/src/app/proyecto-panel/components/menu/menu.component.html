@@ -1,17 +1,14 @@
-<!-- PAGE -->
-<div class="page">
-    <div class="page-main">
-        <!--APP-SIDEBAR-->
+<!--APP-SIDEBAR-->
         <div class="sticky" >
                     <div class="app-sidebar__overlay" data-bs-toggle="sidebar" ></div>
                     <div class="app-sidebar" style="overflow: scroll;">
                         <div class="side-header">
                             <a class="header-brand1" href="index.html">
-                                <img src="../assets/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
-                                <img src="../assets/images/brand/logo-1.png" class="header-brand-img toggle-logo"
+                                <img src="" class="header-brand-img desktop-logo" alt="logo">
+                                <img src="" class="header-brand-img toggle-logo"
                                     alt="logo">
-                                <img src="../assets/images/brand/logo-2.png" class="header-brand-img light-logo" alt="logo">
-                                <img src="../assets/images/brand/logo-3.png" class="header-brand-img light-logo1"
+                                <img src="../assets/images/CGIAR.png" style="width: 107px; height: 30px;" class="header-brand-img light-logo" alt="logo">
+                                <img src="../assets/images/CGIAR.png" style="width: 100px; height: 50px;" class="header-brand-img light-logo1"
                                     alt="logo">
                             </a>
                             <!-- LOGO -->
@@ -25,10 +22,23 @@
                                 <li class="sub-category">
                                     <h3>Main</h3>
                                 </li>
-                                <li class="slide">
-                                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="index.html"><i
-                                            class="side-menu__icon fe fe-home"></i><span
-                                            class="side-menu__label">Dashboard</span></a>
+                                <li class="slide" (click)="abrir('side-menu-one-cgiar-control-list')">
+                                    <a class="side-menu__item" data-bs-toggle="slide"   href="javascript:void(0)"><i
+                                            class="side-menu__icon fa fa-list-ul"></i><span
+                                            class="side-menu__label">General Control List</span><i
+                                            class="angle fe fe-chevron-right"></i></a>
+                                    <ul class="slide-menu" id="side-menu-one-cgiar-control-list" >
+                                        <app-sub-menu [dataSubMenu] = "item" *ngFor="let item of dataSubMenu;"></app-sub-menu>
+                                    </ul>
+                                </li>
+                                <li class="slide" (click)="abrir('aditional-services')">
+                                    <a class="side-menu__item" data-bs-toggle="slide"   href="javascript:void(0)"><i
+                                            class="side-menu__icon fa fa-university"></i><span
+                                            class="side-menu__label">Institutions</span><i
+                                            class="angle fe fe-chevron-right"></i></a>
+                                    <ul class="slide-menu" id="aditional-services" >
+                                        <app-sub-menu [dataSubMenu] = "item" *ngFor="let item of dataSubMenuInstitutions;"></app-sub-menu>
+                                    </ul>
                                 </li>
 
                             </ul>
@@ -47,17 +57,14 @@
                     <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
                     <!-- sidebar-toggle-->
                     <a class="logo-horizontal " href="index.html">
-                        <img src="../assets/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
-                        <img src="../assets/images/brand/logo-3.png" class="header-brand-img light-logo1"
+                        <img src="../assets/images/CGIAR.png" class="header-brand-img desktop-logo" alt="logo">
+                        <img src="../assets/images/CGIAR.png" style="width: 100px; height: 50px;" class="header-brand-img light-logo1"
                             alt="logo">
                     </a>
                     <!-- LOGO -->
-                    <div class="main-header-center ms-3 d-none d-lg-block">
-                        <input type="text" class="form-control" id="typehead" placeholder="Search for results...">
-                        <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
-                    </div>
                     <div class="d-flex order-lg-2 ms-auto header-right-icons">
                         <!-- SEARCH -->
+                        
                         <button class="navbar-toggler navresponsive-toggler d-lg-none ms-auto" type="button"
                             data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4"
                             aria-controls="navbarSupportedContent-4" aria-expanded="false"
@@ -67,20 +74,71 @@
                         <div class="navbar navbar-collapse responsive-navbar p-0">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                                 <div class="d-flex order-lg-2">
-                                    <div class="dropdown d-lg-none d-flex">
-                                        <a href="javascript:void(0)" class="nav-link icon" data-bs-toggle="dropdown">
-                                            <i class="fe fe-search"></i>
+                                    <div class="d-flex country">
+                                        <a class="nav-link icon text-center" data-bs-target="#country-selector"
+                                            data-bs-toggle="modal">
+                                            <i class="fe fe-home"></i><span
+                                                class="fs-16 ms-2 d-none d-xl-block">Home</span>
                                         </a>
-                                        <div class="dropdown-menu header-search dropdown-menu-start">
-                                            <div class="input-group w-100 p-2">
-                                                <input type="text" class="form-control" placeholder="Search....">
-                                                <div class="input-group-text btn btn-primary">
-                                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
+                                    </div>
+
+                                    <div class="dropdown  d-flex notifications">
+                                        <a class="nav-link icon text-center" data-bs-toggle="dropdown">
+                                            <i class="fa fa-area-chart"></i><span class="fs-16 ms-2 d-none d-xl-block">Dashboards</span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                            
+                                            <div class="dropdown-divider m-0"></div>
+                                            
+                                            <a class="dropdown-item" href="email-inbox.html">
+                                                <i class="dropdown-icon fa fa-indent"></i> Introduction
+                                            </a>
+                                            <a class="dropdown-item" href="email-inbox.html">
+                                                <i class="dropdown-icon fa fa-bar-chart"></i> Institutions Request BI
+                                            </a>
                                         </div>
                                     </div>
 
+                                    <div class="dropdown  d-flex notifications">
+                                        <a class="nav-link icon text-center" data-bs-toggle="dropdown">
+                                            <i class="fa fa-globe"></i><span class="fs-16 ms-2 d-none d-xl-block">API Services</span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                            
+                                            <div class="dropdown-divider m-0"></div>
+                                            
+                                            <a class="dropdown-item" href="email-inbox.html">
+                                                <i class="dropdown-icon fa fa-television"></i> Annual Report Control Lists
+                                            </a>
+                                            <a class="dropdown-item" href="email-inbox.html">
+                                                <i class="dropdown-icon fa fa fa-file-text"></i> 
+                                                One CGIAR Control Lists
+                                            </a>
+                                            <a class="dropdown-item" href="email-inbox.html">
+                                                <i class="dropdown-icon fa fa-globe"></i> Additional Services
+                                            </a>
+                                            <a class="dropdown-item" href="email-inbox.html">
+                                                <i class="dropdown-icon fa fa fa-briefcase"></i> One CGIAR Operation
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown  d-flex notifications">
+                                        <a class="nav-link icon text-center" data-bs-toggle="dropdown">
+                                            <i class="fa fa-info-circle"></i><span class="fs-16 ms-2 d-none d-xl-block">Help</span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                            
+                                            <div class="dropdown-divider m-0"></div>
+                                            
+                                            <a class="dropdown-item" href="email-inbox.html">
+                                                <i class="dropdown-icon fa fa-question-circle "></i> FAQ
+                                            </a>
+                                            <a class="dropdown-item" href="email-inbox.html">
+                                                <i class="dropdown-icon fa fa-envelope-o"></i> Contact us
+                                            </a>
+                                        </div>
+                                    </div>
 
                                     <!-- MESSAGE-BOX -->
                                     <!-- SIDE-MENU -->
@@ -97,9 +155,7 @@
                                                 </div>
                                             </div>
                                             <div class="dropdown-divider m-0"></div>
-                                            <a class="dropdown-item" href="profile.html">
-                                                <i class="dropdown-icon fe fe-user"></i> Profile
-                                            </a>
+                                            
                                             <a class="dropdown-item" href="email-inbox.html">
                                                 <i class="dropdown-icon fe fe-mail"></i> Inbox
                                                 <span class="badge bg-danger rounded-pill float-end">5</span>
@@ -120,7 +176,3 @@
             </div>
         </div>
         <!-- /app-Header -->
-    </div>
-    <!--/Sidebar-right-->
-
-</div>

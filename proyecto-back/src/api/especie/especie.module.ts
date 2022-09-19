@@ -3,11 +3,10 @@ import { EspecieService } from './especie.service';
 import { EspecieController } from './especie.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Especie } from './entities/especie.entity';
-import { EspecieArboreaModule } from '../especie_arborea/especie_arborea.module';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Especie])],
+  imports: [TypeOrmModule.forFeature([Especie])],
   controllers: [EspecieController],
-  providers: [EspecieService]
+  providers: [EspecieService],
 })
 export class EspecieModule {}
