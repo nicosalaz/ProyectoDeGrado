@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { EspecieArboreaController } from './especie_arborea.controller';
-import { EspecieArboreaService } from './especie_arborea.service';
+import { EspecieArboreaController } from './especie-arborea.controller';
+import { EspecieArboreaService } from './especie-arborea.service';
 
 describe('EspecieArboreaController', () => {
   let controller: EspecieArboreaController;

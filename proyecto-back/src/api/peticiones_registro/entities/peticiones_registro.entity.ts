@@ -13,18 +13,27 @@ import { JoinAttribute } from 'typeorm/query-builder/JoinAttribute';
 export class PeticionesRegistro {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
-  nombre_peticion: number;
+  peticion_registro: number;
+
   @Column()
   estado_peticion: string;
+
   @ManyToOne(() => Usuario, { eager: true })
-  @JoinColumn({ name: 'id' })
-  fk_id_usuario: Usuario;
-  /*@Column()
-  imagen_arbol: Long;
+  @JoinColumn({ name: 'usuario_id' })
+  usuario_id: Usuario;
+
   @Column()
-  ubicacion: JSON;*/
+  imagen_arbol: string;
+
+  @Column()
+  ubicacion: string;
+
   @ManyToOne(() => Usuario, { eager: true })
-  @JoinColumn({ name: 'id' })
-  fk_id_personal_asignado: Usuario;
+  @JoinColumn({ name: 'usuario_asignado_id' })
+  usuario_asignado_id: Usuario;
+
+  @Column()
+  is_active: boolean;
 }

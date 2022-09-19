@@ -1,15 +1,13 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-
-@Entity()
+@Entity('especie')
 export class Especie {
-  
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   nombre_especie: string;
-  
+
   @Column()
   descripcion_especie: string;
 

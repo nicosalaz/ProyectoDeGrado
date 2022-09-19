@@ -1,11 +1,13 @@
-import { Especie } from 'src/api/especie/entities/especie.entity';
-
 export class CreateEspecieArboreaDto {
   nombre_especie_arborea: string;
+
+  especie_id: number;
 
   descripcion: string;
 
   comentarios: string;
 
-  fk_id_especie: number;
+  peticion_registro_id: number;
+
+  is_active: boolean;
 }

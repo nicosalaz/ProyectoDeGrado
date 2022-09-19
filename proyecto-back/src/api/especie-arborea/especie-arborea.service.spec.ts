@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { EspecieArboreaService } from './especie_arborea.service';
+import { EspecieArboreaService } from './especie-arborea.service';
 
 describe('EspecieArboreaService', () => {
   let service: EspecieArboreaService;

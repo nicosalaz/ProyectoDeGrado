@@ -17,10 +17,12 @@ export class PublicacionService {
   }
 
   async findOne(id: number): Promise<Publicacion> {
-    return await this.publicacionRepository.findOneBy({id});
+    return await this.publicacionRepository.findOneBy({ id });
   }
 
-  async update(updatePublicacionDtoList: UpdatePublicacionDto[]) : Promise<Publicacion[]> {
+  async update(
+    updatePublicacionDtoList: UpdatePublicacionDto[],
+  ): Promise<Publicacion[]> {
     return await this.publicacionRepository.save(updatePublicacionDtoList);
   }
 }
