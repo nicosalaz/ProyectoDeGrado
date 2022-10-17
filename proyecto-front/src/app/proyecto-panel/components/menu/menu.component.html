@@ -23,7 +23,7 @@
                                     <h3>Main</h3>
                                 </li>
                                 <li class="slide" (click)="abrir('side-menu-one-cgiar-control-list')">
-                                    <a class="side-menu__item" data-bs-toggle="slide"   href="javascript:void(0)"><i
+                                    <a [routerLink]="['homeO']" class="side-menu__item" data-bs-toggle="slide"   href="javascript:void(0)"><i
                                             class="side-menu__icon fa fa-list-ul"></i><span
                                             class="side-menu__label">General Control List</span><i
                                             class="angle fe fe-chevron-right"></i></a>
@@ -37,7 +37,7 @@
                                             class="side-menu__label">Institutions</span><i
                                             class="angle fe fe-chevron-right"></i></a>
                                     <ul class="slide-menu" id="aditional-services" >
-                                        <app-sub-menu [dataSubMenu] = "item" *ngFor="let item of dataSubMenuInstitutions;"></app-sub-menu>
+                                        <li><a [routerLink]="['home']" class="slide-item">Institutions List </a></li>
                                     </ul>
                                 </li>
 

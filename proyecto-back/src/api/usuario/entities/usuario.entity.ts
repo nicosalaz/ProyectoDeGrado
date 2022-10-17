@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Rol } from '../../rol/entities/rol.entity';
+import { Identificacion } from '../../identificacion/entities/identificacion.entity';
 
 @Entity('usuario')
 export class Usuario {
@@ -18,7 +19,8 @@ export class Usuario {
   @Column()
   apellidos: string;
 
-  @Column()
+  @ManyToOne(() => Identificacion, { eager: true })
+  @JoinColumn({ name: 'identificacion_id' })
   identificacion_id: number;
 
   @Column()

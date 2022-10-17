@@ -1,0 +1,166 @@
+<div class="main-content app-content mt-0">
+  <div class="side-app">
+    <!-- CONTAINER -->
+    <div class="main-container container-fluid">
+      <!-- PAGE-HEADER -->
+      <div class="page-header">
+        <h1 class="page-title"></h1>
+        <div>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)"></a></li>
+            <li class="breadcrumb-item active" aria-current="page"></li>
+          </ol>
+        </div>
+      </div>
+      <!-- PAGE-HEADER END -->
+      <!-- Row -->
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title" style="font-size: 30px">Institutions</h3>
+            </div>
+            <div class="card-body">
+              <h2>Summary</h2>
+              <p></p>
+              <div class="expanel expanel-default">
+                <div class="expanel-body">
+                  <!-- ROW-2 OPEN -->
+                  <div
+                    style="
+                      height: 50px;
+                      width: 100%;
+                      border-radius: 10px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    "
+                  >
+                    <h1 style="margin: 20px">institution-types</h1>
+                  </div>
+
+                  <div class="panel-body">
+                    <h2>Functionality</h2>
+                    <p style="font-size: 17px">
+                      This is a worldwide list of institutions that have been
+                      related to CGIAR activities as funders, leaders, partners,
+                      and/or contributors. This list reflects the information
+                      consolidated by some of the CGIAR Management Information
+                      Systems and external sources (i.e. MARLO and MEL).
+                    </p>
+                    <h2>Parameters</h2>
+                    <p>No parameters</p>
+                    <div class="row">
+                      <div class="col-md-12 col-lg-12">
+                        <div class="card">
+                          <div class="card-header">
+                            <h3 class="card-title">Response data:</h3>
+                          </div>
+                          <div class="card-body">
+                            <div class="expanel expanel-default">
+                              <div class="expanel-body">
+                                <div class="col-lg-12">
+                                  <div class="expanel expanel-primary">
+                                    <div class="expanel-heading">
+                                      <h3 class="expanel-title">
+                                        State code: 200: OK
+                                      </h3>
+                                    </div>
+                                    <div class="expanel-body">
+                                      <pre style="font-size: 16px">
+<code >
+    [
+    
+      "code" : 0,
+      "name" : "string"    
+    }
+  ]</code></pre>
+                                    </div>
+                                    <div
+                                      class="card-footer"
+                                      style="
+                                        display: flex;
+                                        justify-content: center;
+                                      "
+                                    >
+                                      <button
+                                        class="btn btn-green bg-green-gradient mt-3"
+                                        style="
+                                          width: 50vw;
+                                          height: 50px;
+                                          font-size: 18px;
+                                        "
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#largemodal"
+                                      >
+                                        Display control list
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Row -->
+    </div>
+    <!-- CONTAINER CLOSED -->
+  </div>
+</div>
+
+<div class="modal fade" id="largemodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row row-sm">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">File Export</h3>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    id="file-datatable"
+                    class="table table-bordered text-nowrap key-buttons border-bottom"
+                  >
+                    <thead>
+                      <tr>
+                        <th class="border-bottom-0">Code</th>
+                        <th class="border-bottom-0">Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>3</td>
+                        <td>CGIAR Center</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
