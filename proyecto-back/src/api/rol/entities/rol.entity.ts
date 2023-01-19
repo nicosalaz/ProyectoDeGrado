@@ -1,19 +1,12 @@
+import { AuditableEntity } from 'src/shared/entitites/extendes/auditable-entity.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('rol')
-export class Rol {
+export class Rol extends AuditableEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    nombre_rol: string;
+    descripcion: string;
 
-    @Column()
-    descripcion_rol: string;
-
-    @Column()
-    permiso_id: number;
-
-    @Column()
-    is_active: number;
 }

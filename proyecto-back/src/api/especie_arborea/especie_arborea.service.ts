@@ -16,9 +16,9 @@ export class EspecieArboreaService {
     return await this.repositoryEspecieArborea.find();
   }
 
-  async findOne(id_especie_arborea: number): Promise<EspecieArborea> {
+  async findOne(id: number): Promise<EspecieArborea> {
     return await this.repositoryEspecieArborea.findOneBy({
-      id_especie_arborea,
+      id,
     });
   }
 
