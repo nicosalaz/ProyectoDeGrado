@@ -1,27 +1,12 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Permiso } from '../../permiso/entities/permiso.entity';
+import { AuditableEntity } from 'src/shared/entitites/extendes/auditable-entity.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('rol')
-export class Rol {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Rol extends AuditableEntity{
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column()
-  nombre_rol: string;
+    @Column()
+    descripcion: string;
 
-  @Column()
-  descripcion_rol: string;
-
-  @ManyToOne(() => Permiso, { eager: true })
-  @JoinColumn({ name: 'permiso_id' })
-  permiso_id: number;
-
-  @Column()
-  is_active: number;
 }

@@ -8,18 +8,15 @@ import { IdentificacionModule } from './identificacion/identificacion.module';
 import { PublicacionModule } from './publicacion/publicacion.module';
 import { EspecieArboreaModule } from './especie-arborea/especie-arborea.module';
 import { MantenimientoModule } from './mantenimiento/mantenimiento.module';
+import { EspecieArboreaUbicacionModule } from './especie_arborea_ubicacion/especie_arborea_ubicacion.module';
 
 @Module({
   imports: [
-    UsuarioModule,
-    EspecieModule,
-    EspecieArboreaModule,
-    PeticionesRegistroModule,
-    RolModule,
-    PermisoModule,
-    IdentificacionModule,
-    PublicacionModule,
-    MantenimientoModule,
-  ],
+    UsuarioModule, 
+    EspecieModule, 
+    EspecieArboreaModule, 
+    PeticionesRegistroModule, 
+    RolModule, 
+    PermisoModule, IdentificacionModule, PublicacionModule]
 })
 export class ApiModule {}
