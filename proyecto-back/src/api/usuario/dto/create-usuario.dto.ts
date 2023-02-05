@@ -3,7 +3,11 @@ export class CreateUsuarioDto {
 
   apellido: string;
 
+  id_identificacion:number;
+
   numero_identificacion: number;
+
+  correo: string;
 
   usuario: string;
 

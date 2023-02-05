@@ -4,17 +4,19 @@ import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Usuario } from './entities/usuario.entity';
 import { Repository } from 'typeorm';
+import { UsuarioRepository } from './repositories/usuario.repository';
+import * as bcrypt from 'bcrypt';
+import { CreateUsuarioRolDto } from './dto/create-usuario-rol.dto';
 
 @Injectable()
 export class UsuarioService {
   constructor(
     @InjectRepository(Usuario)
-    private usersRepository: Repository<Usuario>,
+    private usersRepository: UsuarioRepository,
+    
   ) {}
 
-  findAll() {
-    return this.usersRepository.find();
-  }
+  
 
   async getUserPermissions(user: Usuario): Promise<string[] | undefined> {
     const permissions_result: any = await this.usersRepository.query(
@@ -59,11 +61,25 @@ export class UsuarioService {
     return user;
   }
 
-  async findOne(id: number): Promise<Usuario> {
-    return await this.usersRepository.findOneBy({id});
-  }
 
-  async update(updateUserDtoList: UpdateUsuarioDto[]) : Promise<Usuario[]> {
-    return await this.usersRepository.save(updateUserDtoList);
-  }
+  async crearUsuario(bodyUsuario:CreateUsuarioDto){
+    const usuariosExistentes = await this.usersRepository.find()
+    let usuarioNuevo: Usuario;
+    const resultadoFilter = await usuariosExistentes.filter((resp) => resp.correo == bodyUsuario.correo || resp.usuario == bodyUsuario.usuario);
+
+    if(resultadoFilter.length == 0){
+      const saltOrRounds = 10;
+      bodyUsuario.clave = await bcrypt.hash(bodyUsuario.clave, saltOrRounds);
+      usuarioNuevo = await this.usersRepository.save(bodyUsuario);
+      const badiUsuarioRol: CreateUsuarioRolDto = new CreateUsuarioRolDto();
+      badiUsuarioRol.id_rol = 1;
+      badiUsuarioRol.id_usuario = usuarioNuevo.id;
+      const aux = this.usersRepository.usuarioRolRepository.save(badiUsuarioRol);
+      return aux;
+    }
+    
+    return usuarioNuevo
+   }
+
+  
 }

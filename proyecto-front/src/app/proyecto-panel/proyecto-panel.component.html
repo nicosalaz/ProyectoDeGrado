@@ -1,8 +1,6 @@
-<div class="page">
-    <div class="page-main">
-<app-menu></app-menu>
-<app-according></app-according>
-
-</div>
-</div>
-
+<div class="content">
+    <input (change)="onChangeFile($event)" type="file">
+    <br>
+    <br>
+    <button (click)="handleSendFile()" >Send file</button>
+  </div>
