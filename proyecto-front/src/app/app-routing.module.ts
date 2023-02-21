@@ -4,10 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path:"admin-panel", 
-    loadChildren: () => import('./proyecto-panel/proyecto-panel.module').then((m) => m.ProyectoPanelModule),
+    loadChildren: () => import('./admin-panel/admin-panel.module').then((m) => m.AdminPanelModule),
   },
   {
-    redirectTo:"admin-panel",
+    path:"landing-page", 
+    loadChildren: () => import('./landing-page/landing-page.module').then((m) => m.LandingPageModule),
+  },
+  {
+    redirectTo:"landing-page",
     path:"",
     pathMatch:"full",
   },
