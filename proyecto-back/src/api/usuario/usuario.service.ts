@@ -39,6 +39,7 @@ export class UsuarioService {
     const user: Usuario = await this.usersRepository.findOneBy({ correo });
     if (user) {
       user.permissions = await this.getUserPermissions(user);
+      user.rol = await this.findNombreRol(user.id);
     }
 
     if (isService) {
@@ -52,6 +53,7 @@ export class UsuarioService {
     const user: Usuario = await this.usersRepository.findOneBy({ usuario });
     if (user) {
       user.permissions = await this.getUserPermissions(user);
+      user.rol = await this.findNombreRol(user.id);
     }
 
     if (isService) {
@@ -59,6 +61,15 @@ export class UsuarioService {
     }
 
     return user;
+  }
+
+  async findNombreRol(userId:number){
+    const userRole = await this.usersRepository.query(`select r.descripcion from usuario u 
+    left join usuario_rol ur on ur.id_usuario = u.id 
+    left join rol r on r.id = ur.id_rol 
+    WHERE u.id = ?`, [userId])
+
+    return userRole[0]['descripcion'];
   }
 
 

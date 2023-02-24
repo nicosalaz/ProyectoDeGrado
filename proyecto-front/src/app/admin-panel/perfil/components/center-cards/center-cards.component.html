@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-body">
+        <form class="profile-edit" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+            <textarea class="form-control" placeholder="Que piensas hoy?" rows="7"  formControlName="descripcion"></textarea>
+           
+            <div class="profile-share border-top-0">
+                <div class="mt-2">
+                    
+                    <a href="javascript:void(0)" class="me-2" title="Image" data-bs-toggle="tooltip" data-bs-placement="top"><span class="text-muted"><i class="fe fe-image"></i></span></a>
+                </div>
+                <button  type="submit" [disabled]="!loginForm.valid" class="btn btn-sm btn-success ms-auto"><i class="fa fa-share ms-1"></i> Share</button>
+            </div>
+        </form>
+    </div>
+</div>
+<app-publicacion [infoPublicaciones]="i" *ngFor="let i of infoPublicaciones" [estadoLike]="tieneLike(i.id)"></app-publicacion>

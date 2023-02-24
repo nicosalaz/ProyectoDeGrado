@@ -4,23 +4,19 @@ import { Repository } from 'typeorm';
 import { CreatePublicacionDto } from './dto/create-publicacion.dto';
 import { UpdatePublicacionDto } from './dto/update-publicacion.dto';
 import { Publicacion } from './entities/publicacion.entity';
+import { PublicacionRepository } from './repository/publicacion.repository';
 
 @Injectable()
 export class PublicacionService {
   constructor(
-    @InjectRepository(Publicacion)
-    private publicacionRepository: Repository<Publicacion>,
+    private publicacionRepository: PublicacionRepository,
   ) {}
 
-  findAll() {
-    return this.publicacionRepository.find();
+  async crearPublicacion(pubilcacionNueva: CreatePublicacionDto){
+    return await this.publicacionRepository.crearPublicacion(pubilcacionNueva);
   }
 
-  async findOne(id: number): Promise<Publicacion> {
-    return await this.publicacionRepository.findOneBy({id});
-  }
-
-  async update(updatePublicacionDtoList: UpdatePublicacionDto[]) : Promise<Publicacion[]> {
-    return await this.publicacionRepository.save(updatePublicacionDtoList);
+  async buscarPublicacionPorUsuario(idUsuario:number){
+    return await this.publicacionRepository.publicacionUsuario(idUsuario)
   }
 }

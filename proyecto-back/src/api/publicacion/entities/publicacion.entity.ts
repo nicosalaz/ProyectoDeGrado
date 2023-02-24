@@ -1,21 +1,16 @@
+import { AuditableEntity } from 'src/shared/entitites/extendes/auditable-entity.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('publicacion')
-export class Publicacion {
+export class Publicacion extends AuditableEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     descripcion: string;
 
-    
-
     @Column()
-    usuario_id: number;
+    id_usuario: number;
 
-    @Column()
-    puclicacion_id: number;
-
-    @Column()
-    is_active: number;
+     
 }

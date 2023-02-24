@@ -1,0 +1,119 @@
+<div class="container">
+    <div class="login">
+      <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <p-panel>
+          <div
+            class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
+            style="margin: 10px 0px"
+          >
+            <div>
+              <h2 style="color: #7ab800">
+                Login to the request partners administrator
+              </h2>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2" style="font-size: 13px; color: black">
+                Username or email:
+              </div>
+              <div class="ui-grid-col-6">
+                <input
+                  pInputText
+                  type="text"
+                  formControlName="correo"
+                  class="form-control"
+                  name="correo"
+                />
+              </div>
+              <div class="ui-grid-col-4">
+                <div
+                  [hidden]="
+                    loginForm.controls['correo'].valid ||
+                    !loginForm.controls['correo'].dirty
+                  "
+                  class="alert alert-danger"
+                >
+                  Login is required
+                </div>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2" style="font-size: 13px; color: black">
+                Password:
+              </div>
+              <div class="ui-grid-col-6">
+                <input
+                  pInputText
+                  type="password"
+                  formControlName="clave"
+                  class="form-control"
+                  name="clave"
+                />
+              </div>
+              <div class="ui-grid-col-4">
+                <div
+                  [hidden]="
+                    loginForm.controls['clave'].valid ||
+                    !loginForm.controls['clave'].dirty
+                  "
+                  class="alert alert-danger"
+                >
+                  Password is required
+                </div>
+              </div>
+            </div>
+            <div class="ui-grid-row">
+              <div class="ui-grid-col-2"></div>
+              <div
+                class="ui-grid-col-6"
+                style="display: flex; justify-content: center"
+              >
+                <button
+                  pButton
+                  type="submit"
+                  label="Login"
+                  [disabled]="!loginForm.valid"
+                  (click)="displayConfirm=true"
+                  style="
+                    margin-top: 10px;
+                    border-radius: 30px;
+                    background-color: #7ab800;
+                    color: white;
+                    font-size: 14px;
+                  "
+                ></button>
+              </div>
+              <div class="ui-grid-col-4"></div>
+            </div>
+          </div>
+        </p-panel>
+      </form>
+    </div>
+  </div>
+  
+  
+  <p-dialog
+    header="Loading"
+    [(visible)]="displayConfirm"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    
+      <h4>{{menssageValidate}}</h4>
+    
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <img
+        src="../../assets/images/loadeer.gif"
+        style="width: 50px; height: 50px"
+      />
+    </div>
+  </p-dialog>

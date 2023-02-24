@@ -15,6 +15,10 @@ const routes: Routes = [
     path:"",
     pathMatch:"full",
   },
+  {
+    path:"login", 
+    loadChildren: () => import('./share/login/login.module').then((m) => m.LoginModule),
+  },
 ];
 
 @NgModule({

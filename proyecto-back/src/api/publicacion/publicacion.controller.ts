@@ -9,28 +9,13 @@ import { Publicacion } from './entities/publicacion.entity';
 export class PublicacionController {
   constructor(private readonly publicacionService: PublicacionService) {}
 
-  @Get()
-  findAll() {
-    return this.publicacionService.findAll();
+  @Post('crearPublicacion')
+  async crearPublicacion(@Body() crearPublicacion: CreatePublicacionDto){
+    return await this.publicacionService.crearPublicacion(crearPublicacion);
   }
 
-  @Get('get/:id')
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    return await this.publicacionService.findOne(id);
-  }
-
-  @Patch('update')
-  async update(
-    @Res() res: Response,
-    @Body() updatePublicacionDtoList: UpdatePublicacionDto[],
-  ) {
-    try {
-      const result: Publicacion[] = await this.publicacionService.update(
-        updatePublicacionDtoList,
-      );
-      return res.status(HttpStatus.OK).json(result);
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
+  @Get('publicacionUsuario/:id')
+  async publicacioneUsuario(@Param('id') id:number){
+    return await this.publicacionService.buscarPublicacionPorUsuario(id)
   }
 }

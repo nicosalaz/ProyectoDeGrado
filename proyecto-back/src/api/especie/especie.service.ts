@@ -19,10 +19,4 @@ export class EspecieService {
   async findOne(id: number): Promise<Especie> {
     return await this.especieRepository.findOneBy({ id });
   }
-
-  async update(
-    updatePublicacionDtoList: UpdateEspecieDto[],
-  ): Promise<Especie[]> {
-    return await this.especieRepository.save(updatePublicacionDtoList);
-  }
 }

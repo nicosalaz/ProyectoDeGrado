@@ -28,4 +28,5 @@ export class Usuario extends AuditableEntity{
   clave: string;
 
   permissions:string[];
+  rol:string;
 }

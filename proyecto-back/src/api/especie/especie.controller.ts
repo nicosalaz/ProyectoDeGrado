@@ -32,18 +32,5 @@ export class EspecieController {
     return await this.especieService.findOne(id);
   }
 
-  @Patch('update')
-  async update(
-    @Res() res: Response,
-    @Body() updateEspecieDtoList: UpdateEspecieDto[],
-  ) {
-    try {
-      const result: Especie[] = await this.especieService.update(
-        updateEspecieDtoList,
-      );
-      return res.status(HttpStatus.OK).json(result);
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
-  }
+  
 }

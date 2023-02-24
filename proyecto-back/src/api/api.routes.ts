@@ -6,6 +6,7 @@ import { PermisoModule } from './permiso/permiso.module';
 import { IdentificacionModule } from './identificacion/identificacion.module';
 import { PublicacionModule } from './publicacion/publicacion.module';
 import { UsuarioRolModule } from './usuario-rol/usuario-rol.module';
+import { ReaccionModule } from './reaccion/reaccion.module';
 
 export const apiRoutes = [
     {
@@ -39,5 +40,9 @@ export const apiRoutes = [
       {
         path: 'usuarios',
         module: UsuarioRolModule,
+      },
+      {
+        path: 'reaccion',
+        module: ReaccionModule,
       }
 ];

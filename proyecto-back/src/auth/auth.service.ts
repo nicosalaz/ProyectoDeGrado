@@ -52,6 +52,7 @@ export class AuthService {
           sub: validationUser.users.id,
           permissions: validationUser.users.permissions,
         };
+      
         return {
           status:HttpStatus.ACCEPTED,
           access_token: this.jwtService.sign(payload),
@@ -60,8 +61,8 @@ export class AuthService {
             name: `${validationUser.users.nombre} ${validationUser.users.apellido}`,
             permissions: validationUser.users.permissions,
             email: validationUser.users.correo,
-            usuario: validationUser.users.usuario,
             id: validationUser.users.id,
+            rol: validationUser.users.rol
           },
         };
     }

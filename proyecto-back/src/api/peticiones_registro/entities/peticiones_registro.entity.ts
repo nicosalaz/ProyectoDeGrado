@@ -1,30 +1,47 @@
-import { Usuario } from 'src/api/usuario/entities/usuario.entity';
+import { AuditableEntity } from 'src/shared/entitites/extendes/auditable-entity.entity';
 import {
   Column,
   Entity,
   JoinColumn,
   Long,
   ManyToOne,
-  PrimaryGeneratedColumn,
+  PrimaryGeneratedColumn
 } from 'typeorm';
 import { JoinAttribute } from 'typeorm/query-builder/JoinAttribute';
 
-@Entity()
-export class PeticionesRegistro {
+@Entity('especie_arborea_request')
+export class PeticionesRegistro extends AuditableEntity{
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
-  nombre_peticion: number;
+  nombre: string;
+
   @Column()
-  estado_peticion: string;
-  @ManyToOne(() => Usuario, { eager: true })
-  @JoinColumn({ name: 'id' })
-  fk_id_usuario: Usuario;
-  /*@Column()
-  imagen_arbol: Long;
+  descripcion :string;
+
   @Column()
-  ubicacion: JSON;*/
-  @ManyToOne(() => Usuario, { eager: true })
-  @JoinColumn({ name: 'id' })
-  fk_id_personal_asignado: Usuario;
+   id_especie: number;
+
+   @Column()
+  id_especie_arborea: number;
+
+  @Column()
+  id_usuario :number;
+
+  @Column()
+  longitud :string;
+
+  @Column()
+  latitud: string;
+
+  @Column()
+  aceptado_por: number;
+
+  @Column()
+  rechazado_por: number;
+
+  @Column()
+  justificacion_rechazo: string;
+
 }
