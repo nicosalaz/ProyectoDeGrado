@@ -18,4 +18,15 @@ export class PublicacionController {
   async publicacioneUsuario(@Param('id') id:number){
     return await this.publicacionService.buscarPublicacionPorUsuario(id)
   }
+
+  @Patch('publicacionActu')
+  async actualizarPubli(@Body() crearPublicacion: UpdatePublicacionDto){
+    return await this.publicacionService.actualizarPublicacion(crearPublicacion)
+  }
+
+  @Patch('publicacionDelete')
+  async deletePubli(@Body() crearPublicacion: any){
+    return await this.publicacionService.deletePublicacion(crearPublicacion)
+  }
+
 }

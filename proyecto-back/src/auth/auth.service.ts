@@ -62,7 +62,10 @@ export class AuthService {
             permissions: validationUser.users.permissions,
             email: validationUser.users.correo,
             id: validationUser.users.id,
-            rol: validationUser.users.rol
+            rol: validationUser.users.rol,
+            descripcion: validationUser.users.descripcion,
+            numero:validationUser.users.telefono,
+            ciudad:validationUser.users.ciudad
           },
         };
     }

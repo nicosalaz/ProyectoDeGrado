@@ -29,6 +29,15 @@ export class Usuario extends AuditableEntity{
   @Column()
   clave: string;
 
+  @Column()
+  descripcion: string;
+
+  @Column()
+  ciudad: string;
+
+  @Column()
+  telefono: number;
+  
   permissions:string[];
 
   @OneToMany(() => UsuarioRol, (cof) => cof.usuario_object)

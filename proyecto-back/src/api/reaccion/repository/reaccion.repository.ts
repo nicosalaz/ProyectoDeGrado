@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Body } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { Reaccion } from '../entities/reaccion.entity';
 import { CreateReaccionDto } from '../dto/create-reaccion.dto';
@@ -42,7 +42,7 @@ export class ReaccionRepository extends Repository<Reaccion> {
             }
         }
 
-        const publicacionesLike = await this.findBy({id_usuario:idUsuario})
+        const publicacionesLike = await this.findBy({id_usuario:idUsuario, activo:true})
 
         return {
             response: publicacionesLike,
@@ -52,4 +52,22 @@ export class ReaccionRepository extends Repository<Reaccion> {
         return error
     }
    }
+
+   async updateReaccion(bodyReaccion:any){
+        return this.update(bodyReaccion.id, {
+            activo: !bodyReaccion.activo
+        })
+   }
+
+   async crearOActualizarReaccion(reaccionBody:CreateReaccionDto){
+    const reaccionesExistentes = await this.query(`select * from reaccion r where r.id_usuario = ? and r.id_publicacion = ?`, [reaccionBody.id_usuario, reaccionBody.id_publicacion]);
+
+    if(reaccionesExistentes.length == 0){
+        return this.crearReaccion(reaccionBody);
+    }else{
+        return this.updateReaccion(reaccionesExistentes[0]);
+    }
+   }
+
+
 }

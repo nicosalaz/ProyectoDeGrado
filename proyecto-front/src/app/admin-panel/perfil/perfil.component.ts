@@ -20,13 +20,11 @@ export class PerfilComponent implements OnInit{
     setTimeout(() => {
     this.servicesPerfil.getPublicaciones(this.infoUsuario.id).subscribe((resp) => {
       this.publicacionesUsuario = resp.response;
+      this.displayConfirm = false
     })
     
     this.servicesPerfil.getReaccionesUsers(this.infoUsuario.id).subscribe((resp) => {
       this.reaccionesUsuario = resp.response;
-      console.log(this.reaccionesUsuario);
-      this.displayConfirm = false
-      
     })
     
   }, 2000);

@@ -20,4 +20,20 @@ export class ServicesPerfilService {
   getReaccionesUsers(id: any) {
     return this.http.get<any>(`${this.apiBaseUrl}reaccion/reaccionUser/${id}`);
   }
+
+  postReaccion(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}reaccion/crearReaccion`, body);
+  }
+
+  patchPublicacion(body:any){
+    return this.http.patch<any>(`${this.apiBaseUrl}publicacion/publicacionActu`, body);
+  }
+
+  patchDeletePublicacion(body:any){
+    return this.http.patch<any>(`${this.apiBaseUrl}publicacion/publicacionDelete`, body);
+  }
+
+  getComentarios(id:number){
+    return this.http.get<any>(`${this.apiBaseUrl}comentario/comentarioPublicacion/${id}`);
+  }
 }

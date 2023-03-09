@@ -12,4 +12,10 @@ export class CreateUsuarioDto {
   usuario: string;
 
   clave: string;
+
+  descripcion: string;
+
+  ciudad: string;
+
+  telefono: number;
 }

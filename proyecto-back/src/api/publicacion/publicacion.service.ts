@@ -19,4 +19,12 @@ export class PublicacionService {
   async buscarPublicacionPorUsuario(idUsuario:number){
     return await this.publicacionRepository.publicacionUsuario(idUsuario)
   }
+
+  async actualizarPublicacion(bodyActualizar:UpdatePublicacionDto){
+    return await this.publicacionRepository.actualizarPublicacion(bodyActualizar)
+  }
+
+  async deletePublicacion(bodyActualizar:any){
+    return await this.publicacionRepository.eliminadoLogico(bodyActualizar)
+  }
 }

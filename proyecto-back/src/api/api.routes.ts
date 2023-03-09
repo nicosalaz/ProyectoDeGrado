@@ -7,6 +7,7 @@ import { IdentificacionModule } from './identificacion/identificacion.module';
 import { PublicacionModule } from './publicacion/publicacion.module';
 import { UsuarioRolModule } from './usuario-rol/usuario-rol.module';
 import { ReaccionModule } from './reaccion/reaccion.module';
+import { ComentarioModule } from './comentario/comentario.module';
 
 export const apiRoutes = [
     {
@@ -44,5 +45,9 @@ export const apiRoutes = [
       {
         path: 'reaccion',
         module: ReaccionModule,
+      },
+      {
+        path: 'comentario',
+        module: ComentarioModule,
       }
 ];

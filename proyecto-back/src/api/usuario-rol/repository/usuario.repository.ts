@@ -74,7 +74,7 @@ export class UsuarioRepository extends Repository<Usuario> {
   async getUserRole(){
     let users:usuariosRoles[] = await this.query(`
     SELECT u.id, u.nombre, u.apellido, u.usuario, u.correo, i.nombre as 'tipo_documento', 
-    u.numero_identificacion, r.descripcion as 'rol'  from usuario_rol ur
+    u.numero_identificacion, r.descripcion as 'rol', u.descripcion,u.ciudad,u.telefono  from usuario_rol ur
     left join usuario u on ur.id_usuario = u.id
     LEFT join rol r on ur.id_rol = r.id 
     left join identificacion i on u.id_identificacion = i.id 

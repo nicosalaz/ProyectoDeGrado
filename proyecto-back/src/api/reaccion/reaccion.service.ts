@@ -11,7 +11,7 @@ export class ReaccionService {
 
   async crearReacion(reaccionNueva:CreateReaccionDto){
 
-    return await this.publicacionRepository.crearReaccion(reaccionNueva)
+    return await this.publicacionRepository.crearOActualizarReaccion(reaccionNueva)
   }
 
   async getPublicacionesLikesUser(idUsuario:number){
