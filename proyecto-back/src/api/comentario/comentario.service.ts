@@ -16,4 +16,12 @@ export class ComentarioService {
   async crearcomentarioPublicacion(comentario:CreateComentarioDto){
     return this.comentarioRepository.crearComentario(comentario);
   }
+
+  async actualizarComentario(comentario:UpdateComentarioDto){
+    return this.comentarioRepository.actualizarComentario(comentario);
+  }
+
+  async deleteComentario(id:number){
+    return this.comentarioRepository.deleteComentario(id)
+  }
 }

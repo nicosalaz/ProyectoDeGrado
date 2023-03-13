@@ -16,4 +16,14 @@ export class ComentarioController {
   async crearPublicacion(@Body() crearcomentario: CreateComentarioDto){
     return await this.comentarioService.crearcomentarioPublicacion(crearcomentario);
   }
+
+  @Patch('comentarioActualizar')
+  async actualizarPubli(@Body() crearcomentario: UpdateComentarioDto){
+    return await this.comentarioService.actualizarComentario(crearcomentario)
+  }
+
+  @Patch('deleteComentario')
+  async deleteComentario(@Body() id: number){
+    return await this.comentarioService.deleteComentario(id)
+  }
 }

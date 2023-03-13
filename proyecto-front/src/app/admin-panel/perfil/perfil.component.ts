@@ -23,6 +23,7 @@ export class PerfilComponent implements OnInit{
       this.displayConfirm = false
     })
     
+    
     this.servicesPerfil.getReaccionesUsers(this.infoUsuario.id).subscribe((resp) => {
       this.reaccionesUsuario = resp.response;
     })

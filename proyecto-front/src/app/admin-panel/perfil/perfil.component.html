@@ -23,13 +23,17 @@
                 <div class="row" id="user-profile">
                     <div class="col-lg-12">
                         <app-header-perfil [infoUser]="infoUsuario"></app-header-perfil>
-                        <div class="row">
+                        <div class="row" >
                             <div class="col-xl-3">
-                                <app-izq-cards></app-izq-cards>
+                                <app-izq-cards [infoPublicaciones]="publicacionesUsuario"></app-izq-cards>
                             </div>
-                            <div class="col-xl-9">
+                            
+                            <div class="col-xl-9" >
+                               
                                 <app-center-cards [infoPublicaciones]="publicacionesUsuario" [reaccionesUsuario]="reaccionesUsuario"></app-center-cards>
-                            </div>
+                                </div>
+                            
+                                
                             
                         </div>
                     </div>

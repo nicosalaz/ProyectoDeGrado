@@ -3,6 +3,7 @@ import { DataSource, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Comentario } from '../entities/comentario.entity';
 import { CreateComentarioDto } from '../dto/create-comentario.dto';
+import { UpdateComentarioDto } from '../dto/update-comentario.dto';
 
 
 @Injectable()
@@ -40,6 +41,41 @@ export class ComentarioRepository extends Repository<Comentario> {
         }
     } catch (error) {
         return error
+    }
+   }
+
+
+   async actualizarComentario(bodyComentario:UpdateComentarioDto){
+    try {
+        const comentarioNew = await this.update(bodyComentario.id, bodyComentario);
+
+        return {
+            status:200,
+            response: comentarioNew
+        }
+    } catch (error) {
+        return error
+    }
+   }
+
+   async deleteComentario(body:any){
+    const comentario = await this.findOneBy({id:body.id})
+
+    if(comentario != null){
+        const actualizado = this.update(comentario.id, {
+            activo:!comentario.activo
+        });
+        return{
+            response: actualizado,
+            status: 200
+        };
+    }
+
+    else{
+        return {
+            response: 'Error no existe publicacion',
+            status: 500
+        }
     }
    }
 }

@@ -36,4 +36,16 @@ export class ServicesPerfilService {
   getComentarios(id:number){
     return this.http.get<any>(`${this.apiBaseUrl}comentario/comentarioPublicacion/${id}`);
   }
+
+  postComertario(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}comentario/crearComentario`, body);
+  }
+
+  patchActualizarComentario(body:any){
+    return this.http.patch<any>(`${this.apiBaseUrl}comentario/comentarioActualizar`, body);
+  }
+
+  patchDeleteComentario(body:any){
+    return this.http.patch<any>(`${this.apiBaseUrl}comentario/deleteComentario`, body);
+  }
 }

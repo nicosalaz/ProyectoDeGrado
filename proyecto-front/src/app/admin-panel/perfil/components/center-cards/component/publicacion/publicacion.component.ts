@@ -99,12 +99,38 @@ export class PublicacionComponent implements OnInit{
         this.comentarios = resp.response;
         this.loading = false;
         this.displayComentarios = true;
+        console.log(this.comentarios);
+        
       })
     }, 1000);
   }
 
 
   async onSumitedComentario(){
+    const data = { ...this.comentarioForm.value };
+    this.loading = true;
+    setTimeout(() => {
+      this.servicesPerfil.postComertario(data).subscribe((resp)=>{
+        this.comentarios.push(resp.response);
+        this.comentarios[this.comentarios.length - 1]['nombre'] =  this.infoUsuario['name']
+        this.loading = false;
+
+      })
+    }, 1000);
+    this.infoPublicaciones.num_comen = Number( this.infoPublicaciones.num_comen) + 1
+    this.comentarioForm = new FormGroup({
+      id_publicacion: new FormControl(Number(this.infoPublicaciones.id)),
+      descripcion: new FormControl('', Validators.required),
+      id_usuario: new FormControl(Number(this.infoUsuario.id)),
+    });
+  }
+
+  addItem(value:number){
+    console.log(this.search(value));
     
+  }
+
+  search(id:number){
+    this.comentarios = this.comentarios.filter((word:any) => word.id != id);
   }
 }

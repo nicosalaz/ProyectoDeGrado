@@ -49,7 +49,7 @@ export class PublicacionRepository extends Repository<Publicacion> {
         }
 
         const publicaciones = await this.query(`
-        SELECt p.id, p.descripcion, CONCAT(u.nombre, ' ', u.apellido) as 'nombre', COUNT(r.id) as 'like', (select count(*) from comentario c where c.id_publicacion = p.id) as 'num_comen'
+        SELECt p.id, p.descripcion, CONCAT(u.nombre, ' ', u.apellido) as 'nombre', COUNT(r.id) as 'like', (select count(*) from comentario c where c.id_publicacion = p.id and c.activo = 1) as 'num_comen'
          from publicacion p 
 	    left join usuario u on u.id = p.id_usuario
 	    left join reaccion r  on r.id_publicacion = p.id and r.activo = true

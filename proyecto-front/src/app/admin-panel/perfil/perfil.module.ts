@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComentarioComponent } from './components/center-cards/component/publicacion/component/comentario/comentario.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderPerfilComponent,
     IzqCardsComponent,
     CenterCardsComponent,
-    PublicacionComponent
+    PublicacionComponent,
+    ComentarioComponent
   ],
   imports: [
     CommonModule,

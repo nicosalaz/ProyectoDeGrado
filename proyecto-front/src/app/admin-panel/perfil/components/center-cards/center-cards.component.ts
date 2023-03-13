@@ -24,7 +24,7 @@ export class CenterCardsComponent implements OnInit{
       id_usuario: new FormControl(Number(this.infoUsuario.id)),
     });
     this.publicacionesActivas = this.infoPublicaciones.slice();
-    
+    console.log(this.infoPublicaciones);
   }
 
   async onSubmit(){
