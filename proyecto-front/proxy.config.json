@@ -1,0 +1,11 @@
+{
+    "/media": {
+      "target": "https://mybucketespeciesarboreas.s3.amazonaws.com/",
+      "secure": false,
+      "pathRewrite": {
+        "^/media": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }

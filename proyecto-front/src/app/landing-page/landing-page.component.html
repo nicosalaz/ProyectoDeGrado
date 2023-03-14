@@ -1,3 +1,8 @@
 <div class="page">
-    <app-menu></app-menu>
+    <div class="content">
+        <input (change)="onChangeFile($event)" type="file">
+        <br>
+        <br>
+        <button (click)="handleSendFile()" >Send file</button>
+      </div>
 </div>
