@@ -3,6 +3,7 @@ import { CreateUsuarioRolDto } from './dto/create-usuario-rol.dto';
 import { UpdateUsuarioRolDto } from './dto/update-usuario-rol.dto';
 import { UsuarioRepository } from './repository/usuario.repository';
 import { CreateUsuarioDto } from '../usuario/dto/create-usuario.dto';
+import { EditarUsuarioDto } from './dto/editar-info.dto';
 
 @Injectable()
 export class UsuarioRolService {
@@ -14,5 +15,9 @@ export class UsuarioRolService {
 
   async usuarioToRol(){
     return this.UsuarioRolService.getUserRole();
+  }
+
+  async editarUsuario(bodyUsuario:EditarUsuarioDto){
+    return this.UsuarioRolService.editarUsuario(bodyUsuario);
   }
 }

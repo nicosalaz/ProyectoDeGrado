@@ -32,5 +32,16 @@ export class PerfilComponent implements OnInit{
     
   }
 
+  tieneLike(idPublicacion:any){
+    
+    
+    let estado = false;
+    this.reaccionesUsuario.map((resp:any)=>{
+      if(resp.id_publicacion == idPublicacion){
+        estado = true;
+      }
+    })
+    return estado;
+  }
 
 }

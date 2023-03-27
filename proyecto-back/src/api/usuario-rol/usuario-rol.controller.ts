@@ -3,6 +3,7 @@ import { UsuarioRolService } from './usuario-rol.service';
 import { CreateUsuarioRolDto } from './dto/create-usuario-rol.dto';
 import { UpdateUsuarioRolDto } from './dto/update-usuario-rol.dto';
 import { CreateUsuarioDto } from '../usuario/dto/create-usuario.dto';
+import { EditarUsuarioDto } from './dto/editar-info.dto';
 
 @Controller()
 export class UsuarioRolController {
@@ -41,5 +42,18 @@ export class UsuarioRolController {
     } else {
       return false;
     }
+  }
+
+  @Post('editar')
+  async editarUsuario(@Body() nuevoUsuariodto: EditarUsuarioDto){
+    for(let i in nuevoUsuariodto){
+      if(nuevoUsuariodto[i] == "" || nuevoUsuariodto[i] == null){
+        return {
+          ERROR: 'Todos los campos son obligatorios.',
+          status: HttpStatus.BAD_REQUEST
+        }
+      }
+    }
+    return this.usuarioRolService.editarUsuario(nuevoUsuariodto)
   }
 }

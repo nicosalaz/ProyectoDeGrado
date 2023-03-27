@@ -48,4 +48,8 @@ export class ServicesPerfilService {
   patchDeleteComentario(body:any){
     return this.http.patch<any>(`${this.apiBaseUrl}comentario/deleteComentario`, body);
   }
+
+  patchEditarPerfil(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}usuarios/editar`, body);
+  }
 }

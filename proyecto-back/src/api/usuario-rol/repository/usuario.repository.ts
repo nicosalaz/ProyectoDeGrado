@@ -8,6 +8,7 @@ import { CreateUsuarioDto } from 'src/api/usuario/dto/create-usuario.dto';
 import * as bcrypt from 'bcrypt';
 import { CreateUsuarioRolDto } from '../dto/create-usuario-rol.dto';
 import { usuariosRoles } from '../dto/userWithRoles.dto';
+import { EditarUsuarioDto } from '../dto/editar-info.dto';
 
 @Injectable()
 export class UsuarioRepository extends Repository<Usuario> {
@@ -87,5 +88,22 @@ export class UsuarioRepository extends Repository<Usuario> {
     return users;
   }
 
+  async editarUsuario(bodyEdit:EditarUsuarioDto){
+    if(bodyEdit.id != null ){
+
+      const editUsuario = await this.update(bodyEdit.id, bodyEdit);
+
+      return {
+        status: 200,
+        reponse : editUsuario
+      }
+
+    }else{
+      return {
+        Error: 'Ingresa el id del usuario',
+        status: 402
+      }
+    }
+  }
 
 }

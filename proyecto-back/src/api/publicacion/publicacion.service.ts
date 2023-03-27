@@ -27,4 +27,9 @@ export class PublicacionService {
   async deletePublicacion(bodyActualizar:any){
     return await this.publicacionRepository.eliminadoLogico(bodyActualizar)
   }
+
+
+  async publicacionGeneral(){
+    return await this.publicacionRepository.publicacionGeneral()
+  }
 }

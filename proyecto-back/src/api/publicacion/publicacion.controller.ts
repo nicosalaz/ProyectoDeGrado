@@ -29,4 +29,9 @@ export class PublicacionController {
     return await this.publicacionService.deletePublicacion(crearPublicacion)
   }
 
+  @Get()
+  async publicaciones(){
+    return await this.publicacionService.publicacionGeneral()
+  }
+
 }

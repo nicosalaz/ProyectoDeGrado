@@ -65,7 +65,9 @@ export class AuthService {
             rol: validationUser.users.rol,
             descripcion: validationUser.users.descripcion,
             numero:validationUser.users.telefono,
-            ciudad:validationUser.users.ciudad
+            ciudad:validationUser.users.ciudad,
+            nombre:validationUser.users.nombre,
+            apellido:validationUser.users.apellido
           },
         };
     }
