@@ -37,4 +37,35 @@ export class EspecieService {
       return error
   }
   }
+
+
+  async editarEspecie(especieArborea:UpdateEspecieDto){
+    try {
+      const EspecieArboreaNew = await this.especieRepository.update(especieArborea.id, especieArborea);
+
+      return {
+          status:200,
+          response: EspecieArboreaNew
+      }
+  } catch (error) {
+      return error
+  }
+  }
+
+
+  async eliminarEspecie(especieArborea:UpdateEspecieDto){
+    try {
+      const EspecieArboreaNew = await this.especieRepository.update(especieArborea.id, {
+        activo : especieArborea.active
+      });
+
+      return {
+          status:200,
+          response: EspecieArboreaNew
+      }
+  } catch (error) {
+      return error
+  }
+  }
+
 }

@@ -11,6 +11,7 @@ import { EspecieArboreaUbicacionModule } from './especie_arborea_ubicacion/espec
 import { UsuarioRolModule } from './usuario-rol/usuario-rol.module';
 import { ReaccionModule } from './reaccion/reaccion.module';
 import { ComentarioModule } from './comentario/comentario.module';
+import { EspecieArboreaRequestModule } from './especie_arborea_request/especie_arborea_request.module';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { ComentarioModule } from './comentario/comentario.module';
     EspecieArboreaModule, 
     PeticionesRegistroModule, 
     RolModule, 
-    PermisoModule, IdentificacionModule, PublicacionModule, EspecieArboreaUbicacionModule, UsuarioRolModule, ReaccionModule, ComentarioModule]
+    PermisoModule, IdentificacionModule, PublicacionModule, EspecieArboreaUbicacionModule, UsuarioRolModule, ReaccionModule, ComentarioModule, EspecieArboreaRequestModule]
 })
 export class ApiModule {}

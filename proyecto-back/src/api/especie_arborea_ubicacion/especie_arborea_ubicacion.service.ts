@@ -1,26 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEspecieArboreaUbicacionDto } from './dto/create-especie_arborea_ubicacion.dto';
 import { UpdateEspecieArboreaUbicacionDto } from './dto/update-especie_arborea_ubicacion.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { EspecieArboreaUbicacion } from './entities/especie_arborea_ubicacion.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class EspecieArboreaUbicacionService {
-  create(createEspecieArboreaUbicacionDto: CreateEspecieArboreaUbicacionDto) {
-    return 'This action adds a new especieArboreaUbicacion';
+  constructor(
+    @InjectRepository(EspecieArboreaUbicacion)
+    private especieRepository: Repository<EspecieArboreaUbicacion>,
+  ) {}
+  async crearEspecie(especieNueva:CreateEspecieArboreaUbicacionDto){
+    try {
+      const EspecieArboreaNew = await this.especieRepository.save(especieNueva);
+
+      return {
+          status:200,
+          response: EspecieArboreaNew
+      }
+  } catch (error) {
+      return error
+  }
   }
 
-  findAll() {
-    return `This action returns all especieArboreaUbicacion`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} especieArboreaUbicacion`;
-  }
-
-  update(id: number, updateEspecieArboreaUbicacionDto: UpdateEspecieArboreaUbicacionDto) {
-    return `This action updates a #${id} especieArboreaUbicacion`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} especieArboreaUbicacion`;
-  }
 }

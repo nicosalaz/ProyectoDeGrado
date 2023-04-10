@@ -1,5 +1,5 @@
 import { AuditableEntity } from 'src/shared/entitites/extendes/auditable-entity.entity';
-import { EspecieArborea } from '../../especie_arborea/entities/especie_arborea.entity';
+
 import {
   Column,
   PrimaryGeneratedColumn,
@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 
-@Entity('especie_arborea')
+@Entity('especie_arborea_ubicacion')
 export class EspecieArboreaUbicacion extends AuditableEntity{
     @PrimaryGeneratedColumn()
   id: number;
@@ -21,9 +21,6 @@ export class EspecieArboreaUbicacion extends AuditableEntity{
   @Column()
   longitud: string;
 
-  @ManyToOne(() => EspecieArborea, {
-    eager: true,
-  })
-  @JoinColumn({ name: 'id_especie_arborea' }) //nombre de la columba que almacena la llave foranea
-  id_especie_arborea: EspecieArborea;
+  @Column() //nombre de la columba que almacena la llave foranea
+  id_especie_arborea: number;
 }

@@ -4,21 +4,37 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { EspecieArborea } from '../entities/especie_arborea.entity';
 import { CreateEspecieArboreaDto } from '../dto/create-especie_arborea.dto';
 import { UpdateEspecieArboreaDto } from '../dto/update-especie_arborea.dto';
+import { CreateEspecieArboreaUbicacionDto } from 'src/api/especie_arborea_ubicacion/dto/create-especie_arborea_ubicacion.dto';
+import { EspecieArboreaUbicacionRepository } from 'src/api/especie_arborea_ubicacion/especie-arborea-ubicacion.repository';
 
 
 @Injectable()
 export class EspecieArboreaRepository extends Repository<EspecieArborea> {
-  constructor(private dataSource: DataSource,) {
+  constructor(private dataSource: DataSource,private ubicacionRepo: EspecieArboreaUbicacionRepository) {
     super(EspecieArborea, dataSource.createEntityManager());
   }
 
-  async createEspecieArborea(especieArborea:CreateEspecieArboreaDto){
+  async createEspecieArborea(especieArborea:CreateEspecieArboreaDto, ubicacione:any = null){
+
     try {
         const EspecieArboreaNew = await this.save(especieArborea);
-
+        if(ubicacione != null){
+          const ubicacionEspecie = new CreateEspecieArboreaUbicacionDto();
+        
+        ubicacionEspecie.latitud = ubicacione.latitud;
+        ubicacionEspecie.longitud = ubicacione.longitud;
+        ubicacionEspecie.id_especie_arborea = EspecieArboreaNew.id;
+        const ubicacion = await this.ubicacionRepo.crearUbicacion(ubicacionEspecie);
+        return {
+          status:200,
+          response: EspecieArboreaNew,
+          registro: ubicacion
+      }
+        }
+        
         return {
             status:200,
-            response: EspecieArboreaNew
+            response: EspecieArboreaNew,
         }
     } catch (error) {
         return error
