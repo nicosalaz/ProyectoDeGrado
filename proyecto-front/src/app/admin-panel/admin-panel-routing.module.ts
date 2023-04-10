@@ -6,7 +6,8 @@ const routes: Routes = [
   {
     path:'',
     component: AdminPanelComponent,
-    children: [{
+    children: [
+    {
       path:"perfil", 
       loadChildren: () => import('./perfil/perfil.module').then((m) => m.PerfilModule),
     },
@@ -18,7 +19,11 @@ const routes: Routes = [
       redirectTo:"publicaciones",
       path:"",
       pathMatch:"full",
-    }
+    },
+    {
+      path:"geolocalizacion", 
+      loadChildren: () => import('./geolocalicacion/geolocalicacion.module').then((m) => m.GeolocalicacionModule),
+    },
     
   ]
   },

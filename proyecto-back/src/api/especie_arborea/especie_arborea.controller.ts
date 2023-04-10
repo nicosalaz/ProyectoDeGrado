@@ -22,29 +22,49 @@ import { Response } from 'express';
 export class EspecieArboreaController {
   constructor(private readonly especieArboreaService: EspecieArboreaService) {}
 
-  @Get()
-  async findAll(): Promise<EspecieArborea[]> {
-    return this.especieArboreaService.findAll();
+  @Post('crearEspecieArborea')
+  async crearEspecie(@Body() nuevoEspeciearboreadto: CreateEspecieArboreaDto){
+    for(let i in nuevoEspeciearboreadto){
+      if(nuevoEspeciearboreadto[i] == "" || nuevoEspeciearboreadto[i] == null){
+        return {
+          ERROR: 'Todos los campos son obligatorios.',
+          status: HttpStatus.BAD_REQUEST
+        }
+      }
+    }
+    return this.especieArboreaService.crearEspecieArborea(nuevoEspeciearboreadto)
   }
 
-  @Get('findEspecieArborea/:id')
-  async findOne(@Param('id') id: number): Promise<EspecieArborea> {
-    return this.especieArboreaService.findOne(id);
+  @Get('especieArborea')
+  async usuariosToRoles(){
+    return this.especieArboreaService.buscarEspecieArborea()
   }
 
-  /*
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.especieArboreaService.findOne(+id);
+
+  @Post('editarEspecieArborea')
+  async editarespecieArborea(@Body() nuevoEspeciearboreadto: UpdateEspecieArboreaDto){
+    for(let i in nuevoEspeciearboreadto){
+      if(nuevoEspeciearboreadto[i] == "" || nuevoEspeciearboreadto[i] == null){
+        return {
+          ERROR: 'Todos los campos son obligatorios.',
+          status: HttpStatus.BAD_REQUEST
+        }
+      }
+    }
+    return this.especieArboreaService.editarEspecieArborea(nuevoEspeciearboreadto)
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEspecieArboreaDto: UpdateEspecieArboreaDto) {
-    return this.especieArboreaService.update(+id, updateEspecieArboreaDto);
-  }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.especieArboreaService.remove(+id);
-  }*/
+  @Post('eliminarEspecieArborea')
+  async eliminarespecieArborea(@Body() nuevoEspeciearboreadto: UpdateEspecieArboreaDto){
+    for(let i in nuevoEspeciearboreadto){
+      if(nuevoEspeciearboreadto[i] == "" || nuevoEspeciearboreadto[i] == null){
+        return {
+          ERROR: 'Todos los campos son obligatorios.',
+          status: HttpStatus.BAD_REQUEST
+        }
+      }
+    }
+    return this.especieArboreaService.eliminarEspecieArborea(nuevoEspeciearboreadto)
+  }
 }

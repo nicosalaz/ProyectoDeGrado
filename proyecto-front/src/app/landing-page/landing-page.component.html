@@ -1,3 +1,9 @@
+
+<p-gmap [options]="options"
+          [style]="{ width: '100%', 
+                   height: '320px' }"
+                   [overlays]="overlays">
+</p-gmap>
 <div class="page">
     <div class="content">
         <input (change)="onChangeFile($event)" type="file">
@@ -10,3 +16,6 @@
 <a class="dropdown-item" routerLink="/login">
   <i class="dropdown-icon fe fe-user"></i> Perfil
 </a>
+
+
+

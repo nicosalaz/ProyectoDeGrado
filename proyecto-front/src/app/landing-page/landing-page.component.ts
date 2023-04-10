@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import AWSS3UploadAshClient from 'aws-s3-upload-ash';
 import { UploadResponse } from 'aws-s3-upload-ash/dist/types';
+import { MessageService } from 'primeng/api';
 
+declare var google: any;
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
+  
 
   constructor() { }
-
+  options:any;
+  overlays: any[] = [];
   fileSelected: any = null;
   config = {
     bucketName: 'mybucketespeciesarboreas',
@@ -24,6 +28,20 @@ export class LandingPageComponent implements OnInit {
   S3CustomClient: AWSS3UploadAshClient = new AWSS3UploadAshClient(this.config);
 
   ngOnInit(): void {
+    this.options = {
+      center: { lat: 3.34559, lng: -76.544 },
+      zoom: 15,
+  };
+  this.overlays = [
+    new google.maps.Marker({
+        position: { lat: 3.34594, lng: -76.54344 },
+        title: 'Khardah',
+    }),
+    new google.maps.Marker({
+        position: { lat: 3.34617, lng: -76.54532 },
+        title: 'Barrackpore',
+    }),
+];
   }
 
   

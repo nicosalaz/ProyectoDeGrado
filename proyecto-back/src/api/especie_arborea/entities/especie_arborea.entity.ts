@@ -22,9 +22,6 @@ export class EspecieArborea extends AuditableEntity{
   @Column()
   descripcion: string;
 
-  @ManyToOne(() => Especie, {
-    eager: true,
-  })
-  @JoinColumn({ name: 'id_especie' }) //nombre de la columba que almacena la llave foranea
-  id_especie: Especie;
+  @Column()//nombre de la columba que almacena la llave foranea
+  id_especie: number;
 }
