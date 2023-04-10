@@ -12,11 +12,29 @@ export class EspecieService {
     private especieRepository: Repository<Especie>,
   ) {}
 
-  findAll() {
-    return this.especieRepository.find();
+  async crearEspecie(especieNueva:CreateEspecieDto){
+    try {
+      const EspecieArboreaNew = await this.especieRepository.save(especieNueva);
+
+      return {
+          status:200,
+          response: EspecieArboreaNew
+      }
+  } catch (error) {
+      return error
+  }
   }
 
-  async findOne(id: number): Promise<Especie> {
-    return await this.especieRepository.findOneBy({ id });
+  async buscarEspecies(){
+    try {
+      const EspecieArboreaNew = await this.especieRepository.find();
+
+      return {
+          status:200,
+          response: EspecieArboreaNew
+      }
+  } catch (error) {
+      return error
+  }
   }
 }

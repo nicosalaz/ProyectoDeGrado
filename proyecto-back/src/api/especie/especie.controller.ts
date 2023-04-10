@@ -22,15 +22,7 @@ import { Response } from 'express';
 export class EspecieController {
   constructor(private readonly especieService: EspecieService) {}
 
-  @Get()
-  findAll() {
-    return this.especieService.findAll();
-  }
-
-  @Get('get/:id')
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    return await this.especieService.findOne(id);
-  }
+  
 
   
 }
