@@ -85,10 +85,7 @@ from especie_arborea_request ear
     try {
         if(requesAceptado != null && requesAceptado != undefined){
 
-            const desactivar = await this.update(requesAceptado.id, {
-                activo: false,
-                aceptado_por: request.aceptado_por
-            })
+           
 
             const especie_arborea = new CreateEspecieArboreaDto();
 
@@ -97,7 +94,11 @@ from especie_arborea_request ear
             especie_arborea.nombre = requesAceptado.nombre;
 
             const especie = await this.especieArboreaRepository.createEspecieArborea(especie_arborea, {latitud:requesAceptado.latitud, longitud:requesAceptado.longitud});
-
+            const desactivar = await this.update(requesAceptado.id, {
+                activo: false,
+                aceptado_por: request.aceptado_por,
+                id_especie_arborea:especie.response.id
+            })
             return{
                 status:200,
                 response: especie

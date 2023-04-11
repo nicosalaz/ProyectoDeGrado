@@ -45,7 +45,7 @@ export class EspecieArboreaRepository extends Repository<EspecieArborea> {
     try {
         
             const especierborea = await this.query(`
-            select ea.nombre as title, concat('{ lat: ',eau.latitud , ', lng:', eau.longitud , '}') as "position" , e.id as 'id_especie', e.nombre as 'nombre_especie',
+            select ea.id as id, ea.nombre as title, concat('{ "lat": ',eau.latitud , ', "lng":', eau.longitud , '}') as "position" , e.id as 'id_especie', e.nombre as 'nombre_especie',
 	        ea.descripcion 
 	        from especie_arborea ea
 	        join especie_arborea_ubicacion eau  on eau.id_especie_arborea  = ea.id 

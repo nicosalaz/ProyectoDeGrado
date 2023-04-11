@@ -1,6 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AllserviceService } from 'src/app/share/services/allservice.service';
 
 declare var google: any;
+
+export interface requestEspecieArborea{
+  nombre: string;
+
+  descripcion: string;
+
+  id_especie: number;
+
+  longitud: string;
+
+  latitud: string;
+
+  id_usuario: number;
+}
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
@@ -9,7 +24,7 @@ declare var google: any;
 export class MapaComponent implements OnInit {
 
   options: any;
-
+  _value: string = '';
   overlays: any[] = [];
 
   dialogVisible:boolean = false;
@@ -23,26 +38,30 @@ export class MapaComponent implements OnInit {
   draggable: any;
 
   cities: any[] = [];
-
+  infoUsuario:any;
   selectedCity: any;
-  constructor() {}
+  displayConfirm:boolean = false;
+  
+
+  @Input() informacionEspecieArbore: any;
+
+  constructor(private servicesAll: AllserviceService) {}
 
   ngOnInit() {
+    let infoUsuario:any = localStorage.getItem('user');
+    this.infoUsuario = JSON.parse(infoUsuario);
       this.options = {
         center: { lat: 3.34559, lng: -76.544 },
         zoom: 15,
       };
-
-      this.initOverlays();
-
+      this.initOverlays()
       this.infoWindow = new google.maps.InfoWindow();
-      this.cities = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-    ];
+      this.servicesAll.getEspecie().subscribe((resp) => {
+        this.cities = resp.response;
+      })
+      
+      console.log(this.overlays);
+      
   }
 
   handleMapClick(event:any) {
@@ -78,8 +97,31 @@ export class MapaComponent implements OnInit {
       scale: 0.05,
      
     };
-      this.overlays.push(new google.maps.Marker({position:{lat: this.selectedPosition.lat(), lng: this.selectedPosition.lng()}, title:this.markerTitle, draggable: this.draggable, icon:image}));
+    const formEspecieArborea: requestEspecieArborea = {
+      nombre: this.markerTitle,
+
+      descripcion: this._value,
+    
+      id_especie:Number(this.selectedCity.id),
+    
+      longitud: this.selectedPosition.lng(),
+    
+      latitud: this.selectedPosition.lat(),
+    
+      id_usuario:  Number(this.infoUsuario.id)
+    }
+    
+    this.servicesAll.postrequestEspecie(formEspecieArborea).subscribe((resp)=>{
+      console.log(resp);
+      
+    })
+
+    console.log(formEspecieArborea);
+    
+      //this.overlays.push(new google.maps.Marker({position:{lat: this.selectedPosition.lat(), lng: this.selectedPosition.lng()}, title:this.markerTitle, draggable: this.draggable, icon:image}));
       this.markerTitle = null;
+      this._value = '';
+      this.selectedCity = null;
       this.dialogVisible = false;
   }
 
@@ -102,21 +144,17 @@ export class MapaComponent implements OnInit {
       scale: 0.05,
      
     };
-      if(!this.overlays||!this.overlays.length) {
-          this.overlays = [
-            new google.maps.Marker({
-              position: { lat: 3.34594, lng: -76.54344 },
-              title: 'Khardah',
-              icon:image
-          }),
-          new google.maps.Marker({
-              position: { lat: 3.34617, lng: -76.54532 },
-              icon:image
-          }),
-              ];
+    
+      if(this.overlays.length == 0) {
+          this.informacionEspecieArbore.forEach((element:any) => {
+            this.overlays.push(
+              new google.maps.Marker({
+                position:JSON.parse(element.position), 
+                title:element.title, icon:image})
+            )
+          });
       }
   }
-
 
 
 }
