@@ -1,11 +1,6 @@
 export class CreatePublicacionDto {
     descripcion: string;
 
-    imagen_arbol: any;
+    id_usuario: number;
 
-    usuario_id: number;
-
-    puclicacion_id: number;
-
-    is_active: number;
 }

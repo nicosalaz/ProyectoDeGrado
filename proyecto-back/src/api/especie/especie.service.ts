@@ -12,17 +12,60 @@ export class EspecieService {
     private especieRepository: Repository<Especie>,
   ) {}
 
-  findAll() {
-    return this.especieRepository.find();
+  async crearEspecie(especieNueva:CreateEspecieDto){
+    try {
+      const EspecieArboreaNew = await this.especieRepository.save(especieNueva);
+
+      return {
+          status:200,
+          response: EspecieArboreaNew
+      }
+  } catch (error) {
+      return error
+  }
   }
 
-  async findOne(id: number): Promise<Especie> {
-    return await this.especieRepository.findOneBy({ id });
+  async buscarEspecies(){
+    try {
+      const EspecieArboreaNew = await this.especieRepository.find();
+
+      return {
+          status:200,
+          response: EspecieArboreaNew
+      }
+  } catch (error) {
+      return error
+  }
   }
 
-  async update(
-    updatePublicacionDtoList: UpdateEspecieDto[],
-  ): Promise<Especie[]> {
-    return await this.especieRepository.save(updatePublicacionDtoList);
+
+  async editarEspecie(especieArborea:UpdateEspecieDto){
+    try {
+      const EspecieArboreaNew = await this.especieRepository.update(especieArborea.id, especieArborea);
+
+      return {
+          status:200,
+          response: EspecieArboreaNew
+      }
+  } catch (error) {
+      return error
   }
+  }
+
+
+  async eliminarEspecie(especieArborea:UpdateEspecieDto){
+    try {
+      const EspecieArboreaNew = await this.especieRepository.update(especieArborea.id, {
+        activo : especieArborea.active
+      });
+
+      return {
+          status:200,
+          response: EspecieArboreaNew
+      }
+  } catch (error) {
+      return error
+  }
+  }
+
 }

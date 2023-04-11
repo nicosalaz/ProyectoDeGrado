@@ -6,6 +6,11 @@ import { ApiModule } from './api/api.module';
 import { RouterModule } from '@nestjs/core';
 import { routes } from './routes';
 import { dataSource } from './ormconfig';
+import { AuthModule } from './auth/auth.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { Usuario } from './api/usuario/entities/usuario.entity';
+import { UsuarioService } from './api/usuario/usuario.service';
+import { GuardsModule } from './shared/guards/guards.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -14,9 +19,13 @@ import { dataSource } from './ormconfig';
     autoLoadEntities: true,
   }), 
   ApiModule,
+  ScheduleModule.forRoot(),
   RouterModule.register(routes),
+  AuthModule,
+  TypeOrmModule.forFeature([Usuario]),
+  GuardsModule,
 ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, UsuarioService],
 })
 export class AppModule {}

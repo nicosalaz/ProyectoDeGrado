@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-body">
+        <form class="profile-edit" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+            <textarea class="form-control" placeholder="Que piensas hoy?" rows="7"  formControlName="descripcion"></textarea>
+           
+            <div class="profile-share border-top-0">
+                <div class="mt-2">
+                    
+                    <a href="javascript:void(0)" class="me-2" title="Image" data-bs-toggle="tooltip" data-bs-placement="top"><span class="text-muted"><i class="fe fe-image"></i></span></a>
+                </div>
+                <button  type="submit" [disabled]="!loginForm.valid" class="btn btn-sm btn-success ms-auto"><i class="fa fa-share ms-1"></i> Compartir</button>
+            </div>
+        </form>
+    </div>
+</div>
+<app-publicacion [infoPublicaciones]="i" *ngFor="let i of publicacionesActivas.reverse()" [estadoLike]="tieneLike(i.id)"></app-publicacion>
+
+
+<p-dialog
+    header="Loading"
+    [(visible)]="displayConfirm"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <img
+        src="../../assets/images/loadeer.gif"
+        style="width: 50px; height: 50px"
+      />
+    </div>
+  </p-dialog>

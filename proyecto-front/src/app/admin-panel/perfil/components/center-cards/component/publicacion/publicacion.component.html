@@ -1,0 +1,244 @@
+<div class="card border p-0 shadow-none">
+    <div class="card-body">
+        <div class="d-flex">
+            <div class="media mt-0">
+                <div class="media-user me-2">
+                    <div class=""><img alt="" class="rounded-circle avatar avatar-md" src="../assets/images/users/16.jpg"></div>
+                </div>
+                <div class="media-body">
+                    <h6 class="mb-0 mt-1">{{infoPublicaciones.nombre}}</h6>
+                    
+                </div>
+            </div>
+            <div class="ms-auto">
+                <div class="dropdown show">
+                    <a class="new option-dots" href="JavaScript:void(0);" data-bs-toggle="dropdown">
+                        <span class=""><i class="fe fe-more-vertical"></i></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" style="cursor:'pointer'" (click)="displayConfirm = true">Actualizar Publicacion</a>
+                        <a class="dropdown-item" style="cursor:'pointer'" (click)="deleteDialog=true">Eliminar Publicacion</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="mt-4">
+            <div class="d-flex" style="justify-content: center;">
+                <!--Cuando sea una foto w-50 con 2 w-40-->
+                <a class="w-60 m-2" style="content: center;"><img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg" alt="img" height="100%" ></a>
+            </div>
+            <h4 class="fw-semibold mt-3">Descripcion</h4>
+            <p class="mb-0">{{infoPublicaciones.descripcion}}
+            </p>
+        </div>
+    </div>
+    <div class="card-footer user-pro-2">
+        <div class="media mt-0">
+
+            <div class="media-body">
+                <h6 class="mb-0 mt-2 ms-2">{{infoPublicaciones.like}} Personas le dieron like</h6>
+                <h6 class="mb-0 mt-2 ms-2"></h6>
+            </div>
+            <div class="ms-auto">
+                <div class="d-flex mt-1">
+                    <a class="new me-2 text-muted fs-16" id="like" (click)="onclickLike()"><span class=""><i *ngIf="estadoLike == true" class="fa fa-heart" style="color: red;"></i><i *ngIf="estadoLike == false" class="fa fa-heart-o"></i></span></a>
+                    <a class="new me-2 text-muted fs-16" style="cursor:'pointer'" (click)="comentariosPublicacion()">{{infoPublicaciones.num_comen}}<span class=""><i class="fe fe-message-square"></i></span></a>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  <p-dialog
+    header="Loading"
+    [(visible)]="deleteDialog"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      "
+    >
+      <h4>Quieres eliminar esta publicacion?</h4>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple type="button" label="Aceptar" (click)="deletePublicaciones()" class="p-button-rounded p-button-success"></button>
+        <button pButton pRipple type="button" label="Cancelar" (click)="deleteDialog=false" class="p-button-rounded p-button-danger"></button>
+    </ng-template>
+  </p-dialog>
+
+  <p-dialog
+    header="Actualizar Publicacion"
+    [(visible)]="displayConfirm"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    
+    <div
+    >
+    <div class="card border p-0 shadow-none">
+        <div class="card-body">
+            <div class="d-flex">
+                <div class="media mt-0">
+                    <div class="media-user me-2">
+                        <div class=""><img alt="" class="rounded-circle avatar avatar-md" src="../assets/images/users/16.jpg"></div>
+                    </div>
+                    <div class="media-body">
+                        <h6 class="mb-0 mt-1">{{infoPublicaciones.nombre}}</h6>
+                        
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="mt-4">
+                <div class="d-flex">
+                    <a class="w-40 m-6" style="content: center;"><img src="../../../assets/images/logoPR.png" alt="img" class="br-6" style="content: center;"></a>
+                    <a class="w-40 m-6" style="content: center;"><img src="../../../assets/images/logoPR.png" alt="img" class="br-6" style="content: center;"></a>
+    
+                    
+                </div>
+                <h4 class="fw-semibold mt-3">Descripcion</h4>
+                <p class="mb-0">{{infoPublicaciones.descripcion}}
+                </p>
+            </div>
+        </div>
+        
+    </div>
+    <form class="profile-edit" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <textarea class="form-control" placeholder="Que quieres actualizar?" rows="7" cols="100%" formControlName="descripcion"></textarea>
+       
+        <div class="profile-share border-top-0">
+            <div class="mt-2">
+                
+                
+            </div>
+            <button  type="submit" [disabled]="!loginForm.valid" class="btn btn-sm btn-success ms-auto"><i class="fa fa-share ms-1"></i> Actualizar</button>
+        </div>
+    </form>
+    </div>
+  </p-dialog>
+
+
+  <p-dialog
+  header="Loading"
+  [(visible)]="loading"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+>
+  
+  <div
+    style="
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+  <img
+  src="../../assets/images/loadeer.gif"
+  style="width: 50px; height: 50px"
+/>
+  </div>
+
+</p-dialog>
+
+
+<p-dialog
+header="Comentarios"
+[(visible)]="displayComentarios"
+[modal]="true"
+[style]="{ width: '50vw' }"
+[baseZIndex]="10000"
+[draggable]="false"
+[resizable]="false"
+>
+<div class="card border p-0 shadow-none">
+    <div class="card-body">
+        <div class="d-flex">
+            <div class="media mt-0">
+                <div class="media-user me-2">
+                    <div class=""><img alt="" class="rounded-circle avatar avatar-md" src="../assets/images/users/16.jpg"></div>
+                </div>
+                <div class="media-body">
+                    <h6 class="mb-0 mt-1">{{infoPublicaciones.nombre}}</h6>
+                    
+                </div>
+            </div>
+            <div class="ms-auto">
+                <div class="dropdown show">
+                    <a class="new option-dots" href="JavaScript:void(0);" data-bs-toggle="dropdown">
+                        <span class=""><i class="fe fe-more-vertical"></i></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" style="cursor:'pointer'" (click)="displayConfirm = true">Actualizar Publicacion</a>
+                        <a class="dropdown-item" style="cursor:'pointer'" (click)="deleteDialog=true">Eliminar Publicacion</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="mt-4">
+            <div class="d-flex" style="justify-content: center;">
+                <!--Cuando sea una foto w-50 con 2 w-40-->
+                <a class="w-40 m-2" style="content: center;"><img src="../../../assets/images/logoPR.png" alt="img" ></a>
+                <a class="w-40 m-2" style="content: center;"><img src="../../../assets/images/logoPR.png" alt="img" ></a>
+
+            </div>
+            <h4 class="fw-semibold mt-3">Descripcion</h4>
+            <p class="mb-0">{{infoPublicaciones.descripcion}}
+            </p>
+        </div>
+    </div>
+    <div class="card-footer user-pro-2">
+        <div class="media mt-0">
+
+            <div class="media-body">
+                <h6 class="mb-0 mt-2 ms-2">{{infoPublicaciones.like}} Personas le dieron like</h6>
+                <h6 class="mb-0 mt-2 ms-2"></h6>
+            </div>
+            <div class="ms-auto">
+                <div class="d-flex mt-1">
+                    <a class="new me-2 text-muted fs-16" id="like" (click)="onclickLike()"><span class=""><i *ngIf="estadoLike == true" class="fa fa-heart" style="color: red;"></i><i *ngIf="estadoLike == false" class="fa fa-heart-o"></i></span></a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h4>Comentarios</h4>
+<div>
+    <app-comentario (newItemEvent)="addItem($event)" [infoPublicacion]="infoPublicaciones" [esComentarioUsuario]="true" [infoUsuario]="infoUsuario" [infoComentario]="i" *ngFor="let i of comentarios.reverse()"></app-comentario>
+</div>
+<form class="profile-edit" (ngSubmit)="onSumitedComentario()" [formGroup]="comentarioForm">
+    <textarea class="form-control" placeholder="Comenta algo" rows="2" cols="100" formControlName="descripcion"></textarea>
+   
+    <div class="profile-share border-top-0">
+        <div class="mt-2">
+            
+            
+        </div>
+        <button  type="submit" [disabled]="!comentarioForm.valid" class="btn btn-sm btn-success ms-auto"><i class="fa fa-share ms-1"></i> Comentar</button>
+    </div>
+</form>
+
+</p-dialog>

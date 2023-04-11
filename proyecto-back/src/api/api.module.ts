@@ -8,6 +8,10 @@ import { PermisoModule } from './permiso/permiso.module';
 import { IdentificacionModule } from './identificacion/identificacion.module';
 import { PublicacionModule } from './publicacion/publicacion.module';
 import { EspecieArboreaUbicacionModule } from './especie_arborea_ubicacion/especie_arborea_ubicacion.module';
+import { UsuarioRolModule } from './usuario-rol/usuario-rol.module';
+import { ReaccionModule } from './reaccion/reaccion.module';
+import { ComentarioModule } from './comentario/comentario.module';
+import { EspecieArboreaRequestModule } from './especie_arborea_request/especie_arborea_request.module';
 
 @Module({
   imports: [
@@ -16,6 +20,6 @@ import { EspecieArboreaUbicacionModule } from './especie_arborea_ubicacion/espec
     EspecieArboreaModule, 
     PeticionesRegistroModule, 
     RolModule, 
-    PermisoModule, IdentificacionModule, PublicacionModule, EspecieArboreaUbicacionModule]
+    PermisoModule, IdentificacionModule, PublicacionModule, EspecieArboreaUbicacionModule, UsuarioRolModule, ReaccionModule, ComentarioModule, EspecieArboreaRequestModule]
 })
 export class ApiModule {}

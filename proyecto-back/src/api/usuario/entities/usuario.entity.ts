@@ -1,24 +1,25 @@
+import { AuditableEntity } from 'src/shared/entitites/extendes/auditable-entity.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('usuario')
-export class Usuario {
+export class Usuario extends AuditableEntity{
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  nombres: string;
+  nombre: string;
 
   @Column()
-  apellidos: string;
+  apellido: string;
 
   @Column()
-  identificacion_id: number;
+  id_identificacion: number;
 
   @Column()
   numero_identificacion: number;
 
   @Column()
-  numero_telefono: string;
+  correo: string;
 
   @Column()
   usuario: string;
@@ -27,8 +28,15 @@ export class Usuario {
   clave: string;
 
   @Column()
-  rol_id: number;
+  descripcion: string;
 
   @Column()
-  is_active: number;
+  ciudad: string;
+
+  @Column()
+  telefono: number;
+
+
+  permissions:string[];
+  rol:string;
 }

@@ -22,28 +22,48 @@ import { Response } from 'express';
 export class EspecieController {
   constructor(private readonly especieService: EspecieService) {}
 
-  @Get()
-  findAll() {
-    return this.especieService.findAll();
-  }
-
-  @Get('get/:id')
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    return await this.especieService.findOne(id);
-  }
-
-  @Patch('update')
-  async update(
-    @Res() res: Response,
-    @Body() updateEspecieDtoList: UpdateEspecieDto[],
-  ) {
-    try {
-      const result: Especie[] = await this.especieService.update(
-        updateEspecieDtoList,
-      );
-      return res.status(HttpStatus.OK).json(result);
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+  @Post('crearEspecie')
+  async crearEspecie(@Body() nuevoEspeciearboreadto: CreateEspecieDto){
+    for(let i in nuevoEspeciearboreadto){
+      if(nuevoEspeciearboreadto[i] == "" || nuevoEspeciearboreadto[i] == null){
+        return {
+          ERROR: 'Todos los campos son obligatorios.',
+          status: HttpStatus.BAD_REQUEST
+        }
+      }
     }
+    return this.especieService.crearEspecie(nuevoEspeciearboreadto)
+  }
+
+  @Get()
+  async usuariosToRoles(){
+    return this.especieService.buscarEspecies()
+  }
+
+  @Post('editarEspecie')
+  async editarespecieArborea(@Body() nuevoEspeciearboreadto: UpdateEspecieDto){
+    for(let i in nuevoEspeciearboreadto){
+      if(nuevoEspeciearboreadto[i] == "" || nuevoEspeciearboreadto[i] == null){
+        return {
+          ERROR: 'Todos los campos son obligatorios.',
+          status: HttpStatus.BAD_REQUEST
+        }
+      }
+    }
+    return this.especieService.editarEspecie(nuevoEspeciearboreadto)
+  }
+
+
+  @Post('eliminarEspecie')
+  async eliminarespecieArborea(@Body() nuevoEspeciearboreadto: UpdateEspecieDto){
+    for(let i in nuevoEspeciearboreadto){
+      if(nuevoEspeciearboreadto[i] == "" || nuevoEspeciearboreadto[i] == null){
+        return {
+          ERROR: 'Todos los campos son obligatorios.',
+          status: HttpStatus.BAD_REQUEST
+        }
+      }
+    }
+    return this.especieService.eliminarEspecie(nuevoEspeciearboreadto)
   }
 }

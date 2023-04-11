@@ -1,0 +1,86 @@
+<div class="card">
+    <div class="card-body" style="height: 400px;">
+        <div class="wideget-user mb-2">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                        <div class="panel profile-cover">
+                            <div class="profile-cover__action bg-img"></div>
+                            <div class="profile-cover__img">
+                                <div class="profile-img-1">
+                                    <!--Imagen perfil-->
+                                    <img src="../../../../../assets/images/perfil.png" alt="img">
+                                </div>
+                                <div class="profile-img-content text-dark text-start">
+                                    <div class="text-dark">
+                                        <h3 class="h3 mb-2">{{infoUser.name}}</h3>
+                                        <h5 class="text-muted">{{infoUser.rol}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-profile">
+                                <button class="btn btn-primary mt-1 mb-1" (click)="editModal = true"> <i class="fa fa-edit"></i> <span> Editar Perfil</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog
+  header="Editar Perfil"
+  [(visible)]="editModal"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+>
+<div class="col-xl-100">
+    <form class="profile-edit" (ngSubmit)="OnSumitedEditar()" [formGroup]="comentarioForm">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputname">Nombre</label>
+                        <input type="text" class="form-control" id="exampleInputname" placeholder="Nombre" formControlName="nombre">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputname1">Apellido</label>
+                        <input type="text" class="form-control" id="exampleInputname1" placeholder="Apellido" formControlName="apellido">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Correo</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo" formControlName="correo">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputnumber">Numero de telefono</label>
+                <input type="number" class="form-control" id="exampleInputnumber" placeholder="Numero de telefono" formControlName="telefono">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Descripcion</label>
+                <textarea class="form-control" rows="6" formControlName="descripcion"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Cuidad</label>
+                <input class="form-control" placeholder="Ciudad" formControlName="ciudad">
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <button  type="submit"  class="btn btn-sm btn-success ms-auto"><i class="fa fa-share"></i> Actualizar</button>
+        </div>
+        
+    </div>
+
+</form>
+</div>
+</p-dialog>

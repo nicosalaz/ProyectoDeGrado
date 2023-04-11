@@ -4,37 +4,25 @@ import { Repository } from 'typeorm';
 import { CreateEspecieArboreaDto } from './dto/create-especie_arborea.dto';
 import { UpdateEspecieArboreaDto } from './dto/update-especie_arborea.dto';
 import { EspecieArborea } from './entities/especie_arborea.entity';
+import { EspecieArboreaRepository } from './repository/especie_arborea.reposirory';
 
 @Injectable()
 export class EspecieArboreaService {
-  constructor(
-    @InjectRepository(EspecieArborea)
-    private readonly repositoryEspecieArborea: Repository<EspecieArborea>,
-  ) {}
+  constructor(private readonly especieArboreaService: EspecieArboreaRepository) {}
 
-  async findAll(): Promise<EspecieArborea[]> {
-    return await this.repositoryEspecieArborea.find();
+  async crearEspecieArborea(especieArborea:CreateEspecieArboreaDto){
+    return this.especieArboreaService.createEspecieArborea(especieArborea)
   }
 
-  async findOne(id: number): Promise<EspecieArborea> {
-    return await this.repositoryEspecieArborea.findOneBy({
-      id,
-    });
+  async buscarEspecieArborea(){
+    return this.especieArboreaService.especieArborea();
   }
 
-  async update(
-    updateEspecieArboreaDto: UpdateEspecieArboreaDto[],
-  ): Promise<EspecieArborea[]> {
-    return await this.repositoryEspecieArborea.save(updateEspecieArboreaDto);
+  async editarEspecieArborea(especieArborea:UpdateEspecieArboreaDto){
+    return this.especieArboreaService.editarEspecieArborea(especieArborea)
   }
 
-  /*
-  update(id: number, updateEspecieArboreaDto: UpdateEspecieArboreaDto) {
-    return `This action updates a #${id} especieArborea`;
+  async eliminarEspecieArborea(especieArborea:UpdateEspecieArboreaDto){
+    return this.especieArboreaService.eliminarEspecieArborea(especieArborea)
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} especieArborea`;
-  }
-  */
 }
