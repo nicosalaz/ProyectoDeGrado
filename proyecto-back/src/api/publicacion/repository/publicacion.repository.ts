@@ -25,7 +25,7 @@ export class PublicacionRepository extends Repository<Publicacion> {
 
         const publicacionRegistrada = await this.save(publicacion);
 
-        const retornoInfoDescripcion = await this.query(`SELECt p.id, p.descripcion, CONCAT(u.nombre, ' ', u.apellido) as 'nombre', COUNT(r.id) as 'like' from publicacion p 
+        const retornoInfoDescripcion = await this.query(`SELECt p.id, p.descripcion, CONCAT(u.nombre, ' ', u.apellido) as 'nombre', COUNT(r.id) as 'like', (select count(*) from comentario c where c.id_publicacion = p.id and c.activo = 1) as 'num_comen' from publicacion p 
 	    left join usuario u on u.id = p.id_usuario
 	    left join reaccion r  on r.id_publicacion = p.id 
 	    where u.id = ? and p.id = ?`, [publicacionRegistrada.id_usuario, publicacionRegistrada.id])
@@ -55,7 +55,7 @@ export class PublicacionRepository extends Repository<Publicacion> {
 	    left join reaccion r  on r.id_publicacion = p.id and r.activo = true
 	    where u.id = ? and p.activo = 1
 	    GROUP by p.id 
-        
+        order by p.id desc
         `, [idUsuario]);
 
         return {
@@ -117,7 +117,8 @@ export class PublicacionRepository extends Repository<Publicacion> {
 	    left join usuario u on u.id = p.id_usuario
 	    left join reaccion r  on r.id_publicacion = p.id and r.activo = true
 	    where  p.activo = 1
-	    GROUP by p.id  `,)
+	    GROUP by p.id  
+        order by p.id desc`,)
         return {
             response: publicaciones,
             status: 200

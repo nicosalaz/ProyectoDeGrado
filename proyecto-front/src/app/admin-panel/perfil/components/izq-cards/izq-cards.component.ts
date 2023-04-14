@@ -17,7 +17,7 @@ export class IzqCardsComponent implements OnInit{
 
   likesNum(){
     this.infoPublicaciones.map((resp:any) =>{
-      console.log(resp.like);
+      
       
       this.likesTotal = Number(resp.like) + Number(this.likesTotal)
     })

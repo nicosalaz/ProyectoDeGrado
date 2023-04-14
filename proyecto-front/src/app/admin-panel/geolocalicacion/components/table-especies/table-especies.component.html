@@ -19,7 +19,7 @@
                 
                 <td>{{product.position}}</td>
 
-                <td> <p-button icon="fa fa-pencil" (click)="dialogVisible=true"></p-button> <p-button (click)="confirm1(product)" icon="fa fa-trash" ></p-button></td>
+                <td> <p-button icon="fa fa-pencil" (click)="editarEspecieArborea(product)"></p-button> <p-button (click)="confirm1(product)" icon="fa fa-trash" ></p-button></td>
                 
                 
             </tr>
@@ -43,13 +43,13 @@ header="Especie arborea"
     <img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg"  class="shadow-2" />
     <div  class="modal-un">
         <span class="p-float-label sub-modal-ul" >
-              <input pInputText  id="title" [(ngModel)]="markerTitle" style="width: 100%"/>
+              <input pInputText  id="title" [(ngModel)]="especieArborea.title" style="width: 100%"/>
               <label htmlFor="username">Nombre del arbol</label>
           </span>
          
           <div class="card flex select-ul">
               <span class="p-float-label">
-                  <p-dropdown appendTo="body" class="sub-modal-ul" [options]="cities" [(ngModel)]="selectedCity" [style]="{ width: '100%'}" placeholder="Seleccion Especie" optionLabel="nombre" inputId="float-label"></p-dropdown>
+                  <p-dropdown appendTo="body" class="sub-modal-ul" [options]="cities" [(ngModel)]="especieArborea['nombre_especie']" [style]="{ width: '100%'}"  optionLabel="nombre" inputId="float-label"></p-dropdown>
                   <label for="float-label">Seleccion Especie</label>
               </span>
           </div>
@@ -58,11 +58,11 @@ header="Especie arborea"
       
       <div class="modal-un">
           <span class="p-float-label sub-modal-uf" >
-              <input id="lat" type="text" readonly pInputText [ngModel]="selectedPosition" style="width: 100%">
+              <input id="lat" type="text" readonly pInputText [ngModel]="selectedPosition['lat']" style="width: 100%">
               <label htmlFor="username">Latitud</label>
           </span>
           <span class="p-float-label sub-modal-ufd" >
-              <input id="lng" type="text" readonly pInputText [ngModel]="selectedPosition" style="width: 100%">
+              <input id="lng" type="text" readonly pInputText [ngModel]="selectedPosition['lng']" style="width: 100%">
               <label htmlFor="username">Longitud</label>
           </span>
       </div>
@@ -74,6 +74,7 @@ header="Especie arborea"
           [rows]="5"
           pInputTextarea
           style="width: 100%"
+          [ngModel]="especieArborea['descripcion']"
         ></textarea>
               <label for="float-input">Descripcion</label>
           </span>
@@ -83,9 +84,38 @@ header="Especie arborea"
 </div>
 <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
-        <button type="button" pButton label="Editar" icon="fa fa-pencil" ></button>
+        <button type="button" pButton label="Editar" (click)="onEdit()" icon="fa fa-pencil" ></button>
     </div>
 </p-footer>
   </p-dialog>
 
 <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
+
+<p-dialog
+              header="Editar Request especie arborea."
+                  [(visible)]="dialogMensagge"
+                  [modal]="true"
+                  [style]="{ width: '50vw' }"
+                  [baseZIndex]="10000"
+                  [draggable]="false"
+                  [resizable]="false"
+                  [showHeader]="false"
+                >   
+                        <div
+                            style="
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: '30px';
+                flex-direction: column;
+            "
+            >
+            <h3>Todo salio bien!</h3>
+            <img
+                src="../../assets/aceptado.gif"
+                style="width: 400px; height: 300px"
+            />
+            </div>
+                </p-dialog>

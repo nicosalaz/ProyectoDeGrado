@@ -47,7 +47,7 @@ export class PublicacionesComponent implements OnInit {
     setTimeout(() => {
        this.servicesPerfil.postPublicaciones(data).subscribe((resp)=>{
         auxiliarData = resp.response[0];
-        this.publicacionesUsuario.push(auxiliarData)
+        this.publicacionesUsuario.unshift(auxiliarData)
         this.displayConfirm = false;
       })
     }, 1000);
@@ -55,7 +55,6 @@ export class PublicacionesComponent implements OnInit {
       descripcion: new FormControl('', Validators.required),
       id_usuario: new FormControl(Number(this.infoUsuario.id)),
     });
-    window.location.reload()
   }
 
 
@@ -63,7 +62,7 @@ export class PublicacionesComponent implements OnInit {
     
     
     let estado = false;
-    this.reaccionesUsuario.map((resp:any)=>{
+    this.reaccionesUsuario?.map((resp:any)=>{
       if(resp.id_publicacion == idPublicacion){
         estado = true;
       }

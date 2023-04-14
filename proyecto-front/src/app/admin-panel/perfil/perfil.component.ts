@@ -10,7 +10,7 @@ export class PerfilComponent implements OnInit{
   constructor(private servicesPerfil:ServicesPerfilService ) { }
   
   infoUsuario:any;
-  publicacionesUsuario:any;
+  publicacionesUsuario:any = [];
   reaccionesUsuario:any;
   displayConfirm = true;
   ngOnInit(): void {
@@ -27,7 +27,6 @@ export class PerfilComponent implements OnInit{
     this.servicesPerfil.getReaccionesUsers(this.infoUsuario.id).subscribe((resp) => {
       this.reaccionesUsuario = resp.response;
     })
-    
   }, 2000);
     
   }

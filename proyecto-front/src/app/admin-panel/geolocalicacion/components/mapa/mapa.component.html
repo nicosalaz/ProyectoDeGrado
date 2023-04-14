@@ -98,3 +98,32 @@ header="Nueva especie arborea"
     />
   </div>
 </p-dialog>
+
+
+<p-dialog
+              header="Editar Request especie arborea."
+                  [(visible)]="dialogMensagge"
+                  [modal]="true"
+                  [style]="{ width: '50vw' }"
+                  [baseZIndex]="10000"
+                  [draggable]="false"
+                  [resizable]="false"
+                  [showHeader]="false"
+                >   
+                        <div
+                            style="
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: '30px';
+                flex-direction: column;
+            "
+            >
+            <h3>Todo salio bien!</h3>
+            <img
+                src="../../assets/aceptado.gif"
+                style="width: 400px; height: 300px"
+            />
+            </div>
+                </p-dialog>

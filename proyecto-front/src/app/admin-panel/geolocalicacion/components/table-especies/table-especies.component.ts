@@ -9,6 +9,15 @@ export interface eliminarEspecieArborea{
     active:any;
   }
 
+export class especieArborea{
+  id!:number;
+  title!:string;
+  nombre_especie!:any;
+  descripcion!:string;
+  position!:string;
+  id_especie!:any;
+}
+
 @Component({
   selector: 'app-table-especies',
   templateUrl: './table-especies.component.html',
@@ -19,26 +28,33 @@ export class TableEspeciesComponent implements OnInit {
   dialogVisible: boolean = false;
   cities: any[] = [];
   markerTitle:any;
-  selectedPosition: any;
+  selectedPosition = {
+    lat:'', lng:''
+  };
+  dialogMensagge: boolean = false;
   selectedCity: any;
   loading:boolean = true;
+  especieArborea:especieArborea = new especieArborea();
   constructor(private confirmationService: ConfirmationService, private servicesAll: AllserviceService) { }
   @ViewChild('miTabla') miTabla!: any;
   ngOnInit(): void {
     this.servicesAll.getEspecieArboreas().subscribe((resp) => {
         this.products = resp.response;
         this.loading = false;
+        console.log(resp);
+        
       })
   this.servicesAll.getEspecie().subscribe((resp) => {
     this.cities = resp.response;
+    
   })
   }
 
 
   confirm1(product:any) {
     this.confirmationService.confirm({
-        message: 'Are you sure that you want to proceed?',
-        header: 'Confirmation',
+        message: 'Estas seguro de eliminar esta esecie arborea?',
+        header: 'Confirmacion',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
 
@@ -59,5 +75,42 @@ export class TableEspeciesComponent implements OnInit {
             
         }
     });
+}
+
+editarEspecieArborea(especieArborea:any){
+  this.dialogVisible=true;
+  this.especieArborea = {...especieArborea};
+  this.selectedPosition = JSON.parse(this.especieArborea['position']);
+  this.cities = this.cities?.filter((resp) => resp.id != this.especieArborea.id_especie);
+  this.cities.unshift({id:this.especieArborea.id_especie, nombre:this.especieArborea.nombre_especie})
+}
+
+
+onEdit(){
+  console.log(this.especieArborea);
+  this.servicesAll.postEditarEspecie({
+    id: this.especieArborea.id,
+    nombre:  this.especieArborea.title,
+    descripcion:  this.especieArborea.descripcion,
+    id_especie: this.especieArborea.nombre_especie.id 
+  
+  }).subscribe((resp)=>{
+    console.log(resp);
+    this.products.filter( (resp:any) => {
+      if(resp.id == this.especieArborea.id){
+        resp.title = this.especieArborea.title 
+        resp.descripcion = this.especieArborea.descripcion 
+        resp.id_especie= this.especieArborea.nombre_especie.id
+        resp.nombre_especie = this.especieArborea.nombre_especie.nombre
+        this.dialogVisible = false;
+        this.dialogMensagge=true;
+        setTimeout(() => {
+          console.log('hola');
+          this.dialogMensagge=false;
+          
+         }, 3000);
+      } 
+    })
+  })
 }
 }

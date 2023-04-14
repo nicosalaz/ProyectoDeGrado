@@ -23,7 +23,6 @@ export class PublicacionComponent implements OnInit {
   ngOnInit(): void {
     this.infoUsuario = localStorage.getItem('user');
     this.infoUsuario = JSON.parse(this.infoUsuario);
-    console.log(this.infoUsuario);
     this.loginForm = new FormGroup({
       id: new FormControl(Number(this.infoPublicaciones.id)),
       descripcion: new FormControl('', Validators.required),
@@ -82,7 +81,6 @@ export class PublicacionComponent implements OnInit {
     this.loading = true;
     setTimeout(() => {
        this.servicesPerfil.patchDeletePublicacion(data).subscribe((resp)=>{
-        window.location.reload();
       })
     }, 1000);
   }
@@ -95,8 +93,6 @@ export class PublicacionComponent implements OnInit {
         this.comentarios = resp.response;
         this.loading = false;
         this.displayComentarios = true;
-        console.log(this.comentarios);
-        
       })
     }, 1000);
   }

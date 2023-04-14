@@ -19,10 +19,17 @@ export class EspecieArboreaRequestRepository extends Repository<EspecieArboreaRe
   async createEspecieArborea(especieArborea:CreateEspecieArboreaRequestDto){
     try {
         const EspecieArboreaNew = await this.save(especieArborea);
-
+        const especieRegistrada = await this.query(`
+        select ear.id as id_request, ear.descripcion, concat('{ "lat": ',ear.latitud , ', "lng":', ear.longitud , '}') as "position", e.id as id,
+    e.nombre as title, concat(u.nombre  , ' ', u.apellido) as "name", e.nombre as nombre, u.id as id_usuario, ear.nombre as nombre_esp
+from especie_arborea_request ear 
+join especie e on e.id = ear.id_especie 
+join usuario u on u.id = ear.id_usuario 
+where ear.activo = 1 and ear.id = ?
+       `, [EspecieArboreaNew.id])
         return {
             status:200,
-            response: EspecieArboreaNew
+            response: especieRegistrada
         }
     } catch (error) {
         return error
@@ -33,8 +40,8 @@ export class EspecieArboreaRequestRepository extends Repository<EspecieArboreaRe
     try {
         
             const especierborea = await this.query(`
-            select ear.id as id_request, ear.descripcion, concat('{ lat: ',ear.latitud , ', lng:', ear.longitud , '}') as "position", e.id as id,
-		e.nombre as nombre, concat(u.nombre  , ' ', u.apellido) as "name"
+            select ear.id as id_request, ear.descripcion, concat('{ "lat": ',ear.latitud , ', "lng":', ear.longitud , '}') as "position", e.id as id,
+		e.nombre as title, concat(u.nombre  , ' ', u.apellido) as "name", e.nombre as nombre, u.id as id_usuario, ear.nombre as nombre_esp
 from especie_arborea_request ear 
 	join especie e on e.id = ear.id_especie 
 	join usuario u on u.id = ear.id_usuario 

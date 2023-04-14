@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AllserviceService } from 'src/app/share/services/allservice.service';
 
 declare var google: any;
@@ -42,9 +42,9 @@ export class MapaComponent implements OnInit {
   selectedCity: any;
   displayConfirm:boolean = false;
   
-
+  dialogMensagge: boolean = false;
   @Input() informacionEspecieArbore: any;
-
+  @Output() newItemEvent = new EventEmitter<any>();
   constructor(private servicesAll: AllserviceService) {}
 
   ngOnInit() {
@@ -113,6 +113,12 @@ export class MapaComponent implements OnInit {
     
     this.servicesAll.postrequestEspecie(formEspecieArborea).subscribe((resp)=>{
       console.log(resp);
+      this.dialogMensagge=true;
+      setTimeout(() => {
+          console.log('hola');
+          this.dialogMensagge=false;
+          this.newItemEvent.emit(resp.response[0]);
+         }, 3000);
       
     })
 

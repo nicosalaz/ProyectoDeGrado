@@ -20,6 +20,9 @@ import { ConfirmationService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { RequetsArbolesComponent } from './components/requets-arboles/requets-arboles.component';
 import { CardEspecieComponent } from './components/requets-arboles/components/card-especie/card-especie.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { TablaEspComponent } from './components/tabla-esp/tabla-esp.component';
+import {BadgeModule} from 'primeng/badge';
 @NgModule({
   declarations: [
     GeolocalicacionComponent,
@@ -27,6 +30,7 @@ import { CardEspecieComponent } from './components/requets-arboles/components/ca
     TableEspeciesComponent,
     RequetsArbolesComponent,
     CardEspecieComponent,
+    TablaEspComponent,
    
 
   ],
@@ -45,6 +49,8 @@ import { CardEspecieComponent } from './components/requets-arboles/components/ca
     ConfirmDialogModule,
     MessageModule,
     ToastModule,
+    NgxPaginationModule,
+    BadgeModule
     ],
     providers: [ConfirmationService],
 })

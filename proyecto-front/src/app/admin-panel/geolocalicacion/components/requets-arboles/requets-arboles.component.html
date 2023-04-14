@@ -1,8 +1,8 @@
 
             <!-- ROW-1 OPEN -->
             <div class="row">
-                <div class="col-sm-6 col-md-12 col-lg-6 col-xl-4">
-                    <app-card-especie></app-card-especie>
+                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                    <app-card-especie [inforequest]="inforequest" (newItemEvent)="editado($event)"></app-card-especie>
                     
                     <!-- COL-END -->
                 </div>
@@ -10,3 +10,189 @@
             </div>
             <!-- ROW-1 CLOSED -->
 
+            <p-dialog
+            header="Editar Request especie arborea."
+                [(visible)]="dialogVisible"
+                [modal]="true"
+                [style]="{ width: '50vw' }"
+                [baseZIndex]="10000"
+                [draggable]="false"
+                [resizable]="false"
+              >
+                
+              <div class="ui-g ui-fluid"  style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg"  class="shadow-2" />
+                <div  class="modal-un">
+                    <span class="p-float-label sub-modal-ul" >
+                          <input pInputText  id="title" [(ngModel)]="inforequest.nombre_esp" style="width: 100%"/>
+                          <label htmlFor="username">Nombre del arbol</label>
+                      </span>
+                     
+                      <div class="card flex select-ul">
+                          <span class="p-float-label">
+                              <p-dropdown appendTo="body" class="sub-modal-ul" [options]="cities" [(ngModel)]="inforequest.title" [style]="{ width: '100%'}"  optionLabel="nombre" inputId="float-label"></p-dropdown>
+                              <label for="float-label">Seleccion Especie</label>
+                          </span>
+                      </div>
+                     
+                  </div>
+                  
+                  <div class="modal-un">
+                      <span class="p-float-label sub-modal-uf" >
+                          <input id="lat" type="text" readonly pInputText [ngModel]="position.lat" style="width: 100%">
+                          <label htmlFor="username">Latitud</label>
+                      </span>
+                      <span class="p-float-label sub-modal-ufd" >
+                          <input id="lng" type="text" readonly pInputText [ngModel]="position.lng" style="width: 100%">
+                          <label htmlFor="username">Longitud</label>
+                      </span>
+                  </div>
+                 
+                  <div class="modal-un">
+              
+                      <span class="p-float-label" style="width: 100%;">
+                          <textarea
+                      [rows]="5"
+                      pInputTextarea
+                      style="width: 100%"
+                      [(ngModel)]="inforequest.descripcion"
+                    ></textarea>
+                          <label for="float-input">Descripcion</label>
+                      </span>
+                  </div>
+              
+                
+            </div>
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                    <button type="button" pButton label="Editar" icon="fa fa-pencil" (click)="onClickEdit()"></button>
+                </div>
+            </p-footer>
+              </p-dialog>
+
+
+              <p-dialog
+              header="Aceptar especie arborea"
+                  [(visible)]="dialogAcept"
+                  [modal]="true"
+                  [style]="{ width: '50vw' }"
+                  [baseZIndex]="10000"
+                  [draggable]="false"
+                  [resizable]="false"
+                >
+                  
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <h2>¿Estas seguro de aceptar esta especie Arborea?</h2>
+                </div>
+              <p-footer>
+                  <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                      <button type="button" pButton label="Aceptar" icon="fa fa-check" (click)="onclickAcepted()"></button>
+                      <button type="button" pButton label="Cancelar" icon="fa fa-times" styleClass="p-button-warning" (click)="dialogAcept = false"></button>
+                  </div>
+              </p-footer>
+                </p-dialog>
+
+
+                <p-dialog
+            header="Editar Request especie arborea."
+                [(visible)]="dialogrechazo"
+                [modal]="true"
+                [style]="{ width: '50vw' }"
+                [baseZIndex]="10000"
+                [draggable]="false"
+                [resizable]="false"
+              >
+                
+              <div class="ui-g ui-fluid"  style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg"  class="shadow-2" />
+                <div  class="modal-un">
+                    <span class="p-float-label sub-modal-ul" >
+                          <input pInputText  readonly id="title" [(ngModel)]="inforequest.nombre_esp" style="width: 100%"/>
+                          <label htmlFor="username">Nombre del arbol</label>
+                      </span>
+                     
+                      <div class="card flex select-ul">
+                          <span class="p-float-label">
+                              <p-dropdown appendTo="body" [disabled]="true" class="sub-modal-ul" [options]="cities" [(ngModel)]="inforequest.title" [style]="{ width: '100%'}"  optionLabel="nombre" inputId="float-label"></p-dropdown>
+                              <label for="float-label">Seleccion Especie</label>
+                          </span>
+                      </div>
+                     
+                  </div>
+                  
+                  <div class="modal-un">
+                      <span class="p-float-label sub-modal-uf" >
+                          <input id="lat" type="text" readonly pInputText [ngModel]="position.lat" style="width: 100%">
+                          <label htmlFor="username">Latitud</label>
+                      </span>
+                      <span class="p-float-label sub-modal-ufd" >
+                          <input id="lng" type="text" readonly pInputText [ngModel]="position.lng" style="width: 100%">
+                          <label htmlFor="username">Longitud</label>
+                      </span>
+                  </div>
+                 
+                  <div class="modal-un">
+              
+                      <span class="p-float-label" style="width: 100%;">
+                          <textarea
+                      [rows]="5"
+                      pInputTextarea
+                      style="width: 100%"
+                      [(ngModel)]="inforequest.descripcion"
+                      readonly
+                    ></textarea>
+                          <label for="float-input">Descripcion</label>
+                      </span>
+                  </div>
+                  <div class="modal-un">
+              
+                    <span class="p-float-label" style="width: 100%;">
+                        <textarea
+                    [rows]="5"
+                    pInputTextarea
+                    style="width: 100%"
+                    [(ngModel)]="justificacion"
+                    
+                  ></textarea>
+                        <label for="float-input">Justificacion Rechazo</label>
+                    </span>
+                </div>
+              
+                
+            </div>
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                    <button type="button" pButton label="Eliminar" icon="fa fa-trash" (click)="onClickRechazo()"></button>
+                    <button type="button" pButton label="Cancelar" icon="fa fa-times" (click)="dialogrechazo=false" styleClass="p-button-warning"></button>
+                </div>
+            </p-footer>
+              </p-dialog>
+
+
+              <p-dialog
+              header="Editar Request especie arborea."
+                  [(visible)]="dialogMensagge"
+                  [modal]="true"
+                  [style]="{ width: '50vw' }"
+                  [baseZIndex]="10000"
+                  [draggable]="false"
+                  [resizable]="false"
+                  [showHeader]="false"
+                >   
+                        <div
+                            style="
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: '30px';
+                flex-direction: column;
+            "
+            >
+            <h3>Todo salio bien!</h3>
+            <img
+                src="../../assets/aceptado.gif"
+                style="width: 400px; height: 300px"
+            />
+            </div>
+                </p-dialog>

@@ -15,7 +15,7 @@ export class HeaderPerfilComponent implements OnInit{
   constructor(private servicesPerfil:ServicesPerfilService) { }
 
   ngOnInit(): void {
-    console.log(this.infoUser);
+    
     let infoUsuario:any = localStorage.getItem('user');
     
     
