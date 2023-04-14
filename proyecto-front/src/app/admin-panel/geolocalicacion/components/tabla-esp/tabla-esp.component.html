@@ -1,23 +1,22 @@
 <div class="card">
+    <p-button icon="fa fa-pencil" label="Crear nueva" (click)="this.dialogcrear = true;"> </p-button>
     <p-table #miTabla [value]="products" [tableStyle]="{'min-width': '50rem'}" [paginator]="true" [rowsPerPageOptions]="[10, 25, 50]"
      [rows]="10" [showCurrentPageReport]="true" [loading]="loading" >
         <ng-template pTemplate="header">
             <tr>
                 <th>Imagen</th>
+                <th>ID</th>
                 <th>Nombre</th>
-                <th>Especie</th>
-                <th>Ubicacion</th>
                 <th>Acciones</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
             <tr>
                 <td><img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg" [alt]="product.name" width="100" class="shadow-2" /></td>
-                <td>{{product.title}}</td>
+                <td>{{product.id}}</td>
                 
-                <td>{{product.nombre_especie}}</td>
+                <td>{{product.nombre}}</td>
                 
-                <td>{{product.position}}</td>
 
                 <td> <p-button icon="fa fa-pencil" (click)="editarEspecieArborea(product)"></p-button> <p-button (click)="confirm1(product)" icon="fa fa-trash" ></p-button></td>
                 
@@ -28,9 +27,10 @@
     </p-table>
 </div>
 
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
 <p-dialog
-header="Especie arborea"
+header="Especie"
     [(visible)]="dialogVisible"
     [modal]="true"
     [style]="{ width: '50vw' }"
@@ -43,43 +43,19 @@ header="Especie arborea"
     <img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg"  class="shadow-2" />
     <div  class="modal-un">
         <span class="p-float-label sub-modal-ul" >
-              <input pInputText  id="title" [(ngModel)]="especieArborea.title" style="width: 100%"/>
-              <label htmlFor="username">Nombre del arbol</label>
+              <input pInputText readonly  id="title" [(ngModel)]="especie.id" style="width: 100%"/>
+              <label htmlFor="username">ID</label>
           </span>
          
           <div class="card flex select-ul">
-              <span class="p-float-label">
-                  <p-dropdown appendTo="body" class="sub-modal-ul" [options]="cities" [(ngModel)]="especieArborea['nombre_especie']" [style]="{ width: '100%'}"  optionLabel="nombre" inputId="float-label"></p-dropdown>
-                  <label for="float-label">Seleccion Especie</label>
-              </span>
+              <span class="p-float-label sub-modal-ul" >
+              <input pInputText  id="title" [(ngModel)]="especie.nombre" style="width: 100%"/>
+              <label htmlFor="username">Nombre de la especie</label>
+          </span>
           </div>
          
       </div>
-      
-      <div class="modal-un">
-          <span class="p-float-label sub-modal-uf" >
-              <input id="lat" type="text" readonly pInputText [ngModel]="selectedPosition['lat']" style="width: 100%">
-              <label htmlFor="username">Latitud</label>
-          </span>
-          <span class="p-float-label sub-modal-ufd" >
-              <input id="lng" type="text" readonly pInputText [ngModel]="selectedPosition['lng']" style="width: 100%">
-              <label htmlFor="username">Longitud</label>
-          </span>
-      </div>
-     
-      <div class="modal-un">
-  
-          <span class="p-float-label" style="width: 100%;">
-              <textarea
-          [rows]="5"
-          pInputTextarea
-          style="width: 100%"
-          [ngModel]="especieArborea['descripcion']"
-        ></textarea>
-              <label for="float-input">Descripcion</label>
-          </span>
-      </div>
-  
+    
     
 </div>
 <p-footer>
@@ -89,7 +65,6 @@ header="Especie arborea"
 </p-footer>
   </p-dialog>
 
-<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
 
 <p-dialog
@@ -118,4 +93,36 @@ header="Especie arborea"
                 style="width: 400px; height: 300px"
             />
             </div>
-                </p-dialog>
+</p-dialog>
+
+
+<p-dialog
+header="Especie"
+    [(visible)]="dialogcrear"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    
+  <div class="ui-g ui-fluid"  style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+    <img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg"  class="shadow-2" />
+    <div  class="modal-un"> 
+          <div class="card flex select-ul">
+              <span class="p-float-label sub-modal-ul" >
+              <input pInputText  id="title" [(ngModel)]="especie.nombre" style="width: 100%"/>
+              <label htmlFor="username">Nombre de la especie</label>
+          </span>
+          </div>
+         
+      </div>
+    
+    
+</div>
+<p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton label="Crear nuevo" (click)="crearEspecie()" icon="fa fa-pencil" ></button>
+    </div>
+</p-footer>
+  </p-dialog>

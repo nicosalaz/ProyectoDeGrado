@@ -1,29 +1,24 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConfirmEventType, ConfirmationService, MessageService, Message } from 'primeng/api';
-import { Table } from 'primeng/table';
+import { ConfirmationService } from 'primeng/api';
 import { AllserviceService } from 'src/app/share/services/allservice.service';
-
-
 export interface eliminarEspecieArborea{
-    id:number;
-    active:any;
-  }
+  id:number;
+  active:any;
+}
 
 export class especieArborea{
-  id!:number;
-  title!:string;
-  nombre_especie!:any;
-  descripcion!:string;
-  position!:string;
-  id_especie!:any;
+id!:number;
+nombre!:string;
+
 }
 
 @Component({
-  selector: 'app-table-especies',
-  templateUrl: './table-especies.component.html',
-  styleUrls: ['./table-especies.component.scss']
+  selector: 'app-tabla-esp',
+  templateUrl: './tabla-esp.component.html',
+  styleUrls: ['./tabla-esp.component.scss']
 })
-export class TableEspeciesComponent implements OnInit {
+export class TablaEspComponent implements OnInit {
+
   products: any[] = [];
   dialogVisible: boolean = false;
   cities: any[] = [];
@@ -34,19 +29,15 @@ export class TableEspeciesComponent implements OnInit {
   dialogMensagge: boolean = false;
   selectedCity: any;
   loading:boolean = true;
-  especieArborea:especieArborea = new especieArborea();
+  dialogcrear: boolean = false;
+  especie:especieArborea = new especieArborea();
   constructor(private confirmationService: ConfirmationService, private servicesAll: AllserviceService) { }
   @ViewChild('miTabla') miTabla!: any;
   ngOnInit(): void {
-    this.servicesAll.getEspecieArboreas().subscribe((resp) => {
-        this.products = resp.response;
-        this.loading = false;
-        console.log(resp);
-        
-      })
   this.servicesAll.getEspecie().subscribe((resp) => {
-    this.cities = resp.response;
-    
+    this.products = resp.response;
+    console.log(resp);
+    this.loading=false;
   })
   }
 
@@ -62,7 +53,7 @@ export class TableEspeciesComponent implements OnInit {
                 id:product.id,
                 active:"false"
             }
-            this.servicesAll.postreliminarEspecieArborea(eliminar).subscribe((resp)=>{
+            this.servicesAll.postEliminarEsp(eliminar).subscribe((resp)=>{
                 console.log(resp);
             })
             let index = this.products.findIndex(elem => elem.id == product.id);
@@ -79,29 +70,20 @@ export class TableEspeciesComponent implements OnInit {
 
 editarEspecieArborea(especieArborea:any){
   this.dialogVisible=true;
-  this.especieArborea = {...especieArborea};
-  this.selectedPosition = JSON.parse(this.especieArborea['position']);
-  this.cities = this.cities?.filter((resp) => resp.id != this.especieArborea.id_especie);
-  this.cities.unshift({id:this.especieArborea.id_especie, nombre:this.especieArborea.nombre_especie})
+  this.especie = {...especieArborea};
 }
 
 
 onEdit(){
-  console.log(this.especieArborea);
-  this.servicesAll.postEditarEspecie({
-    id: this.especieArborea.id,
-    nombre:  this.especieArborea.title,
-    descripcion:  this.especieArborea.descripcion,
-    id_especie: this.especieArborea.nombre_especie.id 
-  
+  console.log(this.especie);
+  this.servicesAll.postEditaEsp({
+    id: this.especie.id,
+    nombre:  this.especie.nombre,
   }).subscribe((resp)=>{
     console.log(resp);
     this.products.filter( (resp:any) => {
-      if(resp.id == this.especieArborea.id){
-        resp.title = this.especieArborea.title 
-        resp.descripcion = this.especieArborea.descripcion 
-        resp.id_especie= this.especieArborea.nombre_especie.id
-        resp.nombre_especie = this.especieArborea.nombre_especie.nombre
+      if(resp.id == this.especie.id){
+        resp.nombre = this.especie.nombre 
         this.dialogVisible = false;
         this.dialogMensagge=true;
         setTimeout(() => {
@@ -113,4 +95,22 @@ onEdit(){
     })
   })
 }
+
+
+crearEspecie(){
+  this.dialogcrear = true;
+  this.servicesAll.postCrearEsp({
+    nombre:  this.especie.nombre,
+  }).subscribe((resp)=>{
+    console.log(resp);
+    this.dialogcrear = false;
+        this.dialogMensagge=true;
+        this.products.push("hola")
+        setTimeout(() => {
+          console.log('hola');
+          this.dialogMensagge=false;
+         }, 3000);
+  })
+}
+
 }

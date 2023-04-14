@@ -30,4 +30,36 @@ export class AllserviceService {
     return this.http.post<any>(`${this.apiBaseUrl}especie-arborea/eliminarEspecieArborea`, body);
   }
 
+  getRequestEspecieArborea(){
+    return this.http.get<any>(`${this.apiBaseUrl}especie-request/especieArborea`);
+  }
+
+  postEditarEspecieRequest(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}especie-request/editarEspecieArborea`, body);
+  }
+
+  postAceptarEspecieRequest(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}especie-request/aceptarRequest`, body);
+  }
+
+  postRechazarEspecieRequest(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}especie-request/rechazarRequest`, body);
+  }
+
+  postEditarEspecie(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}especie-arborea/editarEspecieArborea`, body);
+  }
+
+  postEliminarEsp(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}especie/eliminarEspecie`, body);
+  }
+
+  postEditaEsp(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}especie/editarEspecie`, body);
+  }
+
+  postCrearEsp(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}especie/crearEspecie`, body);
+  }
+
 }

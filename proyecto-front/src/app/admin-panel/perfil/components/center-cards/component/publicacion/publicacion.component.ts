@@ -24,7 +24,7 @@ export class PublicacionComponent implements OnInit{
   ngOnInit(): void {
     this.infoUsuario = localStorage.getItem('user');
     this.infoUsuario = JSON.parse(this.infoUsuario);
-    console.log(this.infoUsuario);
+    
     this.loginForm = new FormGroup({
       id: new FormControl(Number(this.infoPublicaciones.id)),
       descripcion: new FormControl('', Validators.required),
@@ -132,5 +132,12 @@ export class PublicacionComponent implements OnInit{
 
   search(id:number){
     this.comentarios = this.comentarios.filter((word:any) => word.id != id);
+  }
+
+
+  abrirActualiza(){
+    this.displayConfirm = true;
+    console.log('hola');
+    
   }
 }

@@ -32,24 +32,37 @@
                                             <li><a href="#tab1" class="active" data-bs-toggle="tab"><span><i class="fa fa-globe me-1"></i></span>Geolocalizacion</a></li>
                                             <li><a href="#tab2" data-bs-toggle="tab"><span><i class="fa fa-tree me-1"></i></span>Especies Arboreas</a></li>
                                             <li><a href="#tab3" data-bs-toggle="tab"><span><i class="fa fa-pagelines me-1"></i></span>Especies</a></li>
-                                            <li><a href="#tab4" data-bs-toggle="tab"><span><i class="fa fa-inbox me-1"></i></span>Request Especies</a></li>
+                                            <li><a href="#tab4" data-bs-toggle="tab"><span><i class="fa fa-inbox me-1"></i></span>Request Especies <i pBadge value="{{informacionRequest.length}}"  severity="info"></i></a> </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="panel-body tabs-menu-body">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="tab1">
-                                            <app-mapa [informacionEspecieArbore] = "overlays"></app-mapa>
+                                            <app-mapa [informacionEspecieArbore] = "overlays" (newItemEvent) = "requestNew($event)"></app-mapa>
                                         </div>
                                         <div class="tab-pane" id="tab2">
                                            <app-table-especies></app-table-especies>
                                         </div>
                                         <div class="tab-pane" id="tab3">
-                                            <p>over the years, sometimes by accident, sometimes on purpose (injected humour and the like</p>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                            <app-tabla-esp></app-tabla-esp>
                                         </div>
                                         <div class="tab-pane" id="tab4">
-                                                <app-requets-arboles></app-requets-arboles>
+                                                <app-requets-arboles *ngFor="let info of informacionRequest| paginate : { itemsPerPage: 5, currentPage: p }; let i = index" [inforequest] = "info" (newItemEvent)="editado($event)"></app-requets-arboles>
+                                                <div
+                                                style="
+                                                  display: flex;
+                                                  align-items: center;
+                                                  justify-content: center;
+                                                  font-size: 17px;
+                                                "
+                                              >
+                                                <pagination-controls
+                                                  (pageChange)="p = $event"
+                                                  previousLabel="Previous"
+                                                  nextLabel="Next"
+                                                ></pagination-controls>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

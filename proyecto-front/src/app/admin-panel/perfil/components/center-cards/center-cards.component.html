@@ -13,7 +13,7 @@
         </form>
     </div>
 </div>
-<app-publicacion [infoPublicaciones]="i" *ngFor="let i of publicacionesActivas.reverse()" [estadoLike]="tieneLike(i.id)"></app-publicacion>
+<app-publicacion [infoPublicaciones]="i" *ngFor="let i of publicacionesActivas" [estadoLike]="tieneLike(i.id)"></app-publicacion>
 
 
 <p-dialog

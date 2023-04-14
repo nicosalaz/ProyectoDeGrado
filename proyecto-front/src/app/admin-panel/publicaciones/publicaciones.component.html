@@ -39,7 +39,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <app-publicacion [infoPublicaciones]="i" *ngFor="let i of publicacionesUsuario.reverse()" [estadoLike]="tieneLike(i.id)"></app-publicacion>
+                                <app-publicacion [infoPublicaciones]="i" *ngFor="let i of publicacionesUsuario" [estadoLike]="tieneLike(i.id)"></app-publicacion>
                                
                             </div>
                             

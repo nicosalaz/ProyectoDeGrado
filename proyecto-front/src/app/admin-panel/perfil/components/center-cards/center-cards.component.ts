@@ -24,19 +24,21 @@ export class CenterCardsComponent implements OnInit{
       id_usuario: new FormControl(Number(this.infoUsuario.id)),
     });
     this.publicacionesActivas = this.infoPublicaciones.slice();
-    console.log(this.infoPublicaciones);
+    
   }
 
   async onSubmit(){
     const data = { ...this.loginForm.value };
     let auxiliarData:any;
     this.displayConfirm = true;
-    console.log(data);
+    
     
     setTimeout(() => {
        this.servicesPerfil.postPublicaciones(data).subscribe((resp)=>{
         auxiliarData = resp.response[0];
-        this.publicacionesActivas.push(auxiliarData)
+        console.log(auxiliarData);
+        
+        this.publicacionesActivas.unshift(auxiliarData)
         this.displayConfirm = false;
       })
     }, 1000);
@@ -50,7 +52,7 @@ export class CenterCardsComponent implements OnInit{
     
     
     let estado = false;
-    this.reaccionesUsuario.map((resp:any)=>{
+    this.reaccionesUsuario?.map((resp:any)=>{
       if(resp.id_publicacion == idPublicacion){
         estado = true;
       }

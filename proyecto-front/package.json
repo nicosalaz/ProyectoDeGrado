@@ -20,6 +20,8 @@
     "@angular/router": "^14.0.0",
     "aws-s3-upload-ash": "^1.1.4",
     "jquery": "^3.6.1",
+    "ngx-pagination": "^6.0.3",
+    "paginationjs": "^2.6.0",
     "primeicons": "^6.0.1",
     "primeng": "^14.1.2",
     "rxjs": "~7.5.0",
