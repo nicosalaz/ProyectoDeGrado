@@ -61,5 +61,13 @@ export class AllserviceService {
   postCrearEsp(body:any){
     return this.http.post<any>(`${this.apiBaseUrl}especie/crearEspecie`, body);
   }
+  
+  postCrearUsuario(body:any){
+    return this.http.post<any>(`${this.apiBaseUrl}usuarios/create`, body);
+  }
+
+  gettipoIdentificacion(){
+    return this.http.get<any>(`${this.apiBaseUrl}identificacion`);
+  }
 
 }

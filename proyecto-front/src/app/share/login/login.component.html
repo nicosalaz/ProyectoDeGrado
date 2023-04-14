@@ -1,97 +1,54 @@
-<div class="container">
-    <div class="login">
-      <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-        <p-panel>
-          <div
-            class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid"
-            style="margin: 10px 0px"
-          >
-            <div>
-              <h2 style="color: #7ab800">
-                Login to the request partners administrator
-              </h2>
-            </div>
-            <div class="ui-grid-row">
-              <div class="ui-grid-col-2" style="font-size: 13px; color: black">
-                Username or email:
-              </div>
-              <div class="ui-grid-col-6">
-                <input
-                  pInputText
-                  type="text"
-                  formControlName="correo"
-                  class="form-control"
-                  name="correo"
-                />
-              </div>
-              <div class="ui-grid-col-4">
-                <div
-                  [hidden]="
-                    loginForm.controls['correo'].valid ||
-                    !loginForm.controls['correo'].dirty
-                  "
-                  class="alert alert-danger"
-                >
-                  Login is required
-                </div>
-              </div>
-            </div>
-            <div class="ui-grid-row">
-              <div class="ui-grid-col-2" style="font-size: 13px; color: black">
-                Password:
-              </div>
-              <div class="ui-grid-col-6">
-                <input
-                  pInputText
-                  type="password"
-                  formControlName="clave"
-                  class="form-control"
-                  name="clave"
-                />
-              </div>
-              <div class="ui-grid-col-4">
-                <div
-                  [hidden]="
-                    loginForm.controls['clave'].valid ||
-                    !loginForm.controls['clave'].dirty
-                  "
-                  class="alert alert-danger"
-                >
-                  Password is required
-                </div>
-              </div>
-            </div>
-            <div class="ui-grid-row">
-              <div class="ui-grid-col-2"></div>
-              <div
-                class="ui-grid-col-6"
-                style="display: flex; justify-content: center"
-              >
-                <button
-                  pButton
-                  type="submit"
-                  label="Login"
-                  [disabled]="!loginForm.valid"
-                  (click)="displayConfirm=true"
-                  style="
-                    margin-top: 10px;
-                    border-radius: 30px;
-                    background-color: #7ab800;
-                    color: white;
-                    font-size: 14px;
-                  "
-                ></button>
-              </div>
-              <div class="ui-grid-col-4"></div>
-            </div>
-          </div>
-        </p-panel>
+
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-pic js-tilt" data-tilt>
+        <img src="../../../assets/images/img-01.png" alt="IMG">
+      </div>
+      <form class="login100-form validate-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <span class="login100-form-title">
+          Login
+        </span>
+
+        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+          <input class="input100" formControlName="correo"  type="text"
+          formControlName="correo"
+          name="correo" placeholder="Email">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Password is required">
+          <input class="input100" type="password" formControlName="clave" name="clave" placeholder="Clave">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+          </span>
+        </div>
+        
+        <div class="container-login100-form-btn">
+          <button class="login100-form-btn" [disabled]="!loginForm.valid">
+            Login
+          </button>
+        </div>
+
+
+        <div class="text-center p-t-136">
+          <a class="txt2" style="cursor: pointer;" (click)="displayusuario=true">
+            Crear cuenta
+            <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+          </a>
+        </div>
       </form>
     </div>
   </div>
-  
-  
-  <p-dialog
+</div>
+
+
+
+<p-dialog
     header="Loading"
     [(visible)]="displayConfirm"
     [modal]="true"
@@ -116,4 +73,102 @@
         style="width: 50px; height: 50px"
       />
     </div>
+  </p-dialog>
+
+
+  <p-dialog
+    header="Nuevo usuario"
+    [(visible)]="displayusuario"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+  >
+  <div style="margin: 30px;">
+    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+      <input class="input100"  [(ngModel)]="usuarioNuevo.nombre" type="text"
+
+      name="correo" placeholder="Email">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-user" aria-hidden="true"></i>
+      </span>
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate = "Password is required">
+      <input class="input100" type="text" [(ngModel)]="usuarioNuevo.apellido"  name="clave" placeholder="Apellido">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-user" aria-hidden="true"></i>
+      </span>
+    </div>
+    
+<div class="drop">
+  <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="nombre" placeholder="Tipo identificacion" class="p-dropdown my-dropdown" ></p-dropdown>
+</div>
+
+    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+      <input class="input100"  [(ngModel)]="usuarioNuevo.numero_identificacion" type="number"
+
+      name="correo" placeholder="Numero de identificacion">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
+      </span>
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate = "Password is required">
+      <input class="input100" type="text" [(ngModel)]="usuarioNuevo.correo"  name="clave" placeholder="Correo">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+      <input class="input100"  [(ngModel)]="usuarioNuevo.usuario" type="text"
+      name="correo" placeholder="Usuario">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-user" aria-hidden="true"></i>
+      </span>
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate = "Password is required">
+      <input class="input100" type="password" [(ngModel)]="usuarioNuevo.clave"  name="clave" placeholder="Clave">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </span>
+    </div>
+    
+
+    <div class="wrap-input100 validate-input" data-validate = "Password is required">
+      <input class="input100" type="text" [(ngModel)]="usuarioNuevo.ciudad"  name="clave" placeholder="Ciudad">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-globe" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+      <input class="input100"  [(ngModel)]="usuarioNuevo.telefono" type="number"
+      name="correo" placeholder="Telefono">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-phone" aria-hidden="true"></i>
+      </span>
+    </div>
+
+    <textarea rows="5" cols="30" pInputTextarea  [(ngModel)]="usuarioNuevo.descripcion" style="width: 100%; background-color: rgb(236, 236, 236); border-radius: 30px;" placeholder="Descripcion"></textarea>
+
+  </div>
+
+  <p-footer>
+
+    <div class="container-login100-form-btn">
+      <button class="login100-form-btn" (click)="registrar()">
+        Registrar
+      </button>
+    </div>
+  </p-footer>
   </p-dialog>

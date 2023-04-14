@@ -8,6 +8,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    DialogModule
+    DialogModule,
+    DropdownModule,
+    InputTextareaModule
   ]
 })
 export class LoginModule { }
