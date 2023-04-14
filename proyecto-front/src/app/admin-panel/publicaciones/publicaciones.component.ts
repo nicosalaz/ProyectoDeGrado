@@ -62,7 +62,7 @@ export class PublicacionesComponent implements OnInit {
     
     
     let estado = false;
-    this.reaccionesUsuario.map((resp:any)=>{
+    this.reaccionesUsuario?.map((resp:any)=>{
       if(resp.id_publicacion == idPublicacion){
         estado = true;
       }
