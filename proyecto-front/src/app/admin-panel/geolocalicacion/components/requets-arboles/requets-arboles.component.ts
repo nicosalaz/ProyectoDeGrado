@@ -69,7 +69,7 @@ export class RequetsArbolesComponent implements OnInit {
         this.dialogMensagge=false;
         this.newItemEvent.emit({
           cambios:this.inforequest.id_request,
-          type: 2
+          type: 0
         });
        }, 3000);
       
