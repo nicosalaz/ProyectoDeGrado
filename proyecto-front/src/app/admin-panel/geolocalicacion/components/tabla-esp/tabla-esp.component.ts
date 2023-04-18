@@ -31,9 +31,12 @@ export class TablaEspComponent implements OnInit {
   loading:boolean = true;
   dialogcrear: boolean = false;
   especie:especieArborea = new especieArborea();
+  infoUsuario:any;
   constructor(private confirmationService: ConfirmationService, private servicesAll: AllserviceService) { }
   @ViewChild('miTabla') miTabla!: any;
   ngOnInit(): void {
+    let infoUsuario:any = localStorage.getItem('user');
+    this.infoUsuario = JSON.parse(infoUsuario);
   this.servicesAll.getEspecie().subscribe((resp) => {
     this.products = resp.response;
     console.log(resp);

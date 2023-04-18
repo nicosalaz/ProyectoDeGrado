@@ -35,9 +35,12 @@ export class TableEspeciesComponent implements OnInit {
   selectedCity: any;
   loading:boolean = true;
   especieArborea:especieArborea = new especieArborea();
+  infoUsuario:any;
   constructor(private confirmationService: ConfirmationService, private servicesAll: AllserviceService) { }
   @ViewChild('miTabla') miTabla!: any;
   ngOnInit(): void {
+    let infoUsuario:any = localStorage.getItem('user');
+    this.infoUsuario = JSON.parse(infoUsuario);
     this.servicesAll.getEspecieArboreas().subscribe((resp) => {
         this.products = resp.response;
         this.loading = false;

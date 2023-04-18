@@ -30,9 +30,9 @@
                                         <!-- Tabs -->
                                         <ul class="nav panel-tabs panel-success">
                                             <li><a href="#tab1" class="active" data-bs-toggle="tab"><span><i class="fa fa-globe me-1"></i></span>Geolocalizacion</a></li>
-                                            <li><a href="#tab2" data-bs-toggle="tab"><span><i class="fa fa-tree me-1"></i></span>Especies Arboreas</a></li>
+                                            <li ><a href="#tab2" data-bs-toggle="tab"><span><i class="fa fa-tree me-1"></i></span>Especies Arboreas</a></li>
                                             <li><a href="#tab3" data-bs-toggle="tab"><span><i class="fa fa-pagelines me-1"></i></span>Especies</a></li>
-                                            <li><a href="#tab4" data-bs-toggle="tab"><span><i class="fa fa-inbox me-1"></i></span>Request Especies <i pBadge value="{{informacionRequest.length}}"  severity="info"></i></a> </li>
+                                            <li *ngif="infoUsuario?.rol == 'Administrador'"><a href="#tab4" data-bs-toggle="tab"><span><i class="fa fa-inbox me-1"></i></span>Request Especies <i pBadge value="{{informacionRequest.length}}"  severity="info"></i></a> </li>
                                         </ul>
                                     </div>
                                 </div>

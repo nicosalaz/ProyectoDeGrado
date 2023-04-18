@@ -16,7 +16,8 @@ export class GeolocalicacionComponent implements OnInit {
   constructor(private servicesAll: AllserviceService) { }
 
   ngOnInit(): void {
-    
+    let infoUsuario:any = localStorage.getItem('user');
+    this.infoUsuario = JSON.parse(infoUsuario);
     setTimeout(() => {
       this.servicesAll.getEspecieArboreas().subscribe((resp) => {
         this.overlays = resp.response;
