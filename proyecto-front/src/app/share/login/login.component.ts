@@ -102,19 +102,25 @@ registrar(){
   console.log(this.usuarioNuevo);
   this.servicesAll.postCrearUsuario(this.usuarioNuevo).subscribe((resp) =>{
 
-    if(resp.staus == 404){
-      this.menssageValidate = 'El correo esta erroneo';
+    if(resp.status == 400){
+      this.menssageValidate = '';
       this.displayConfirm = true;
+      this.menssageValidate = 'El correo esta erroneo';
       setTimeout(() => {
         this.displayConfirm = false;
       }, 2000);
     }else{
       this.displayusuario = false;
       console.log(resp);
+      this.menssageValidate = '';
       this.displayConfirm = true;
+      this.menssageValidate = 'Usuario creado exitosamente!!';
       setTimeout(() => {
         this.displayConfirm = false;
       }, 2000);
+
+      this.usuarioNuevo =  new CreateUsuarioDto();
+      this.selectedCity = ""
     }
     
     
