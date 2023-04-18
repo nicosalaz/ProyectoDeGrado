@@ -1,5 +1,5 @@
 <div class="card">
-    <p-button icon="fa fa-pencil" label="Crear nueva" (click)="this.dialogcrear = true;"> </p-button>
+    <p-button icon="fa fa-pencil" label="Crear nueva" (click)="this.dialogcrear = true;" *ngif="infoUsuario?.rol == 'Administrador'"> </p-button>
     <p-table #miTabla [value]="products" [tableStyle]="{'min-width': '50rem'}" [paginator]="true" [rowsPerPageOptions]="[10, 25, 50]"
      [rows]="10" [showCurrentPageReport]="true" [loading]="loading" >
         <ng-template pTemplate="header">
@@ -7,7 +7,7 @@
                 <th>Imagen</th>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Acciones</th>
+                <th *ngif="infoUsuario?.rol == 'Administrador'">Acciones</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
@@ -18,7 +18,7 @@
                 <td>{{product.nombre}}</td>
                 
 
-                <td> <p-button icon="fa fa-pencil" (click)="editarEspecieArborea(product)"></p-button> <p-button (click)="confirm1(product)" icon="fa fa-trash" ></p-button></td>
+                <td *ngif="infoUsuario?.rol == 'Administrador'"> <p-button icon="fa fa-pencil" (click)="editarEspecieArborea(product)"></p-button> <p-button (click)="confirm1(product)" icon="fa fa-trash" ></p-button></td>
                 
                 
             </tr>

@@ -32,7 +32,7 @@ export class UsuarioRepository extends Repository<Usuario> {
       bodyUsuario.clave = await bcrypt.hash(bodyUsuario.clave, saltOrRounds);
       usuarioNuevo = await this.save(bodyUsuario);
       const badiUsuarioRol: CreateUsuarioRolDto = new CreateUsuarioRolDto();
-      badiUsuarioRol.id_rol = 1;
+      badiUsuarioRol.id_rol = 2;
       badiUsuarioRol.id_usuario = usuarioNuevo.id;
       const aux = await this.usuarioRolRepository.save(badiUsuarioRol);
       usuarioNuevo = await this.findOne({

@@ -227,7 +227,7 @@ header="Comentarios"
 </div>
 <h4>Comentarios</h4>
 <div>
-    <app-comentario (newItemEvent)="addItem($event)" [infoPublicacion]="infoPublicaciones" [esComentarioUsuario]="true" [infoUsuario]="infoUsuario" [infoComentario]="i" *ngFor="let i of comentarios.reverse()"></app-comentario>
+    <app-comentario (newItemEvent)="addItem($event)" [infoPublicacion]="infoPublicaciones" [esComentarioUsuario]="true" [infoUsuario]="infoUsuario" [infoComentario]="i" *ngFor="let i of comentarios"></app-comentario>
 </div>
 <form class="profile-edit" (ngSubmit)="onSumitedComentario()" [formGroup]="comentarioForm">
     <textarea class="form-control" placeholder="Comenta algo" rows="2" cols="100" formControlName="descripcion"></textarea>
