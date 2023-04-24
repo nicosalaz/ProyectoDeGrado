@@ -9,6 +9,8 @@ import * as bcrypt from 'bcrypt';
 import { CreateUsuarioRolDto } from '../dto/create-usuario-rol.dto';
 import { usuariosRoles } from '../dto/userWithRoles.dto';
 import { EditarUsuarioDto } from '../dto/editar-info.dto';
+import { Express } from 'express';
+import { S3Service } from 'src/api/s3/s3.service';
 
 @Injectable()
 export class UsuarioRepository extends Repository<Usuario> {
@@ -18,11 +20,12 @@ export class UsuarioRepository extends Repository<Usuario> {
   };
   constructor(private dataSource: DataSource,
     @InjectRepository(UsuarioRol)
-    public usuarioRolRepository: Repository<UsuarioRol>,) {
+    public usuarioRolRepository: Repository<UsuarioRol>,
+    private s3Services: S3Service) {
     super(Usuario, dataSource.createEntityManager());
   }
 
-  async crearUsuario(bodyUsuario:CreateUsuarioDto){
+  async crearUsuario(bodyUsuario:CreateUsuarioDto, file:Express.Multer.File = null){
     const usuariosExistentes = await this.find()
     let usuarioNuevo: Usuario;
     const resultadoFilter = await usuariosExistentes.filter((resp) => resp.correo == bodyUsuario.correo || resp.usuario == bodyUsuario.usuario);
@@ -35,6 +38,9 @@ export class UsuarioRepository extends Repository<Usuario> {
       badiUsuarioRol.id_rol = 2;
       badiUsuarioRol.id_usuario = usuarioNuevo.id;
       const aux = await this.usuarioRolRepository.save(badiUsuarioRol);
+      if(file != null){
+        await this.addimagesUser(file, usuarioNuevo.id); 
+      }
       usuarioNuevo = await this.findOne({
         where:{
           id: usuarioNuevo.id
@@ -103,6 +109,35 @@ export class UsuarioRepository extends Repository<Usuario> {
         Error: 'Ingresa el id del usuario',
         status: 402
       }
+    }
+  }
+
+
+  async addimages(file: Express.Multer.File){
+    try {
+      const key = `${file.fieldname}${Date.now()}`;
+      const imagenUrl = await this.s3Services.subirImagen(file,key);
+      const id = 3;
+      const response = this.update(id, {
+        imagen: imagenUrl
+      })
+      return {status: 200, reponse:response};
+    } catch (error) {
+      return error
+    }
+  }
+
+  async addimagesUser(file: Express.Multer.File, idUser){
+    try {
+      const key = `${file.fieldname}${Date.now()}`;
+      const imagenUrl = await this.s3Services.subirImagen(file,key);
+      const id = Number(idUser);
+      const response = this.update(id, {
+        imagen: imagenUrl
+      })
+      return {status: 200, reponse:response};
+    } catch (error) {
+      return error
     }
   }
 

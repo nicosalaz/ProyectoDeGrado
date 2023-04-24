@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioRol } from './entities/usuario-rol.entity';
 import { UsuarioRepository } from './repository/usuario.repository';
 import { Usuario } from './entities/usuario.entity';
+import { S3Module } from '../s3/s3.module';
+import { NestjsFormDataModule } from 'nestjs-form-data';
 
 @Module({
   imports: [
@@ -12,6 +14,8 @@ import { Usuario } from './entities/usuario.entity';
       Usuario,
       UsuarioRol
     ]),
+    S3Module, 
+    NestjsFormDataModule
   ],
   controllers: [UsuarioRolController],
   providers: [UsuarioRolService, UsuarioRepository]

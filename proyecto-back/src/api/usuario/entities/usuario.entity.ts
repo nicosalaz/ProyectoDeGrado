@@ -37,6 +37,7 @@ export class Usuario extends AuditableEntity{
   telefono: number;
 
 
+
   permissions:string[];
   rol:string;
 }

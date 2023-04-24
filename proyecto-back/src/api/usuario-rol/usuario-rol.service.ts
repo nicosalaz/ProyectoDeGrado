@@ -9,8 +9,8 @@ import { EditarUsuarioDto } from './dto/editar-info.dto';
 export class UsuarioRolService {
   constructor(private readonly UsuarioRolService: UsuarioRepository) {}
 
-  async crearUsuario(bodyUsuario:CreateUsuarioDto){
-    return this.UsuarioRolService.crearUsuario(bodyUsuario);
+  async crearUsuario(bodyUsuario:CreateUsuarioDto, file:Express.Multer.File = null){
+    return this.UsuarioRolService.crearUsuario(bodyUsuario, file);
   }
 
   async usuarioToRol(){
@@ -20,4 +20,9 @@ export class UsuarioRolService {
   async editarUsuario(bodyUsuario:EditarUsuarioDto){
     return this.UsuarioRolService.editarUsuario(bodyUsuario);
   }
+
+  async addimages(file){
+    await this.UsuarioRolService.addimages(file);
+  }
+
 }

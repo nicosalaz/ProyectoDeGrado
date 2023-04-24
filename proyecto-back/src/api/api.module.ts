@@ -12,6 +12,8 @@ import { UsuarioRolModule } from './usuario-rol/usuario-rol.module';
 import { ReaccionModule } from './reaccion/reaccion.module';
 import { ComentarioModule } from './comentario/comentario.module';
 import { EspecieArboreaRequestModule } from './especie_arborea_request/especie_arborea_request.module';
+import { S3Module } from './s3/s3.module';
+import { NestjsFormDataModule } from 'nestjs-form-data';
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { EspecieArboreaRequestModule } from './especie_arborea_request/especie_a
     EspecieArboreaModule, 
     PeticionesRegistroModule, 
     RolModule, 
-    PermisoModule, IdentificacionModule, PublicacionModule, EspecieArboreaUbicacionModule, UsuarioRolModule, ReaccionModule, ComentarioModule, EspecieArboreaRequestModule]
+    PermisoModule, IdentificacionModule, PublicacionModule, EspecieArboreaUbicacionModule, UsuarioRolModule, ReaccionModule, ComentarioModule, EspecieArboreaRequestModule, S3Module,
+    NestjsFormDataModule]
 })
 export class ApiModule {}

@@ -70,4 +70,8 @@ export class AllserviceService {
     return this.http.get<any>(`${this.apiBaseUrl}identificacion`);
   }
 
+  postImages(data:any){
+    return this.http.post<any>(`${this.apiBaseUrl}usuarios/create`, data);
+  }
+
 }
