@@ -36,7 +36,8 @@ export class Usuario extends AuditableEntity{
   @Column()
   telefono: number;
 
-
+  @Column()
+  imagen: string;
 
   permissions:string[];
   rol:string;

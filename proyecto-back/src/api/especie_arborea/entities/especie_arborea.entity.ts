@@ -24,4 +24,7 @@ export class EspecieArborea extends AuditableEntity{
 
   @Column()//nombre de la columba que almacena la llave foranea
   id_especie: number;
+
+  @Column()
+  imagen: string;
 }

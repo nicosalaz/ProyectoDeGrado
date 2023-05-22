@@ -9,24 +9,30 @@ import { CreateEspecieArboreaDto } from "../especie_arborea/dto/create-especie_a
 import { EspecieArboreaUbicacionRepository } from "../especie_arborea_ubicacion/especie-arborea-ubicacion.repository";
 import { CreateEspecieArboreaUbicacionDto } from "../especie_arborea_ubicacion/dto/create-especie_arborea_ubicacion.dto";
 import { RechazarEspecieArboreaRequestDto } from "./dto/rechazar-especie-arborea.dto";
+import { S3Service } from "../s3/s3.service";
 
 @Injectable()
 export class EspecieArboreaRequestRepository extends Repository<EspecieArboreaRequest> {
   constructor(private dataSource: DataSource, private especieArboreaRepository: EspecieArboreaRepository,
+    private s3Services: S3Service
      ) {
     super(EspecieArboreaRequest, dataSource.createEntityManager());
   }
-  async createEspecieArborea(especieArborea:CreateEspecieArboreaRequestDto){
+  async createEspecieArborea(especieArborea:CreateEspecieArboreaRequestDto, file: Express.Multer.File = null){
     try {
         const EspecieArboreaNew = await this.save(especieArborea);
         const especieRegistrada = await this.query(`
         select ear.id as id_request, ear.descripcion, concat('{ "lat": ',ear.latitud , ', "lng":', ear.longitud , '}') as "position", e.id as id,
-    e.nombre as title, concat(u.nombre  , ' ', u.apellido) as "name", e.nombre as nombre, u.id as id_usuario, ear.nombre as nombre_esp
+    e.nombre as title, concat(u.nombre  , ' ', u.apellido) as "name", e.nombre as nombre, u.id as id_usuario, ear.nombre as nombre_esp, ear.imagen
 from especie_arborea_request ear 
 join especie e on e.id = ear.id_especie 
 join usuario u on u.id = ear.id_usuario 
 where ear.activo = 1 and ear.id = ?
        `, [EspecieArboreaNew.id])
+       if(file != null){
+        await this.addimagesRequest(file, EspecieArboreaNew.id); 
+      }
+
         return {
             status:200,
             response: especieRegistrada
@@ -41,7 +47,7 @@ where ear.activo = 1 and ear.id = ?
         
             const especierborea = await this.query(`
             select ear.id as id_request, ear.descripcion, concat('{ "lat": ',ear.latitud , ', "lng":', ear.longitud , '}') as "position", e.id as id,
-		e.nombre as title, concat(u.nombre  , ' ', u.apellido) as "name", e.nombre as nombre, u.id as id_usuario, ear.nombre as nombre_esp
+		e.nombre as title, concat(u.nombre  , ' ', u.apellido) as "name", e.nombre as nombre, u.id as id_usuario, ear.nombre as nombre_esp, ear.imagen
 from especie_arborea_request ear 
 	join especie e on e.id = ear.id_especie 
 	join usuario u on u.id = ear.id_usuario 
@@ -58,10 +64,12 @@ from especie_arborea_request ear
     }
   }
 
-  async editarEspecieArborea(especieArborea:UpdateEspecieArboreaRequestDto){
+  async editarEspecieArborea(especieArborea:UpdateEspecieArboreaRequestDto, file: Express.Multer.File = null){
     try {
       const EspecieArboreaNew = await this.update(especieArborea.id, especieArborea);
-
+      if(file != null){
+        await this.addimagesRequest(file, especieArborea.id); 
+      }
       return {
           status:200,
           response: EspecieArboreaNew
@@ -99,7 +107,7 @@ from especie_arborea_request ear
             especie_arborea.id_especie = requesAceptado.id_especie;
             especie_arborea.descripcion = requesAceptado.descripcion;
             especie_arborea.nombre = requesAceptado.nombre;
-
+            especie_arborea.imagen = requesAceptado.imagen;
             const especie = await this.especieArboreaRepository.createEspecieArborea(especie_arborea, {latitud:requesAceptado.latitud, longitud:requesAceptado.longitud});
             const desactivar = await this.update(requesAceptado.id, {
                 activo: false,
@@ -148,6 +156,18 @@ from especie_arborea_request ear
 }
 }
 
-
+async addimagesRequest(file: Express.Multer.File, idUser){
+    try {
+      const key = `${file['originalName']}${Date.now()}`;
+      const imagenUrl = await this.s3Services.subirImagen(file,key);
+      const id = Number(idUser);
+      const response = this.update(id, {
+        imagen: imagenUrl
+      })
+      return {status: 200, reponse:response};
+    } catch (error) {
+      return error
+    }
+  }
 
 }

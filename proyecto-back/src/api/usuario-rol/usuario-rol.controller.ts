@@ -36,10 +36,9 @@ export class UsuarioRolController {
     }
 
     if(nuevoUsuariodto.hasOwnProperty('file')){
-      console.log('hola');
-      //return this.usuarioRolService.crearUsuario(nuevoUsuariodto, nuevoUsuariodto['file']);
+      return this.usuarioRolService.crearUsuario(nuevoUsuariodto, nuevoUsuariodto['file']);
     }else{
-      //return this.usuarioRolService.crearUsuario(nuevoUsuariodto);
+      return this.usuarioRolService.crearUsuario(nuevoUsuariodto);
     }
     
     
@@ -61,6 +60,7 @@ export class UsuarioRolController {
   }
 
   @Post('editar')
+  @FormDataRequest()
   async editarUsuario(@Body() nuevoUsuariodto: EditarUsuarioDto){
     for(let i in nuevoUsuariodto){
       if(nuevoUsuariodto[i] == "" || nuevoUsuariodto[i] == null){
@@ -70,7 +70,15 @@ export class UsuarioRolController {
         }
       }
     }
-    return this.usuarioRolService.editarUsuario(nuevoUsuariodto)
+    if(nuevoUsuariodto.hasOwnProperty('file')){
+      const file = nuevoUsuariodto['file'];
+      delete nuevoUsuariodto['file'];
+      console.log(file);
+      
+      return this.usuarioRolService.editarUsuario(nuevoUsuariodto, file);
+    }else{
+      return this.usuarioRolService.editarUsuario(nuevoUsuariodto);
+    }
   }
 
   @Post('/images')

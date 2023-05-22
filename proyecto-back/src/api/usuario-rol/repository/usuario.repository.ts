@@ -94,10 +94,17 @@ export class UsuarioRepository extends Repository<Usuario> {
     return users;
   }
 
-  async editarUsuario(bodyEdit:EditarUsuarioDto){
+  async editarUsuario(bodyEdit:EditarUsuarioDto, file:Express.Multer.File = null){
+    console.log(file);
     if(bodyEdit.id != null ){
 
       const editUsuario = await this.update(bodyEdit.id, bodyEdit);
+
+      if(file != null){
+       
+        
+        await this.addimagesUser(file, bodyEdit.id); 
+      }
 
       return {
         status: 200,
@@ -115,7 +122,7 @@ export class UsuarioRepository extends Repository<Usuario> {
 
   async addimages(file: Express.Multer.File){
     try {
-      const key = `${file.fieldname}${Date.now()}`;
+      const key = `${file['originalName']}${Date.now()}`;
       const imagenUrl = await this.s3Services.subirImagen(file,key);
       const id = 3;
       const response = this.update(id, {
@@ -129,7 +136,7 @@ export class UsuarioRepository extends Repository<Usuario> {
 
   async addimagesUser(file: Express.Multer.File, idUser){
     try {
-      const key = `${file.fieldname}${Date.now()}`;
+      const key = `${file['originalName']}${Date.now()}`;
       const imagenUrl = await this.s3Services.subirImagen(file,key);
       const id = Number(idUser);
       const response = this.update(id, {

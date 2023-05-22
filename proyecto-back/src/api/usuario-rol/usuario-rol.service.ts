@@ -17,8 +17,8 @@ export class UsuarioRolService {
     return this.UsuarioRolService.getUserRole();
   }
 
-  async editarUsuario(bodyUsuario:EditarUsuarioDto){
-    return this.UsuarioRolService.editarUsuario(bodyUsuario);
+  async editarUsuario(bodyUsuario:EditarUsuarioDto, file:Express.Multer.File = null){
+    return this.UsuarioRolService.editarUsuario(bodyUsuario,file);
   }
 
   async addimages(file){
