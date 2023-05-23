@@ -12,16 +12,16 @@ export class PublicacionService {
     private publicacionRepository: PublicacionRepository,
   ) {}
 
-  async crearPublicacion(pubilcacionNueva: CreatePublicacionDto){
-    return await this.publicacionRepository.crearPublicacion(pubilcacionNueva);
+  async crearPublicacion(pubilcacionNueva: CreatePublicacionDto,file: Express.Multer.File = null){
+    return await this.publicacionRepository.crearPublicacion(pubilcacionNueva, file);
   }
 
   async buscarPublicacionPorUsuario(idUsuario:number){
     return await this.publicacionRepository.publicacionUsuario(idUsuario)
   }
 
-  async actualizarPublicacion(bodyActualizar:UpdatePublicacionDto){
-    return await this.publicacionRepository.actualizarPublicacion(bodyActualizar)
+  async actualizarPublicacion(bodyActualizar:UpdatePublicacionDto, file: Express.Multer.File = null){
+    return await this.publicacionRepository.actualizarPublicacion(bodyActualizar, file)
   }
 
   async deletePublicacion(bodyActualizar:any){
