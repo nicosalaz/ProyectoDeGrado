@@ -2,8 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import AWSS3UploadAshClient from 'aws-s3-upload-ash';
 import { UploadResponse } from 'aws-s3-upload-ash/dist/types';
 import { MessageService } from 'primeng/api';
+import { AllserviceService } from '../share/services/allservice.service';
 
 declare var google: any;
+export class CreateUsuarioDto {
+  nombre!: string;
+
+  apellido!: string;
+
+  id_identificacion!: number;
+
+  numero_identificacion!: number;
+
+  correo!: string;
+
+  usuario!: string;
+
+  clave!: string;
+
+  descripcion!: string;
+
+  ciudad!: string;
+
+  telefono!: number;
+
+  file!:  FormData;
+}
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -12,20 +36,11 @@ declare var google: any;
 export class LandingPageComponent implements OnInit {
   
 
-  constructor() { }
+  constructor( private servicesAll: AllserviceService) { }
   options:any;
   overlays: any[] = [];
   fileSelected: any = null;
-  config = {
-    bucketName: 'mybucketespeciesarboreas',
-    dirName: 'media', /* optional - when use: e.g BUCKET_ROOT/dirName/fileName.extesion */
-    region: 'us-east-1',
-    accessKeyId: 'AKIAWODZ2QALHJ2X2TPX',
-    secretAccessKey: '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',
-    s3Url: 'https://mybucketespeciesarboreas.s3.amazonaws.com/',
-
-  }
-  S3CustomClient: AWSS3UploadAshClient = new AWSS3UploadAshClient(this.config);
+  
 
   ngOnInit(): void {
     this.options = {
@@ -52,12 +67,15 @@ export class LandingPageComponent implements OnInit {
 
   async handleSendFile() {
     console.log("handleSendFile")
-    let response = "";
-    await this.S3CustomClient
-      .uploadFile(this.fileSelected, this.fileSelected.type, undefined, this.fileSelected.name, "public-read")
-      .then((data: UploadResponse) => console.log(data))
-      .catch((err: any) => {
-        console.error(err); console.log('Calidad')})
-      }
+    const form = new FormData()
+    form.append('file', this.fileSelected);
+    form.append('apellido', 'juan')
+    
+    this.servicesAll.postImages(form).subscribe((resp) => {
+      console.log(resp);
+      
+    })
+  }
+
 
 }

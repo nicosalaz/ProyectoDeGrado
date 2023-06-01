@@ -9,16 +9,16 @@ import { RechazarEspecieArboreaRequestDto } from './dto/rechazar-especie-arborea
 export class EspecieArboreaRequestService {
   constructor(private readonly especieArboreaService: EspecieArboreaRequestRepository) {}
 
-  async crearEspecieArborea(especieArborea:CreateEspecieArboreaRequestDto){
-    return this.especieArboreaService.createEspecieArborea(especieArborea)
+  async crearEspecieArborea(especieArborea:CreateEspecieArboreaRequestDto, file: Express.Multer.File = null){
+    return this.especieArboreaService.createEspecieArborea(especieArborea, file)
   }
 
   async buscarEspecieArborea(){
     return this.especieArboreaService.especieArborea();
   }
 
-  async editarEspecieArborea(especieArborea:UpdateEspecieArboreaRequestDto){
-    return this.especieArboreaService.editarEspecieArborea(especieArborea)
+  async editarEspecieArborea(especieArborea:UpdateEspecieArboreaRequestDto, file: Express.Multer.File = null){
+    return this.especieArboreaService.editarEspecieArborea(especieArborea, file)
   }
 
   async eliminarEspecieArborea(especieArborea:UpdateEspecieArboreaRequestDto){

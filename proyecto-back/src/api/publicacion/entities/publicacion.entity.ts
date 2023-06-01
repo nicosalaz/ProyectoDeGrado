@@ -12,5 +12,6 @@ export class Publicacion extends AuditableEntity{
     @Column()
     id_usuario: number;
 
-     
+    @Column()
+    imagen: string;
 }

@@ -46,7 +46,7 @@ export class EspecieArboreaRepository extends Repository<EspecieArborea> {
         
             const especierborea = await this.query(`
             select ea.id as id, ea.nombre as title, concat('{ "lat": ',eau.latitud , ', "lng":', eau.longitud , '}') as "position" , e.id as 'id_especie', e.nombre as 'nombre_especie',
-	        ea.descripcion 
+	        ea.descripcion, ea.imagen
 	        from especie_arborea ea
 	        join especie_arborea_ubicacion eau  on eau.id_especie_arborea  = ea.id 
 	        join especie e on e.id = ea.id_especie 

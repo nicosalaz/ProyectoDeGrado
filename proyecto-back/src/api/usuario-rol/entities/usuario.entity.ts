@@ -42,4 +42,7 @@ export class Usuario extends AuditableEntity{
 
   @OneToMany(() => UsuarioRol, (cof) => cof.usuario_object)
   rol_object: Rol;
+
+  @Column()
+  imagen?: string;
 }

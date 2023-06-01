@@ -4,14 +4,24 @@ import { CreatePublicacionDto } from './dto/create-publicacion.dto';
 import { UpdatePublicacionDto } from './dto/update-publicacion.dto';
 import { Response } from 'express';
 import { Publicacion } from './entities/publicacion.entity';
+import { FormDataRequest } from 'nestjs-form-data';
 
 @Controller()
 export class PublicacionController {
   constructor(private readonly publicacionService: PublicacionService) {}
 
   @Post('crearPublicacion')
+  @FormDataRequest()
   async crearPublicacion(@Body() crearPublicacion: CreatePublicacionDto){
-    return await this.publicacionService.crearPublicacion(crearPublicacion);
+    if(crearPublicacion.hasOwnProperty('file')){
+      const file = crearPublicacion['file'];
+      delete crearPublicacion['file'];
+      console.log(file);
+      
+      return this.publicacionService.crearPublicacion(crearPublicacion, file);
+    }else{
+      return this.publicacionService.crearPublicacion(crearPublicacion);
+    }
   }
 
   @Get('publicacionUsuario/:id')
@@ -20,8 +30,18 @@ export class PublicacionController {
   }
 
   @Patch('publicacionActu')
+  @FormDataRequest()
   async actualizarPubli(@Body() crearPublicacion: UpdatePublicacionDto){
-    return await this.publicacionService.actualizarPublicacion(crearPublicacion)
+    if(crearPublicacion.hasOwnProperty('file')){
+      const file = crearPublicacion['file'];
+      delete crearPublicacion['file'];
+      console.log(file);
+      
+      return this.publicacionService.actualizarPublicacion(crearPublicacion, file);
+    }else{
+      return this.publicacionService.actualizarPublicacion(crearPublicacion);
+    }
+    
   }
 
   @Patch('publicacionDelete')

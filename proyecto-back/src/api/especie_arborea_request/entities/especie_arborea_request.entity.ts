@@ -36,4 +36,7 @@ export class EspecieArboreaRequest extends AuditableEntity{
 
   @Column()
   justificacion_rechazo:string;
+
+  @Column()
+  imagen:string;
 }

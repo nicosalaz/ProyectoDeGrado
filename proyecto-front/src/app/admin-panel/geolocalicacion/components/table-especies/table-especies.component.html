@@ -7,7 +7,7 @@
                 <th>Nombre</th>
                 <th>Especie</th>
                 <th>Ubicacion</th>
-                <th *ngif="infoUsuario?.rol == 'Administrador'">Acciones</th>
+                <th *ngIf="infoUsuario?.rol == 'Administrador'">Acciones</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
@@ -19,7 +19,7 @@
                 
                 <td>{{product.position}}</td>
 
-                <td *ngif="infoUsuario?.rol == 'Administrador'"> <p-button icon="fa fa-pencil" (click)="editarEspecieArborea(product)"></p-button> <p-button (click)="confirm1(product)" icon="fa fa-trash" ></p-button></td>
+                <td *ngIf="infoUsuario?.rol == 'Administrador'"> <p-button icon="fa fa-pencil" (click)="editarEspecieArborea(product)"></p-button> <p-button (click)="confirm1(product)" icon="fa fa-trash" ></p-button></td>
                 
                 
             </tr>

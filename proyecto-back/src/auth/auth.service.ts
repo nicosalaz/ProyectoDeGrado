@@ -67,7 +67,8 @@ export class AuthService {
             numero:validationUser.users.telefono,
             ciudad:validationUser.users.ciudad,
             nombre:validationUser.users.nombre,
-            apellido:validationUser.users.apellido
+            apellido:validationUser.users.apellido,
+            imagen: validationUser.users.imagen
           },
         };
     }

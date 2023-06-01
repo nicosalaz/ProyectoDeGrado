@@ -8,10 +8,14 @@ import { EspecieArboreaRequestRepository } from './especie_arborea_reques.reposi
 import { EspecieArboreaRepository } from '../especie_arborea/repository/especie_arborea.reposirory';
 import { EspecieArboreaUbicacionService } from '../especie_arborea_ubicacion/especie_arborea_ubicacion.service';
 import { EspecieArboreaUbicacionRepository } from '../especie_arborea_ubicacion/especie-arborea-ubicacion.repository';
+import { S3Module } from '../s3/s3.module';
+import { NestjsFormDataModule } from 'nestjs-form-data';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([EspecieArboreaRequest]),
+    S3Module, 
+    NestjsFormDataModule
   ],
   controllers: [EspecieArboreaRequestController],
   providers: [EspecieArboreaRequestService, EspecieArboreaRequestRepository, 

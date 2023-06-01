@@ -4,12 +4,14 @@ import { CreateEspecieArboreaRequestDto } from './dto/create-especie_arborea_req
 import { UpdateEspecieArboreaRequestDto } from './dto/update-especie_arborea_request.dto';
 import { AceptarEspecieArboreaRequestDto } from './dto/aceptar-especie-arborea-request.dto';
 import { RechazarEspecieArboreaRequestDto } from './dto/rechazar-especie-arborea.dto';
+import { FormDataRequest } from 'nestjs-form-data';
 
 @Controller()
 export class EspecieArboreaRequestController {
   constructor(private readonly especieArboreaRequestService: EspecieArboreaRequestService) {}
 
   @Post('crearEspecieArborea')
+  @FormDataRequest()
   async crearEspecie(@Body() nuevoEspeciearboreadto: CreateEspecieArboreaRequestDto){
     for(let i in nuevoEspeciearboreadto){
       if(nuevoEspeciearboreadto[i] == "" || nuevoEspeciearboreadto[i] == null){
@@ -19,7 +21,15 @@ export class EspecieArboreaRequestController {
         }
       }
     }
-    return this.especieArboreaRequestService.crearEspecieArborea(nuevoEspeciearboreadto)
+    if(nuevoEspeciearboreadto.hasOwnProperty('file')){
+      const file = nuevoEspeciearboreadto['file'];
+      delete nuevoEspeciearboreadto['file'];
+      console.log(file);
+      
+      return this.especieArboreaRequestService.crearEspecieArborea(nuevoEspeciearboreadto, file);
+    }else{
+      return this.especieArboreaRequestService.crearEspecieArborea(nuevoEspeciearboreadto);
+    }
   }
 
   @Get('especieArborea')
@@ -29,6 +39,7 @@ export class EspecieArboreaRequestController {
 
 
   @Post('editarEspecieArborea')
+  @FormDataRequest()
   async editarespecieArborea(@Body() nuevoEspeciearboreadto: UpdateEspecieArboreaRequestDto){
     for(let i in nuevoEspeciearboreadto){
       if(nuevoEspeciearboreadto[i] == "" || nuevoEspeciearboreadto[i] == null){
@@ -38,7 +49,15 @@ export class EspecieArboreaRequestController {
         }
       }
     }
-    return this.especieArboreaRequestService.editarEspecieArborea(nuevoEspeciearboreadto)
+    if(nuevoEspeciearboreadto.hasOwnProperty('file')){
+      const file = nuevoEspeciearboreadto['file'];
+      delete nuevoEspeciearboreadto['file'];
+      console.log(file);
+      
+      return this.especieArboreaRequestService.editarEspecieArborea(nuevoEspeciearboreadto, file);
+    }else{
+      return this.especieArboreaRequestService.editarEspecieArborea(nuevoEspeciearboreadto);
+    }
   }
 
 

@@ -7,4 +7,6 @@ export class CreateEspecieArboreaDto {
 
   id_especie: number;
 
+  imagen?:string;
+
 }
