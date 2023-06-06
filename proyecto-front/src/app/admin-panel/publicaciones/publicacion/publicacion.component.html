@@ -24,9 +24,9 @@
             
         </div>
         <div class="mt-4">
-            <div class="d-flex" style="justify-content: center;">
+            <div class="d-flex" style="justify-content: center;" *ngIf="infoPublicaciones.imagen != null">
                 <!--Cuando sea una foto w-50 con 2 w-40-->
-                <a class="w-60 m-2" style="content: center;"><img src="{{infoPublicaciones.imagen}}" alt="img" height="100%" ></a>
+                <a class="w-60 m-2" style="content: center;"><img src="{{infoPublicaciones.imagen}}" alt="img" height="100%" width="100%"></a>
             </div>
             <h4 class="fw-semibold mt-3">Descripcion</h4>
             <p class="mb-0">{{infoPublicaciones.descripcion}}
@@ -108,8 +108,8 @@
                 
             </div>
             <div class="mt-4">
-                <div class="d-flex">
-                    <a class="w-40 m-6" style="content: center;"><img src="{{infoPublicaciones.imagen}}" alt="img" class="br-6" style="content: center;"></a>
+                <div class="d-flex" *ngIf="infoPublicaciones.imagen != null">
+                    <a class="w-40 m-6" style="content: center;"><img src="{{infoPublicaciones.imagen}}" alt="img" class="br-6" style="content: center;  "></a>
                     
                     
                 </div>
@@ -197,9 +197,9 @@ header="Comentarios"
             
         </div>
         <div class="mt-4">
-            <div class="d-flex" style="justify-content: center;">
+            <div class="d-flex" style="justify-content: center;" *ngIf="infoPublicaciones.imagen != null">
                 <!--Cuando sea una foto w-50 con 2 w-40-->
-                <a class="w-40 m-2" style="content: center;"><img src="{{infoPublicaciones.imagen}}" alt="img" ></a>
+                <a class="w-40 m-2" style="content: center; "><img src="{{infoPublicaciones.imagen}}" alt="img"  ></a>
                 
             </div>
             <h4 class="fw-semibold mt-3">Descripcion</h4>

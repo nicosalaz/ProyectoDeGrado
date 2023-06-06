@@ -41,7 +41,7 @@ export class MapaComponent implements OnInit {
   infoUsuario:any;
   selectedCity: any;
   displayConfirm:boolean = false;
-  
+  fileSelected:any;
   dialogMensagge: boolean = false;
   @Input() informacionEspecieArbore: any;
   @Output() newItemEvent = new EventEmitter<any>();
@@ -98,7 +98,7 @@ export class MapaComponent implements OnInit {
       scale: 0.05,
      
     };
-    const formEspecieArborea: requestEspecieArborea = {
+    const formEspecieArborea: any = {
       nombre: this.markerTitle,
 
       descripcion: this._value,
@@ -111,8 +111,18 @@ export class MapaComponent implements OnInit {
     
       id_usuario:  Number(this.infoUsuario.id)
     }
+
+    const form = new FormData()
+    for (let clave in formEspecieArborea){
+      form.append(clave, formEspecieArborea[clave]);
+    }
+    if(this.fileSelected != null){
+      form.append('file', this.fileSelected);
+    }
     
-    this.servicesAll.postrequestEspecie(formEspecieArborea).subscribe((resp)=>{
+    console.log(form);
+    
+    this.servicesAll.postrequestEspecie(form).subscribe((resp)=>{
       console.log(resp);
       this.dialogMensagge=true;
       setTimeout(() => {
@@ -163,5 +173,8 @@ export class MapaComponent implements OnInit {
       }
   }
 
-
+  onChangeFile(event: any) {
+    console.log(event.target.files[0])
+    this.fileSelected = event.target.files[0]
+  }
 }

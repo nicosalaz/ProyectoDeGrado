@@ -16,6 +16,7 @@ export class CenterCardsComponent implements OnInit{
   infoUsuario:any;
   loginForm!: FormGroup;
   publicacionesActivas: any=[];
+  fileSelected:any;
   ngOnInit(): void {
     let infoUsuario:any = localStorage.getItem('user');
     this.infoUsuario = JSON.parse(infoUsuario);
@@ -31,10 +32,16 @@ export class CenterCardsComponent implements OnInit{
     const data = { ...this.loginForm.value };
     let auxiliarData:any;
     this.displayConfirm = true;
-    
+    const form = new FormData()
+    for (let clave in data){
+      form.append(clave, data[clave]);
+    }
+    if(this.fileSelected != null){
+      form.append('file', this.fileSelected);
+    }
     
     setTimeout(() => {
-       this.servicesPerfil.postPublicaciones(data).subscribe((resp)=>{
+       this.servicesPerfil.postPublicaciones(form).subscribe((resp)=>{
         auxiliarData = resp.response[0];
         console.log(auxiliarData);
         
@@ -60,5 +67,8 @@ export class CenterCardsComponent implements OnInit{
     return estado;
   }
 
-   
+  onChangeFile(event: any) {
+    console.log(event.target.files[0])
+    this.fileSelected = event.target.files[0]
+  }
 }

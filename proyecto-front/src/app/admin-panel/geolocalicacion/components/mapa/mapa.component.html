@@ -24,6 +24,7 @@ header="Nueva especie arborea"
   >
     
   <div class="ui-g ui-fluid" *ngIf="selectedPosition" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+    <input (change)="onChangeFile($event)" type="file">
     <div  class="modal-un">
       <span class="p-float-label sub-modal-ul" >
             <input pInputText  id="title" [(ngModel)]="markerTitle" style="width: 100%"/>
@@ -121,9 +122,5 @@ header="Nueva especie arborea"
             "
             >
             <h3>Todo salio bien!</h3>
-            <img
-                src="../../assets/aceptado.gif"
-                style="width: 400px; height: 300px"
-            />
             </div>
                 </p-dialog>

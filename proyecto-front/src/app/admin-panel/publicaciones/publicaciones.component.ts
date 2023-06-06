@@ -16,6 +16,7 @@ export class PublicacionesComponent implements OnInit {
   loginForm!: FormGroup;
   publicacionesUsuario:any;
   reaccionesUsuario:any;
+  fileSelected:any;
   ngOnInit(): void {
     let infoUsuario:any = localStorage.getItem('user');
     this.infoUsuario = JSON.parse(infoUsuario);
@@ -43,9 +44,18 @@ export class PublicacionesComponent implements OnInit {
     let auxiliarData:any;
     this.displayConfirm = true;
     console.log(data);
+    const form = new FormData()
+    for (let clave in data){
+      form.append(clave, data[clave]);
+    }
+    if(this.fileSelected != null){
+      form.append('file', this.fileSelected);
+    }
+    
+    console.log(form);
     
     setTimeout(() => {
-       this.servicesPerfil.postPublicaciones(data).subscribe((resp)=>{
+       this.servicesPerfil.postPublicaciones(form).subscribe((resp)=>{
         auxiliarData = resp.response[0];
         this.publicacionesUsuario.unshift(auxiliarData)
         this.displayConfirm = false;
@@ -55,8 +65,13 @@ export class PublicacionesComponent implements OnInit {
       descripcion: new FormControl('', Validators.required),
       id_usuario: new FormControl(Number(this.infoUsuario.id)),
     });
-  }
 
+    
+  }
+  onChangeFile(event: any) {
+    console.log(event.target.files[0])
+    this.fileSelected = event.target.files[0]
+  }
 
   tieneLike(idPublicacion:any){
     

@@ -61,6 +61,7 @@ export class PublicacionComponent implements OnInit {
     this.loading = true;
     console.log(data);
     this.infoPublicaciones.descripcion = data.descripcion;
+
     setTimeout(() => {
        this.servicesPerfil.patchPublicacion(data).subscribe((resp)=>{
 

@@ -6,7 +6,7 @@
             <div class="profile-share border-top-0">
                 <div class="mt-2">
                     
-                    <a href="javascript:void(0)" class="me-2" title="Image" data-bs-toggle="tooltip" data-bs-placement="top"><span class="text-muted"><i class="fe fe-image"></i></span></a>
+                  <input (change)="onChangeFile($event)" type="file">
                 </div>
                 <button  type="submit" [disabled]="!loginForm.valid" class="btn btn-sm btn-success ms-auto"><i class="fa fa-share ms-1"></i> Compartir</button>
             </div>
