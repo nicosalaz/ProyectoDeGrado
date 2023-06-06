@@ -9,6 +9,7 @@ import { UsuarioRolModule } from './usuario-rol/usuario-rol.module';
 import { ReaccionModule } from './reaccion/reaccion.module';
 import { ComentarioModule } from './comentario/comentario.module';
 import { EspecieArboreaRequestModule } from './especie_arborea_request/especie_arborea_request.module';
+import { MantenimientoModule } from './mantenimiento/mantenimiento.module';
 
 export const apiRoutes = [
     {
@@ -54,5 +55,9 @@ export const apiRoutes = [
       {
         path: 'especie-request',
         module: EspecieArboreaRequestModule,
+      },
+      {
+        path: 'mantenimiento',
+        module: MantenimientoModule,
       }
 ];
