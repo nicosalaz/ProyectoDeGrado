@@ -69,13 +69,16 @@ export class MapaComponent implements OnInit {
       this.selectedPosition = event.latLng;
   }
 
-  handleOverlayClick(event:any) {
+  handleOverlayClick(event:any, overlayss:any) {
+    console.log(overlayss);
+    
       let isMarker = event.overlay.getTitle != undefined;
     console.log(event);
+    console.log(event.overlay.image);
     
       if(isMarker) {
           let title = event.overlay.getTitle();
-          this.infoWindow.setContent('' + title + ''+ '</br><img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg" alt="img" height="100px" >');
+          this.infoWindow.setContent('' + title + ''+ '</br><img src="'+event.overlay.image+'" alt="img" height="100px" >');
           this.infoWindow.open(event.map, event.overlay);
           event.map.setCenter(event.overlay.getPosition());
 
@@ -167,7 +170,9 @@ export class MapaComponent implements OnInit {
             this.overlays.push(
               new google.maps.Marker({
                 position:JSON.parse(element.position), 
-                title:element.title, icon:image})
+                title:element.title, icon:image,
+                image:element.imagen
+              })
             )
           });
       }
