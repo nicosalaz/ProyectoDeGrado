@@ -58,7 +58,7 @@ export class MantenimientoRepository extends Repository<Mantenimiento> {
         let mantenimientos = await this.query(`
         select m.id, m.titulo, m.descripcion, m.id_especie_arborea, ea.nombre ,
         CONCAT (u.nombre, ' ', u.apellido) as nombre_registro,
-        m.estado
+        m.estado, m.imagen
         from mantenimiento m
         join especie_arborea ea on ea.id = m.id_especie_arborea 
         join usuario u on u.id = m.id_usuario;`);
@@ -82,7 +82,7 @@ export class MantenimientoRepository extends Repository<Mantenimiento> {
         let mantenimientos = await this.query(`
         select m.id, m.titulo, m.descripcion, m.id_especie_arborea, ea.nombre ,
         CONCAT (u.nombre, ' ', u.apellido) as nombre_registro,
-        m.estado
+        m.estado, m.imagen
         from mantenimiento m
         join especie_arborea ea on ea.id = m.id_especie_arborea 
         join usuario u on u.id = m.id_usuario
