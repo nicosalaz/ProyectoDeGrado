@@ -12,7 +12,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-product>
             <tr>
-                <td><img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg" [alt]="product.name" width="100" class="shadow-2" /></td>
+                <td><img src="{{product.imagen}}" [alt]="product.name" width="100" class="shadow-2" /></td>
                 <td>{{product.title}}</td>
                 
                 <td>{{product.nombre_especie}}</td>
@@ -40,7 +40,7 @@ header="Especie arborea"
   >
     
   <div class="ui-g ui-fluid"  style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-    <img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg"  class="shadow-2" />
+    <img src="{{especieArborea.imagen}}"  class="shadow-2" />
     <div  class="modal-un">
         <span class="p-float-label sub-modal-ul" >
               <input pInputText  id="title" [(ngModel)]="especieArborea.title" style="width: 100%"/>

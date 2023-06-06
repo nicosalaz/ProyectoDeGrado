@@ -16,6 +16,7 @@ export class especieArborea{
   descripcion!:string;
   position!:string;
   id_especie!:any;
+  imagen!:any;
 }
 
 @Component({

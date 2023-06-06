@@ -14,6 +14,7 @@ import { ComentarioModule } from './comentario/comentario.module';
 import { EspecieArboreaRequestModule } from './especie_arborea_request/especie_arborea_request.module';
 import { S3Module } from './s3/s3.module';
 import { NestjsFormDataModule } from 'nestjs-form-data';
+import { MantenimientoModule } from './mantenimiento/mantenimiento.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { NestjsFormDataModule } from 'nestjs-form-data';
     PeticionesRegistroModule, 
     RolModule, 
     PermisoModule, IdentificacionModule, PublicacionModule, EspecieArboreaUbicacionModule, UsuarioRolModule, ReaccionModule, ComentarioModule, EspecieArboreaRequestModule, S3Module,
-    NestjsFormDataModule]
+    NestjsFormDataModule,
+    MantenimientoModule]
 })
 export class ApiModule {}

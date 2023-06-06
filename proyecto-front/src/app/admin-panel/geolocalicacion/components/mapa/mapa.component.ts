@@ -71,7 +71,8 @@ export class MapaComponent implements OnInit {
 
   handleOverlayClick(event:any) {
       let isMarker = event.overlay.getTitle != undefined;
-
+    console.log(event);
+    
       if(isMarker) {
           let title = event.overlay.getTitle();
           this.infoWindow.setContent('' + title + ''+ '</br><img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg" alt="img" height="100px" >');

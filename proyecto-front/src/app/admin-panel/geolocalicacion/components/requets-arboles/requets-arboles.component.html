@@ -1,7 +1,7 @@
 
             <!-- ROW-1 OPEN -->
             <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <app-card-especie [inforequest]="inforequest" (newItemEvent)="editado($event)"></app-card-especie>
                     
                     <!-- COL-END -->
@@ -21,7 +21,7 @@
               >
                 
               <div class="ui-g ui-fluid"  style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                <img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg"  class="shadow-2" />
+                <img src="{{inforequest.imagen}}"  class="shadow-2" />
                 <div  class="modal-un">
                     <span class="p-float-label sub-modal-ul" >
                           <input pInputText  id="title" [(ngModel)]="inforequest.nombre_esp" style="width: 100%"/>
@@ -104,7 +104,7 @@
               >
                 
               <div class="ui-g ui-fluid"  style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                <img src="https://mybucketespeciesarboreas.s3.amazonaws.com/media/lol.jpg"  class="shadow-2" />
+                <img src="{{inforequest.imagen}}"  class="shadow-2" />
                 <div  class="modal-un">
                     <span class="p-float-label sub-modal-ul" >
                           <input pInputText  readonly id="title" [(ngModel)]="inforequest.nombre_esp" style="width: 100%"/>
