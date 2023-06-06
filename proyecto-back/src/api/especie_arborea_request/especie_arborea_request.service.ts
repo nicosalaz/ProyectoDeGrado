@@ -32,4 +32,8 @@ export class EspecieArboreaRequestService {
   async rechazarRequest(request:RechazarEspecieArboreaRequestDto){
     return this.especieArboreaService.rechazarEspecieArborea(request);
   }
+
+  async estadisticas(){
+    return this.especieArboreaService.estadisticas();
+  }
 }

@@ -100,4 +100,9 @@ export class EspecieArboreaRequestController {
     }
     return this.especieArboreaRequestService.rechazarRequest(nuevoEspeciearboreadto)
   }
+  @Get('estadistica')
+  async estadistica(){
+    return this.especieArboreaRequestService.estadisticas()
+  }
+  
 }

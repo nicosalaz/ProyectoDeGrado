@@ -170,4 +170,27 @@ async addimagesRequest(file: Express.Multer.File, idUser){
     }
   }
 
+
+async estadisticas(){
+  const pendientes = await this.query(`
+  SELECT count(*) as pending from especie_arborea_request ear 
+  where ear.activo = 1;
+           `)
+
+  const aceptadas = await this.query(`
+  SELECT count(*) as aceptado from especie_arborea_request ear 
+  where ear.activo = 0 and ear.aceptado_por is not null;
+           `)
+
+  const recahzadas = await this.query(`
+  SELECT count(*) as rechazo from especie_arborea_request ear 
+  where ear.activo = 0 and ear.rechazado_por  is not null;
+           `)
+
+
+  return {
+    pendientes, recahzadas, aceptadas
+  }
+}
+
 }
