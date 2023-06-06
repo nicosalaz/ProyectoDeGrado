@@ -61,7 +61,9 @@ export class MantenimientoRepository extends Repository<Mantenimiento> {
         m.estado, m.imagen
         from mantenimiento m
         join especie_arborea ea on ea.id = m.id_especie_arborea 
-        join usuario u on u.id = m.id_usuario;`);
+        join usuario u on u.id = m.id_usuario
+        where m.activo = 1
+        ;`);
 
         return {
             status: HttpStatus.ACCEPTED,
@@ -86,7 +88,7 @@ export class MantenimientoRepository extends Repository<Mantenimiento> {
         from mantenimiento m
         join especie_arborea ea on ea.id = m.id_especie_arborea 
         join usuario u on u.id = m.id_usuario
-        where id_empleado = ?
+        where id_empleado = ? and where m.activo = 1
         ;`,[id_usuario]);
 
         return {
