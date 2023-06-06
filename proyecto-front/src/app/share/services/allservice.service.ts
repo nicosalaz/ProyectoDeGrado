@@ -75,7 +75,7 @@ export class AllserviceService {
   }
 
   getArboles(){
-    return this.http.get<any>(`${this.apiBaseUrl}api/especie-request/estadistica`);
+    return this.http.get<any>(`${this.apiBaseUrl}especie-request/estadistica`);
   }
 
 }

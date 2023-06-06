@@ -12,15 +12,17 @@ export class EstadisticasComponent implements OnInit {
 
   basicOptions: any;
   data: any;
-
+  datos : any;
     options: any;
   constructor(private servicesAll: AllserviceService){}
   ngOnInit() {
       this.servicesAll.getArboles().subscribe((ele)=>{
-        console.log(ele);
+        this.datos = ele;
+        console.log(this.datos);
         
       })
-      const documentStyle = getComputedStyle(document.documentElement);
+      setTimeout(() => {
+        const documentStyle = getComputedStyle(document.documentElement);
       const textColor = documentStyle.getPropertyValue('--text-color');
       const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
       const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
@@ -30,7 +32,7 @@ export class EstadisticasComponent implements OnInit {
           datasets: [
               {
                   label: 'Reques Especies arboreas',
-                  data: [540, 325, 702, 620],
+                  data: [Number(this.datos.aceptadas[0].aceptado), Number(this.datos.pendientes[0].pending) , Number(this.datos.recahzadas[0].rechazo)],
                   backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)'],
                   borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)'],
                   borderWidth: 1
@@ -93,6 +95,8 @@ export class EstadisticasComponent implements OnInit {
               }
           }
       };
+      }, 1000);
+      
   }
 
 }
