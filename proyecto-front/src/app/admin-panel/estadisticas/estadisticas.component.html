@@ -1,0 +1,70 @@
+<div class="main-content app-content mt-0" >
+    <div class="side-app">
+        <!-- CONTAINER -->
+        <div class="main-container container-fluid">
+
+            <!-- PAGE-HEADER -->
+            <div class="page-header">
+                <h1 class="page-title">Tabs</h1>
+                <div>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tabs</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- PAGE-HEADER END -->
+
+            <!-- ROW-1 OPEN -->
+            <div class="row">
+
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Estadisticas</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="panel panel-primary">
+                                <div class="tab-menu-heading">
+                                    <div class="tabs-menu">
+                                        <!-- Tabs -->
+                                        <ul class="nav panel-tabs panel-success">
+                                            <li><a href="#tab1" class="active" data-bs-toggle="tab"><span><i class="fa fa-globe me-1"></i></span>Estadisticas de arboles.</a></li>
+                                            <li ><a href="#tab2" data-bs-toggle="tab"><span><i class="fa fa-tree me-1"></i></span>Dashboard</a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel-body tabs-menu-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab1">
+                                           
+                                        <div class="card" style="width: 900px;">
+                                            <h1>Estadisticas de request especies arboreas</h1>
+                                            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+                                            
+                                        </div>
+                                        <div class="card flex justify-content-center" style="width: 500px;">
+                                            <h1>Estadisticas de especies arboreas censo de cali</h1>
+                                            <p-chart type="pie" [data]="data" [options]="options"></p-chart>
+                                        </div>
+
+                                        <P>Esta informacion fue sacada de  <a href="http://datos.cali.gov.co/dataset/censo-arboreo-de-santiago-de-cali/resource/73a988ec-24a3-4943-90a7-5fc409fd53f2">Aqui</a></P>
+                                        </div>
+                                        <div class="tab-pane" id="tab2" style="height: 800px;">
+                                            <iframe width="100%" height="100%" frameBorder="0" src="https://app.powerbi.com/view?r=eyJrIjoiNDBmZGZjZjUtZWFmMy00NTgwLThiODgtNjBkYWQ5NzUzOGRkIiwidCI6IjhmYmFhNWJmLTJlY2MtNGRjOC1iNTZiLThmOTJlMzA3ZjA3NiIsImMiOjR9"></iframe>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ROW-1 CLOSED -->
+        </div>
+        <!-- CONTAINER CLOSED -->
+    </div>
+</div>

@@ -74,4 +74,8 @@ export class AllserviceService {
     return this.http.post<any>(`${this.apiBaseUrl}usuarios/create`, data);
   }
 
+  getArboles(){
+    return this.http.get<any>(`https://datos.cali.gov.co/api/3/action/datastore_search?q=Arbol&resource_id=73a988ec-24a3-4943-90a7-5fc409fd53f2`);
+  }
+
 }

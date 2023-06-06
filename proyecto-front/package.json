@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "aws-s3-upload-ash": "^1.1.4",
+    "chart.js": "^4.3.0",
     "jquery": "^3.6.1",
     "ngx-pagination": "^6.0.3",
     "paginationjs": "^2.6.0",
