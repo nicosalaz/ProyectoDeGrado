@@ -16,7 +16,10 @@ export class EstadisticasComponent implements OnInit {
     options: any;
   constructor(private servicesAll: AllserviceService){}
   ngOnInit() {
-    
+      this.servicesAll.getArboles().subscribe((ele)=>{
+        console.log(ele);
+        
+      })
       const documentStyle = getComputedStyle(document.documentElement);
       const textColor = documentStyle.getPropertyValue('--text-color');
       const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
